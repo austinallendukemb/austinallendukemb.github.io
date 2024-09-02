@@ -1,7 +1,7 @@
 ---
-title: "About the Duke MB Program Projects"
+title: "About Austin's MB Projects"
 ---
 
 This website was created by Austin Allen. All projects shown here were completed during his time in the Master of Biostatistics (MB) Program at Duke University. Projects are organized by course. 
 
-While these projects were assigned by instructors and were completed between August 2023 and May 2025, you can check out Austin's [personal website](austindallen.com) to see projects selected by him to demonstrate skills as well as to have a little fun. 
+While these projects were assigned by instructors and were completed between August 2023 and May 2025, you can check out Austin's [personal website](https://austindallen.com) to see projects selected by him to demonstrate skills as well as to have a little fun. 
