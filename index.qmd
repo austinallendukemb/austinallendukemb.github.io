@@ -1,6 +1,46 @@
 ---
-title: "Duke MB Program Projects"
+title: "Austin's MB Projects"
 ---
 
+# Course List
 
-This is Austin Allen's website for his Duke MB Program Projects. Looking for Austin's personal website? Navigate [here](austindallen.com).
+## Fall 2023
+
+* Introduction to Statistical Theory and Methods I (BIOSTAT 701)
+* Applied Biostatistical Methods I (BIOSTAT 702)
+* Introduction to the Practice of Biostatistics I (BIOSTAT 703)
+* Biostatistics Career Preparation and Development I (BIOSTAT 801)
+* Programming, Data Structures, and Algorithms in C++ (ECE 551D)
+
+(Note: This website was created after this semester was completed, so projects may not have been uploaded yet)
+
+## Spring 2024
+
+* Introduction to Statistical Theory and Methods II (BIOSTAT 704)
+* Applied Biostatistical Methods II (BIOSTAT 705)
+* Introduction to the Practice of Biostatistics II (BIOSTAT 706)
+* Biostatistics Career Preparation and Development I (BIOSTAT 801)
+* Software Tools for Data Science (BIOSTAT 821)
+
+(Note: This website was created after this semester was completed, so projects may not have been uploaded yet)
+
+## Fall 2024
+
+* [Statistical Methods for Learning and Discovery (BIOSTAT 707)](fall_24/b707/index.qmd)
+* [Generalized Linear Models (BIOSTAT 719)](fall_24/b719/index.qmd)
+* [Statistical Programming for Big Data (BIOSTAT 823)](fall_24/b823/index.qmd)
+
+(Note: This semester is in progress)
+
+## Spring 2025
+
+* Longitudinal and Correlated Data Analysis (BIOSTAT 718)
+* Introduction to Applied Bayesian Analysis (BIOSTAT 724)
+* Special Topics in Biomedical Engineering: Spatial Omics (BME 590)
+* Computational Sequence Biology (CBB 561)
+
+
+(Note: This semester has not yet started)
+
+
+This is Austin Allen's website for his Duke MB Program Projects. Looking for Austin's personal website? Navigate [here](https://austindallen.com).

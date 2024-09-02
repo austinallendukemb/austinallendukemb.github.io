@@ -1,0 +1,4 @@
+---
+title: Generalized Linear Models 
+subtitle: BIOSTAT 719
+---
