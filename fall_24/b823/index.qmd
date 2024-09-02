@@ -2,3 +2,5 @@
 title: Statistical Programming for Big Data 
 subtitle: BIOSTAT 823
 ---
+
+* [Course Notes](./notes/notes.qmd)
