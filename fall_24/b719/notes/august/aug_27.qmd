@@ -1,0 +1,86 @@
+---
+title: "August 27, 2024 - August 29, 2024"
+---
+
+# August 27, 2024
+
+## Syllabus
+
+* The textbook for this course is "An Introduction to Generalized Linear Models, Fourth Edition" by Chapman and Hall. 
+* She uses R and SAS. 
+* Course grading scale:
+  * Attendance and pop quiz: 5%
+  * Homework: 20%
+  * Midterm: 25%
+  * Final: 30%
+  * Group Research Project: 20%
+* Homework
+  * There will be 9 weekly homework assignments. Each are due at the beginning of the class on the due day. 
+  * Submit as a PDF document.
+  * 10% deduction in score for late submissions. 
+* Exams
+  * Midterm and final exams will be in-class. 
+  * There is a one-page cheat sheet allowed (double-sided).
+  * Rules for exams:
+    * Only bring calculator (non-graphing) and pencil + eraser
+    * Exams are proctored.
+* Group research project
+  * Will require analysis of a data set, final report, and final presentation. 
+* Pop quizzes
+  * The primary purpose of the pop quiz is to check attendance.
+* Communications
+  * Teams channel in MS Teams
+* AI Policies
+  * AI is allowed. However, be transparent about use. 
+  * Fact checking is my own responsibility. 
+  * AI-generated content without proper acknowledgement or references will be treated as plagiarism. 
+
+
+::: {.callout collapse="true"}
+
+### Here's the Syllabus
+
+<embed src="../../files/syllabus.pdf" height="450px" width="800px" type="application/pdf"/>
+
+:::
+
+## Three take-aways:
+
+1. Take ownership of your projects. This is one of the hardest things to teach to students. 
+2. Make a check-list for all that needs to be done in all the analyses you come across. 
+3. Hwanhee once met an incredibly driven student that was studying in her program while simultaneously working on a part-time PhD program and conducting government research in Korea. But even with his full plate, he took meticulous notes during each class period and would pester her about the lectures. She said that she was annoyed at him and asked him why he cared so much. He responded, "This is my last chance to go through this course material. I won't get another chance, and I have to learn this now."
+
+# August 29, 2024
+
+
+## Review of Linear Regression Concepts
+
+* Say we have two variables, X and Y (predictor and response). Y (the response or outcome) is regarded as a random variable. Explanatory variables (X) are treated as fixed by the experimental design.
+* Types of outcomes:
+  * Continous (e.g. BMI, SBP) - linear regression 
+  * Binary (e.g. death $\in$ {1, 0}) - logistic regression 
+  * Categorical (nominal, ordinal) - nominal/ordinal logistic regression 
+  * Counts (e.g. number of hospitalizations) - Poisson regression
+
+## Likelihood and MLEs
+
+* $f(y; \theta)$ is a probability distribution, where $\theta$ represents the parameters of the distribution 
+* $L(\theta; y)$ is a likelihood function: $L(\theta; y) = \prod_{i = 1}^n f(y; \theta)$
+* $l(\theta; y)$ is the log likelihood function: $l(\theta; y) = \sum log f(y; \theta)$
+* MLE $\hat{\theta}$ of parameter \$\theta$ is the value which maximizes the likelihood function: $L(\hat{\theta}; y) \ge L(\theta; y)$, for all $\theta \in \Omega$ (this is also true for the log-likelihood function)
+* How do you get the MLE? Take the derivative of the log-likelihood function, set to 0, and solve. Then take the second derivative and check the sign. 
+
+## Linear Model Specifications
+
+* Model Fitting Process:
+
+1. Specify model
+   1. Find the probability distribution of Y (what type of variable? what tests are appropriate? etc.)
+   2. Equation linking response and explanatory variable
+2. Estimation of parameters in the model
+3. check adequacy of model (residuals, deviance, AIC, etc.)
+4. Make inference - confidence intervals, interpretation of results, hypothesis testing
+
+* In class, there was an example with women from the town and country (1, 0) and some sort of response variable (I think it was a count). Hwanhee said that in this case, where we have a factor variable, there are two main ways we can think about Y. First, we can construct our Y vector as a $n\text{ x } 1$ dimmensional vector. The model formula, then, would look like this: $Y_i = \beta_0 + \beta_1 X_i + \epsilon$, where $X_i = \begin{cases}1, \quad \text{From town}\\0, \quad \text{From city} \end{cases}$. The other way to think about this is to construct our $Y$ vector to be $j \text{ x } k$ dimmensional, where $j$ is the number of levels of our factor variable and $k$ is the number of individuals in group $j$. In this case, the model formula would be $Y_{jk} = \mu + \alpha_j + \epsilon_k$, where $\mu$ is the mean of the reference group and $\alpha$ is the difference between the means of the reference group and group $j$. 
+
+

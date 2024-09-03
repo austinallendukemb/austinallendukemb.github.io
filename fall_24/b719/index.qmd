@@ -1,6 +1,18 @@
 ---
-title: Generalized Linear Models 
+title: "Generalized Linear Models: Class Projects"
 subtitle: BIOSTAT 719
 ---
 
-* [Course Notes](./notes/notes.qmd)
+# August
+
+* [Homework 1](./projects/hw_1.qmd)
+
+# September
+
+# October
+
+# November
+
+
+
+To review notes taken during class, follow [this link](./notes/notes.qmd).
