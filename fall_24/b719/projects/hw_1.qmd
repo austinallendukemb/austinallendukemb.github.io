@@ -47,11 +47,16 @@ Let's first find the MLE using calculus. Let's review the steps:
 
 With that in mind, let's jump in! 
 
-$$
 \begin{align*}
-\ell (\theta_i | y_i) &= \sum_{i = 1}^n \log\left(L(\theta_i |y_i) \right)\\
-&= \sum_{i = 1}^n \prod_{i = 1}^n f(y_i;\theta)\\
-&= \sum_{i = 1}^n \prod_{i = 1}^n {n_i \choose y_i}\theta^{y_i}(1 - \theta)^{n_i - y_i}\\
+\ell (\theta_i ; y_i) &= \sum_{i = 1}^{16} \log\left( f(y_i; \theta) \right)\\
+&= \sum_{i = 1}^{16} \log\left[ {n_i \choose y_i}\theta^{y_i}(1 - \theta)^{n_i - y_i}  \right]\\
+&= \sum_{i = 1}^{16} \log {n_i \choose y_i} + \log(\theta)\sum_{i = 1}^{16} y_i + log(1 - \theta)\sum_{i = 1}^{16}(n_i - y_i)  \\
+\frac{d \ell}{d\theta} &= 0 + \sum_{i = 1}^{16} \frac{y_i}{\theta} - \frac{\sum_{i = 1}^{16} n_i - \sum_{i = 1}^{16} y_i}{1 - \theta} \\
+\underline{\text{set}} \quad 0 &=  \sum_{i = 1}^{16} \frac{y_i}{\hat{\theta}} - \frac{\sum_{i = 1}^{16} n_i - \sum_{i = 1}^{16} y_i}{1 - \hat{\theta}} \\ 
+\implies \sum_{i = 1}^{16} \frac{y_i}{\hat{\theta}} &= \frac{\sum_{i = 1}^{16} n_i - \sum_{i = 1}^{16} y_i}{1 - \hat{\theta}} \\
+\implies  \hat{\theta} \sum_{i = 1}^{16} n_i &= \sum_{i = 1}^{16} y_i \\
+\implies \hat{\theta} &= \frac{1}{\sum_{i = 1}^{16} n_i} \sum_{i = 1}^{16} y_i
 \end{align*}
-$$
 
+
+Thus, the MLE for a random sample of size 16 is $\hat{\theta} = \frac{1}{\sum_{i = 1}^{16} n_i} \sum_{i = 1}^{16} y_i$. Intuitively, this makes sense, because this is essentially the total number of females in all progenies divided by the total number of individuals. This value for $\hat{\theta}$ is evaluated to be $363/(371+363) = 0.49$. 

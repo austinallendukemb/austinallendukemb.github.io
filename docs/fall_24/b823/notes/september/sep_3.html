@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Austin’s MB Projects - August 27, 2024 - August 29, 2024</title>
+<title>Austin’s MB Projects - September 3, 2024 - September 5, 2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,35 +67,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../../../styles.css">
 </head>
@@ -141,17 +112,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#august-27-2024" id="toc-august-27-2024" class="nav-link active" data-scroll-target="#august-27-2024">August 27, 2024</a>
+  <li><a href="#september-3-2024" id="toc-september-3-2024" class="nav-link active" data-scroll-target="#september-3-2024">September 3, 2024</a>
   <ul class="collapse">
-  <li><a href="#syllabus" id="toc-syllabus" class="nav-link" data-scroll-target="#syllabus">Syllabus</a></li>
-  <li><a href="#three-take-aways" id="toc-three-take-aways" class="nav-link" data-scroll-target="#three-take-aways">Three take-aways:</a></li>
-  </ul></li>
-  <li><a href="#august-29-2024" id="toc-august-29-2024" class="nav-link" data-scroll-target="#august-29-2024">August 29, 2024</a>
-  <ul class="collapse">
-  <li><a href="#review-of-linear-regression-concepts" id="toc-review-of-linear-regression-concepts" class="nav-link" data-scroll-target="#review-of-linear-regression-concepts">Review of Linear Regression Concepts</a></li>
-  <li><a href="#likelihood-and-mles" id="toc-likelihood-and-mles" class="nav-link" data-scroll-target="#likelihood-and-mles">Likelihood and MLEs</a></li>
-  <li><a href="#linear-model-specifications" id="toc-linear-model-specifications" class="nav-link" data-scroll-target="#linear-model-specifications">Linear Model Specifications</a></li>
-  <li><a href="#three-take-aways-1" id="toc-three-take-aways-1" class="nav-link" data-scroll-target="#three-take-aways-1">Three Take-aways</a></li>
+  <li><a href="#three-take-aways" id="toc-three-take-aways" class="nav-link" data-scroll-target="#three-take-aways">Three Take-aways</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -161,7 +124,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">August 27, 2024 - August 29, 2024</h1>
+<h1 class="title">September 3, 2024 - September 5, 2024</h1>
 </div>
 
 
@@ -178,143 +141,10 @@ window.Quarto = {
 </header>
 
 
-<section id="august-27-2024" class="level1">
-<h1>August 27, 2024</h1>
-<section id="syllabus" class="level2">
-<h2 class="anchored" data-anchor-id="syllabus">Syllabus</h2>
-<ul>
-<li>The textbook for this course is “An Introduction to Generalized Linear Models, Fourth Edition” by Chapman and Hall.</li>
-<li>She uses R and SAS.</li>
-<li>Course grading scale:
-<ul>
-<li>Attendance and pop quiz: 5%</li>
-<li>Homework: 20%</li>
-<li>Midterm: 25%</li>
-<li>Final: 30%</li>
-<li>Group Research Project: 20%</li>
-</ul></li>
-<li>Homework
-<ul>
-<li>There will be 9 weekly homework assignments. Each are due at the beginning of the class on the due day.</li>
-<li>Submit as a PDF document.</li>
-<li>10% deduction in score for late submissions.</li>
-</ul></li>
-<li>Exams
-<ul>
-<li>Midterm and final exams will be in-class.</li>
-<li>There is a one-page cheat sheet allowed (double-sided).</li>
-<li>Rules for exams:
-<ul>
-<li>Only bring calculator (non-graphing) and pencil + eraser</li>
-<li>Exams are proctored.</li>
-</ul></li>
-</ul></li>
-<li>Group research project
-<ul>
-<li>Will require analysis of a data set, final report, and final presentation.</li>
-</ul></li>
-<li>Pop quizzes
-<ul>
-<li>The primary purpose of the pop quiz is to check attendance.</li>
-</ul></li>
-<li>Communications
-<ul>
-<li>Teams channel in MS Teams</li>
-</ul></li>
-<li>AI Policies
-<ul>
-<li>AI is allowed. However, be transparent about use.</li>
-<li>Fact checking is my own responsibility.</li>
-<li>AI-generated content without proper acknowledgement or references will be treated as plagiarism.</li>
-</ul></li>
-</ul>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Here’s the Syllabus
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<embed src="../../files/syllabus.pdf" height="450px" width="800px" type="application/pdf">
-</div>
-</div>
-</div>
-</section>
+<section id="september-3-2024" class="level1">
+<h1>September 3, 2024</h1>
 <section id="three-take-aways" class="level2">
-<h2 class="anchored" data-anchor-id="three-take-aways">Three take-aways:</h2>
-<ol type="1">
-<li>Take ownership of your projects. This is one of the hardest things to teach to students.</li>
-<li>Make a check-list for all that needs to be done in all the analyses you come across.</li>
-<li>Hwanhee once met an incredibly driven student that was studying in her program while simultaneously working on a part-time PhD program and conducting government research in Korea. But even with his full plate, he took meticulous notes during each class period and would pester her about the lectures. She said that she was annoyed at him and asked him why he cared so much. He responded, “This is my last chance to go through this course material. I won’t get another chance, and I have to learn this now.”</li>
-</ol>
-</section>
-</section>
-<section id="august-29-2024" class="level1">
-<h1>August 29, 2024</h1>
-<section id="review-of-linear-regression-concepts" class="level2">
-<h2 class="anchored" data-anchor-id="review-of-linear-regression-concepts">Review of Linear Regression Concepts</h2>
-<ul>
-<li>Say we have two variables, X and Y (predictor and response). Y (the response or outcome) is regarded as a random variable. Explanatory variables (X) are treated as fixed by the experimental design.</li>
-<li>Types of outcomes:
-<ul>
-<li>Continous (e.g.&nbsp;BMI, SBP) - linear regression</li>
-<li>Binary (e.g.&nbsp;death <span class="math inline">\(\in\)</span> {1, 0}) - logistic regression</li>
-<li>Categorical (nominal, ordinal) - nominal/ordinal logistic regression</li>
-<li>Counts (e.g.&nbsp;number of hospitalizations) - Poisson regression</li>
-</ul></li>
-</ul>
-</section>
-<section id="likelihood-and-mles" class="level2">
-<h2 class="anchored" data-anchor-id="likelihood-and-mles">Likelihood and MLEs</h2>
-<ul>
-<li><span class="math inline">\(f(y; \theta)\)</span> is a probability distribution, where <span class="math inline">\(\theta\)</span> represents the parameters of the distribution</li>
-<li><span class="math inline">\(L(\theta; y)\)</span> is a likelihood function: <span class="math inline">\(L(\theta; y) = \prod_{i = 1}^n f(y; \theta)\)</span></li>
-<li><span class="math inline">\(l(\theta; y)\)</span> is the log likelihood function: <span class="math inline">\(l(\theta; y) = \sum log f(y; \theta)\)</span></li>
-<li>MLE <span class="math inline">\(\hat{\theta}\)</span> of parameter $$ is the value which maximizes the likelihood function: <span class="math inline">\(L(\hat{\theta}; y) \ge L(\theta; y)\)</span>, for all <span class="math inline">\(\theta \in \Omega\)</span> (this is also true for the log-likelihood function)</li>
-<li>How do you get the MLE? Take the derivative of the log-likelihood function, set to 0, and solve. Then take the second derivative and check the sign.</li>
-</ul>
-</section>
-<section id="linear-model-specifications" class="level2">
-<h2 class="anchored" data-anchor-id="linear-model-specifications">Linear Model Specifications</h2>
-<ul>
-<li>Model Fitting Process:</li>
-</ul>
-<ol type="1">
-<li>Specify model
-<ol type="1">
-<li>Find the probability distribution of Y (what type of variable? what tests are appropriate? etc.)</li>
-<li>Equation linking response and explanatory variable</li>
-</ol></li>
-<li>Estimation of parameters in the model</li>
-<li>check adequacy of model (residuals, deviance, AIC, etc.)</li>
-<li>Make inference - confidence intervals, interpretation of results, hypothesis testing</li>
-</ol>
-<ul>
-<li>In class, there was an example with women from the town and country (1, 0) and some sort of response variable (I think it was a count). Hwanhee said that in this case, where we have a factor variable, there are two main ways we can think about Y. First, we can construct our Y vector as a <span class="math inline">\(n\text{ x } 1\)</span> dimmensional vector. The model formula, then, would look like this: <span class="math inline">\(Y_i = \beta_0 + \beta_1 X_i + \epsilon\)</span>, where <span class="math inline">\(X_i = \begin{cases}1, \quad \text{From town}\\0, \quad \text{From city} \end{cases}\)</span>. The other way to think about this is to construct our <span class="math inline">\(Y\)</span> vector to be <span class="math inline">\(j \text{ x } k\)</span> dimmensional, where <span class="math inline">\(j\)</span> is the number of levels of our factor variable and <span class="math inline">\(k\)</span> is the number of individuals in group <span class="math inline">\(j\)</span>. In this case, the model formula would be <span class="math inline">\(Y_{jk} = \mu + \alpha_j + \epsilon_k\)</span>, where <span class="math inline">\(\mu\)</span> is the mean of the reference group and <span class="math inline">\(\alpha\)</span> is the difference between the means of the reference group and group <span class="math inline">\(j\)</span>.</li>
-</ul>
-</section>
-<section id="three-take-aways-1" class="level2">
-<h2 class="anchored" data-anchor-id="three-take-aways-1">Three Take-aways</h2>
-<ol type="1">
-<li>For a response and explanatory variable, X is considered fixed and Y is considered a random variable.</li>
-<li>The four steps for the calculus method for finding an MLE is as follows:
-<ol type="1">
-<li>Find the log-likelihood function: <span class="math inline">\(\ell (\theta | y) = \sum_{i = 1}^n \log \left( f(y; \theta)\right)\)</span></li>
-<li>Take the derivative</li>
-<li>Set to zero and solve</li>
-<li>Take the second derivative</li>
-</ol></li>
-<li>The are two primary ways of structuring a model formula with a factor-level variable:
-<ol type="1">
-<li><span class="math inline">\(Y_i = \beta_0 + \beta_1 X_i + \epsilon_i\)</span>, where <span class="math inline">\(X\)</span> is the factor-level variable</li>
-<li><span class="math inline">\(Y_{jk} = \mu + Z_{jk} \alpha + epsilon_{jk}\)</span>, where <span class="math inline">\(\mu\)</span> is the mean of the reference group and <span class="math inline">\(\alpha\)</span> is the difference in means of the two groups (assuming two groups)</li>
-</ol></li>
-</ol>
+<h2 class="anchored" data-anchor-id="three-take-aways">Three Take-aways</h2>
 
 
 </section>
