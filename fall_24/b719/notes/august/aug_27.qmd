@@ -84,3 +84,14 @@ title: "August 27, 2024 - August 29, 2024"
 * In class, there was an example with women from the town and country (1, 0) and some sort of response variable (I think it was a count). Hwanhee said that in this case, where we have a factor variable, there are two main ways we can think about Y. First, we can construct our Y vector as a $n\text{ x } 1$ dimmensional vector. The model formula, then, would look like this: $Y_i = \beta_0 + \beta_1 X_i + \epsilon$, where $X_i = \begin{cases}1, \quad \text{From town}\\0, \quad \text{From city} \end{cases}$. The other way to think about this is to construct our $Y$ vector to be $j \text{ x } k$ dimmensional, where $j$ is the number of levels of our factor variable and $k$ is the number of individuals in group $j$. In this case, the model formula would be $Y_{jk} = \mu + \alpha_j + \epsilon_k$, where $\mu$ is the mean of the reference group and $\alpha$ is the difference between the means of the reference group and group $j$. 
 
 
+## Three Take-aways
+
+1. For a response and explanatory variable, X is considered fixed and Y is considered a random variable. 
+2. The four steps for the calculus method for finding an MLE is as follows: 
+   1. Find the log-likelihood function: $\ell (\theta | y) = \sum_{i = 1}^n \log \left( f(y; \theta)\right)$
+   2. Take the derivative
+   3. Set to zero and solve
+   4. Take the second derivative
+3. The are two primary ways of structuring a model formula with a factor-level variable:
+   1. $Y_i = \beta_0 + \beta_1 X_i + \epsilon_i$, where $X$ is the factor-level variable
+   2. $Y_{jk} = \mu + Z_{jk} \alpha + epsilon_{jk}$, where $\mu$ is the mean of the reference group and $\alpha$ is the difference in means of the two groups (assuming two groups)

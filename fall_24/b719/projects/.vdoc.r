@@ -5,7 +5,7 @@
 #
 ###################################### R ######################################
 library(tidyverse)
-knitr::opts_chunk$set(warning = FALSE, message = FALSE, fig.align = 'center')
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, fig.align = "center")
 ###############################################################################
 #
 #
@@ -28,6 +28,11 @@ males <- c(
 table_data <- data.frame(pgroup = pgroup, females = females, males = males)
 pander::pander(table_data, col.names = c("Progeny Group", "Females", "Males"))
 ###############################################################################
+#
+#
+#
+#
+#
 #
 #
 #

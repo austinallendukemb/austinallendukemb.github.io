@@ -304,13 +304,17 @@ f(y_i; \theta) = {n_i \choose y_i}\theta^{y_i}(1 - \theta)^{n_i - y_i}
 <li>Take the second derivative of the function to determine whether the function is concave down (i.e.&nbsp;has a maximum value at <span class="math inline">\(\hat{\theta}\)</span>)</li>
 </ol>
 <p>With that in mind, let’s jump in!</p>
-<p><span class="math display">\[
-\begin{align*}
-\ell (\theta_i | y_i) &amp;= \sum_{i = 1}^n \log\left(L(\theta_i |y_i) \right)\\
-&amp;= \sum_{i = 1}^n \prod_{i = 1}^n f(y_i;\theta)\\
-&amp;= \sum_{i = 1}^n \prod_{i = 1}^n {n_i \choose y_i}\theta^{y_i}(1 - \theta)^{n_i - y_i}\\
-\end{align*}
-\]</span></p>
+<p><span class="math display">\[\begin{align*}
+\ell (\theta_i ; y_i) &amp;= \sum_{i = 1}^{16} \log\left( f(y_i; \theta) \right)\\
+&amp;= \sum_{i = 1}^{16} \log\left[ {n_i \choose y_i}\theta^{y_i}(1 - \theta)^{n_i - y_i}  \right]\\
+&amp;= \sum_{i = 1}^{16} \log {n_i \choose y_i} + \log(\theta)\sum_{i = 1}^{16} y_i + log(1 - \theta)\sum_{i = 1}^{16}(n_i - y_i)  \\
+\frac{d \ell}{d\theta} &amp;= 0 + \sum_{i = 1}^{16} \frac{y_i}{\theta} - \frac{\sum_{i = 1}^{16} n_i - \sum_{i = 1}^{16} y_i}{1 - \theta} \\
+\underline{\text{set}} \quad 0 &amp;=  \sum_{i = 1}^{16} \frac{y_i}{\hat{\theta}} - \frac{\sum_{i = 1}^{16} n_i - \sum_{i = 1}^{16} y_i}{1 - \hat{\theta}} \\
+\implies \sum_{i = 1}^{16} \frac{y_i}{\hat{\theta}} &amp;= \frac{\sum_{i = 1}^{16} n_i - \sum_{i = 1}^{16} y_i}{1 - \hat{\theta}} \\
+\implies  \hat{\theta} \sum_{i = 1}^{16} n_i &amp;= \sum_{i = 1}^{16} y_i \\
+\implies \hat{\theta} &amp;= \frac{1}{\sum_{i = 1}^{16} n_i} \sum_{i = 1}^{16} y_i
+\end{align*}\]</span></p>
+<p>Thus, the MLE for a random sample of size 16 is <span class="math inline">\(\hat{\theta} = \frac{1}{\sum_{i = 1}^{16} n_i} \sum_{i = 1}^{16} y_i\)</span>. Intuitively, this makes sense, because this is essentially the total number of females in all progenies divided by the total number of individuals. This value for <span class="math inline">\(\hat{\theta}\)</span> is evaluated to be <span class="math inline">\(363/(371+363) = 0.49\)</span>.</p>
 
 
 </section>
