@@ -35,25 +35,53 @@
     "text": "Longitudinal and Correlated Data Analysis (BIOSTAT 718)\nIntroduction to Applied Bayesian Analysis (BIOSTAT 724)\nSpecial Topics in Biomedical Engineering: Spatial Omics (BME 590)\nComputational Sequence Biology (CBB 561)\n\n(Note: This semester has not yet started)\nThis is Austin Allen’s website for his Duke MB Program Projects. Looking for Austin’s personal website? Navigate here."
   },
   {
-    "objectID": "fall_24/b707/notes/notes.html",
-    "href": "fall_24/b707/notes/notes.html",
-    "title": "Course Notes for Statistical Methods for Learning and Discovery",
-    "section": "",
-    "text": "September\n\nSeptember 2, 2024 -\n\n\n\nOctober\n\n\nNovember"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About Austin’s MB Projects",
-    "section": "",
-    "text": "This website was created by Austin Allen. All projects shown here were completed during his time in the Master of Biostatistics (MB) Program at Duke University. Projects are organized by course.\nWhile these projects were assigned by instructors and were completed between August 2023 and May 2025, you can check out Austin’s personal website to see projects selected by him to demonstrate skills as well as to have a little fun."
-  },
-  {
-    "objectID": "fall_24/b707/index.html",
-    "href": "fall_24/b707/index.html",
-    "title": "Statistical Methods for Learning and Discovery",
+    "objectID": "fall_24/b823/index.html",
+    "href": "fall_24/b823/index.html",
+    "title": "Statistical Programming for Big Data",
     "section": "",
     "text": "Course Notes"
+  },
+  {
+    "objectID": "fall_24/b719/notes/august/aug_27.html",
+    "href": "fall_24/b719/notes/august/aug_27.html",
+    "title": "August 27, 2024 - August 29, 2024",
+    "section": "",
+    "text": "The textbook for this course is “An Introduction to Generalized Linear Models, Fourth Edition” by Chapman and Hall.\nShe uses R and SAS.\nCourse grading scale:\n\nAttendance and pop quiz: 5%\nHomework: 20%\nMidterm: 25%\nFinal: 30%\nGroup Research Project: 20%\n\nHomework\n\nThere will be 9 weekly homework assignments. Each are due at the beginning of the class on the due day.\nSubmit as a PDF document.\n10% deduction in score for late submissions.\n\nExams\n\nMidterm and final exams will be in-class.\nThere is a one-page cheat sheet allowed (double-sided).\nRules for exams:\n\nOnly bring calculator (non-graphing) and pencil + eraser\nExams are proctored.\n\n\nGroup research project\n\nWill require analysis of a data set, final report, and final presentation.\n\nPop quizzes\n\nThe primary purpose of the pop quiz is to check attendance.\n\nCommunications\n\nTeams channel in MS Teams\n\nAI Policies\n\nAI is allowed. However, be transparent about use.\nFact checking is my own responsibility.\nAI-generated content without proper acknowledgement or references will be treated as plagiarism.\n\n\n\n\n\n\n\n\nHere’s the Syllabus\n\n\n\n\n\n\n\n\n\n\n\n\n\nTake ownership of your projects. This is one of the hardest things to teach to students.\nMake a check-list for all that needs to be done in all the analyses you come across.\nHwanhee once met an incredibly driven student that was studying in her program while simultaneously working on a part-time PhD program and conducting government research in Korea. But even with his full plate, he took meticulous notes during each class period and would pester her about the lectures. She said that she was annoyed at him and asked him why he cared so much. He responded, “This is my last chance to go through this course material. I won’t get another chance, and I have to learn this now.”"
+  },
+  {
+    "objectID": "fall_24/b719/notes/august/aug_27.html#syllabus",
+    "href": "fall_24/b719/notes/august/aug_27.html#syllabus",
+    "title": "August 27, 2024 - August 29, 2024",
+    "section": "",
+    "text": "The textbook for this course is “An Introduction to Generalized Linear Models, Fourth Edition” by Chapman and Hall.\nShe uses R and SAS.\nCourse grading scale:\n\nAttendance and pop quiz: 5%\nHomework: 20%\nMidterm: 25%\nFinal: 30%\nGroup Research Project: 20%\n\nHomework\n\nThere will be 9 weekly homework assignments. Each are due at the beginning of the class on the due day.\nSubmit as a PDF document.\n10% deduction in score for late submissions.\n\nExams\n\nMidterm and final exams will be in-class.\nThere is a one-page cheat sheet allowed (double-sided).\nRules for exams:\n\nOnly bring calculator (non-graphing) and pencil + eraser\nExams are proctored.\n\n\nGroup research project\n\nWill require analysis of a data set, final report, and final presentation.\n\nPop quizzes\n\nThe primary purpose of the pop quiz is to check attendance.\n\nCommunications\n\nTeams channel in MS Teams\n\nAI Policies\n\nAI is allowed. However, be transparent about use.\nFact checking is my own responsibility.\nAI-generated content without proper acknowledgement or references will be treated as plagiarism.\n\n\n\n\n\n\n\n\nHere’s the Syllabus"
+  },
+  {
+    "objectID": "fall_24/b719/notes/august/aug_27.html#three-take-aways",
+    "href": "fall_24/b719/notes/august/aug_27.html#three-take-aways",
+    "title": "August 27, 2024 - August 29, 2024",
+    "section": "",
+    "text": "Take ownership of your projects. This is one of the hardest things to teach to students.\nMake a check-list for all that needs to be done in all the analyses you come across.\nHwanhee once met an incredibly driven student that was studying in her program while simultaneously working on a part-time PhD program and conducting government research in Korea. But even with his full plate, he took meticulous notes during each class period and would pester her about the lectures. She said that she was annoyed at him and asked him why he cared so much. He responded, “This is my last chance to go through this course material. I won’t get another chance, and I have to learn this now.”"
+  },
+  {
+    "objectID": "fall_24/b719/notes/august/aug_27.html#review-of-linear-regression-concepts",
+    "href": "fall_24/b719/notes/august/aug_27.html#review-of-linear-regression-concepts",
+    "title": "August 27, 2024 - August 29, 2024",
+    "section": "Review of Linear Regression Concepts",
+    "text": "Review of Linear Regression Concepts\n\nSay we have two variables, X and Y (predictor and response). Y (the response or outcome) is regarded as a random variable. Explanatory variables (X) are treated as fixed by the experimental design.\nTypes of outcomes:\n\nContinous (e.g. BMI, SBP) - linear regression\nBinary (e.g. death \\(\\in\\) {1, 0}) - logistic regression\nCategorical (nominal, ordinal) - nominal/ordinal logistic regression\nCounts (e.g. number of hospitalizations) - Poisson regression"
+  },
+  {
+    "objectID": "fall_24/b719/notes/august/aug_27.html#likelihood-and-mles",
+    "href": "fall_24/b719/notes/august/aug_27.html#likelihood-and-mles",
+    "title": "August 27, 2024 - August 29, 2024",
+    "section": "Likelihood and MLEs",
+    "text": "Likelihood and MLEs\n\n\\(f(y; \\theta)\\) is a probability distribution, where \\(\\theta\\) represents the parameters of the distribution\n\\(L(\\theta; y)\\) is a likelihood function: \\(L(\\theta; y) = \\prod_{i = 1}^n f(y; \\theta)\\)\n\\(l(\\theta; y)\\) is the log likelihood function: \\(l(\\theta; y) = \\sum log f(y; \\theta)\\)\nMLE \\(\\hat{\\theta}\\) of parameter $$ is the value which maximizes the likelihood function: \\(L(\\hat{\\theta}; y) \\ge L(\\theta; y)\\), for all \\(\\theta \\in \\Omega\\) (this is also true for the log-likelihood function)\nHow do you get the MLE? Take the derivative of the log-likelihood function, set to 0, and solve. Then take the second derivative and check the sign."
+  },
+  {
+    "objectID": "fall_24/b719/notes/august/aug_27.html#linear-model-specifications",
+    "href": "fall_24/b719/notes/august/aug_27.html#linear-model-specifications",
+    "title": "August 27, 2024 - August 29, 2024",
+    "section": "Linear Model Specifications",
+    "text": "Linear Model Specifications\n\nModel Fitting Process:\n\n\nSpecify model\n\nFind the probability distribution of Y (what type of variable? what tests are appropriate? etc.)\nEquation linking response and explanatory variable\n\nEstimation of parameters in the model\ncheck adequacy of model (residuals, deviance, AIC, etc.)\nMake inference - confidence intervals, interpretation of results, hypothesis testing\n\n\nIn class, there was an example with women from the town and country (1, 0) and some sort of response variable (I think it was a count). Hwanhee said that in this case, where we have a factor variable, there are two main ways we can think about Y. First, we can construct our Y vector as a \\(n\\text{ x } 1\\) dimmensional vector. The model formula, then, would look like this: \\(Y_i = \\beta_0 + \\beta_1 X_i + \\epsilon\\), where \\(X_i = \\begin{cases}1, \\quad \\text{From town}\\\\0, \\quad \\text{From city} \\end{cases}\\). The other way to think about this is to construct our \\(Y\\) vector to be \\(j \\text{ x } k\\) dimmensional, where \\(j\\) is the number of levels of our factor variable and \\(k\\) is the number of individuals in group \\(j\\). In this case, the model formula would be \\(Y_{jk} = \\mu + \\alpha_j + \\epsilon_k\\), where \\(\\mu\\) is the mean of the reference group and \\(\\alpha\\) is the difference between the means of the reference group and group \\(j\\)."
   },
   {
     "objectID": "fall_24/b707/notes/september/sep_2.html",
@@ -63,11 +91,53 @@
     "text": "This is the reproducible one."
   },
   {
-    "objectID": "fall_24/b719/notes/notes.html",
-    "href": "fall_24/b719/notes/notes.html",
+    "objectID": "fall_24/b707/index.html",
+    "href": "fall_24/b707/index.html",
+    "title": "Statistical Methods for Learning and Discovery",
+    "section": "",
+    "text": "Course Notes"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Austin’s MB Projects",
+    "section": "",
+    "text": "This website was created by Austin Allen. All projects shown here were completed during his time in the Master of Biostatistics (MB) Program at Duke University. Projects are organized by course.\nWhile these projects were assigned by instructors and were completed between August 2023 and May 2025, you can check out Austin’s personal website to see projects selected by him to demonstrate skills as well as to have a little fun."
+  },
+  {
+    "objectID": "fall_24/b707/notes/notes.html",
+    "href": "fall_24/b707/notes/notes.html",
     "title": "Course Notes for Statistical Methods for Learning and Discovery",
     "section": "",
-    "text": "September\n\n\nOctober\n\n\nNovember"
+    "text": "September\n\nSeptember 2, 2024 -\n\n\n\nOctober\n\n\nNovember"
+  },
+  {
+    "objectID": "fall_24/b719/index.html",
+    "href": "fall_24/b719/index.html",
+    "title": "Generalized Linear Models: Class Projects",
+    "section": "",
+    "text": "August\n\nHomework 1\n\n\n\nSeptember\n\n\nOctober\n\n\nNovember\nTo review notes taken during class, follow this link."
+  },
+  {
+    "objectID": "fall_24/b719/notes/notes.html",
+    "href": "fall_24/b719/notes/notes.html",
+    "title": "Generalized Linear Models: Course Notes",
+    "section": "",
+    "text": "August\n\nAugust 27, 2024 - August 29, 2024\n\n\n\nSeptember\n\n\nOctober\n\n\nNovember"
+  },
+  {
+    "objectID": "fall_24/b719/projects/hw_1.html",
+    "href": "fall_24/b719/projects/hw_1.html",
+    "title": "BIOSTAT 719 - Homework 1",
+    "section": "",
+    "text": "── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.0     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors"
+  },
+  {
+    "objectID": "fall_24/b719/projects/hw_1.html#problem-1",
+    "href": "fall_24/b719/projects/hw_1.html#problem-1",
+    "title": "BIOSTAT 719 - Homework 1",
+    "section": "Problem 1",
+    "text": "Problem 1\n(6 points) [Textbook Exercise 1.6]\n\nThe data in Table 1.4 are the numbers of females and males in the progeny of 16 female light brown apple moths in Muswellbrook, New South Wales, Australia (from Lewis 1987).\n\n\n\n\n\n\n\n\n\n\n\nProgeny Group\nFemales\nMales\n\n\n\n\n1\n18\n11\n\n\n2\n31\n22\n\n\n3\n34\n27\n\n\n4\n33\n29\n\n\n5\n27\n24\n\n\n6\n33\n29\n\n\n7\n28\n25\n\n\n8\n23\n26\n\n\n9\n33\n38\n\n\n10\n12\n14\n\n\n11\n19\n23\n\n\n12\n25\n31\n\n\n13\n14\n20\n\n\n14\n4\n6\n\n\n15\n22\n34\n\n\n16\n7\n12\n\n\n\n\n\n\nLet \\(Y_i\\) denote the number of females in each of the 16 groups of progeny in each group (\\(i = 1, ..., 16\\)). Suppose the \\(Y_i\\)’s are independent random variables each with the Binomial distribution\n\n\\[\nf(y_i; \\theta) = {n_i \\choose y_i}\\theta^{y_i}(1 - \\theta)^{n_i - y_i}\n\\]\n\nFind the maximum likelihood estimator (MLE) of \\(\\theta\\) using calculus and evaluate it for these data.\n\nLet’s first find the MLE using calculus. Let’s review the steps:\n\nCalculate the log-likelihood function\nTake the first derivative of the log-likelihood function (this is the ‘score’ function)\nSet the score function equal to 0 and solve for \\(\\hat{\\theta}\\)\nTake the second derivative of the function to determine whether the function is concave down (i.e. has a maximum value at \\(\\hat{\\theta}\\))\n\nWith that in mind, let’s jump in!\n\\[\n\\begin{align*}\n\\ell (\\theta_i | y_i) &= \\sum_{i = 1}^n \\log\\left(L(\\theta_i |y_i) \\right)\\\\\n&= \\sum_{i = 1}^n \\prod_{i = 1}^n f(y_i;\\theta)\\\\\n&= \\sum_{i = 1}^n \\prod_{i = 1}^n {n_i \\choose y_i}\\theta^{y_i}(1 - \\theta)^{n_i - y_i}\\\\\n\\end{align*}\n\\]"
   },
   {
     "objectID": "fall_24/b823/notes/notes.html",

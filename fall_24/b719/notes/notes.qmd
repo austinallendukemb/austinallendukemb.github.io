@@ -1,8 +1,13 @@
 ---
-title: "Course Notes for Generalized Linear Models"
+title: "Generalized Linear Models: Course Notes"
 ---
 
+# August 
+
+* [August 27, 2024 - August 29, 2024](./august/aug_27.qmd)
+
 # September
+
 
 # October
 

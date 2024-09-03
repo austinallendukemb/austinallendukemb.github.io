@@ -1,0 +1,57 @@
+---
+title: "BIOSTAT 719 - Homework 1"
+---
+
+```{r echo = FALSE}
+###################################### R ######################################
+library(tidyverse)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, fig.align = "center")
+###############################################################################
+```
+
+## Problem 1
+
+**(6 points) [Textbook Exercise 1.6]**
+
+> The data  in  Table  1.4 are  the  numbers  of  females and males in the progeny of 16 female light brown apple moths in Muswellbrook, New South Wales, Australia (from Lewis 1987).
+
+```{r echo = FALSE}
+####### ### ### ### ### ### ### ### ### ### ### # R  ## ## ### ###############################
+library(tidyverse)
+pgroup <- 1:16
+females <- c(
+    18, 31, 34, 33, 27, 33, 28, 23, 33, 12, 19, 25, 14, 4, 22, 7
+)
+males <- c(
+    11, 22, 27, 29, 24, 29, 25, 26, 38, 14, 23, 31, 20, 6, 34, 12
+)
+table_data <- data.frame(pgroup = pgroup, females = females, males = males)
+pander::pander(table_data, col.names = c("Progeny Group", "Females", "Males"))
+###############################################################################
+```
+
+> Let $Y_i$ denote the number of females in each of the 16 groups of progeny in each group ($i = 1, ..., 16$). Suppose the $Y_i$'s are independent random variables each with the Binomial distribution
+
+$$
+f(y_i; \theta) = {n_i \choose y_i}\theta^{y_i}(1 - \theta)^{n_i - y_i}
+$$
+
+> Find the maximum likelihood estimator (MLE) of $\theta$ using calculus and evaluate it for these data. 
+
+Let's first find the MLE using calculus. Let's review the steps: 
+
+1. Calculate the log-likelihood function
+2. Take the first derivative of the log-likelihood function (this is the 'score' function)
+3. Set the score function equal to 0 and solve for $\hat{\theta}$
+4. Take the second derivative of the function to determine whether the function is concave down (i.e. has a maximum value at $\hat{\theta}$)
+
+With that in mind, let's jump in! 
+
+$$
+\begin{align*}
+\ell (\theta_i | y_i) &= \sum_{i = 1}^n \log\left(L(\theta_i |y_i) \right)\\
+&= \sum_{i = 1}^n \prod_{i = 1}^n f(y_i;\theta)\\
+&= \sum_{i = 1}^n \prod_{i = 1}^n {n_i \choose y_i}\theta^{y_i}(1 - \theta)^{n_i - y_i}\\
+\end{align*}
+$$
+
