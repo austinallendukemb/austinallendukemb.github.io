@@ -74,3 +74,65 @@ Thus, the MLE for a random sample of size 16 is $\hat{\theta} = \frac{1}{\sum_{i
 
 ## Problem 2
 
+**(12 points)**
+
+> Let $Y_i, ... , Y_n$ be independent random variables from the exponential distribution
+
+$$
+f(y_i; \lambda) = \lambda e^{-\lambda y_i}, \quad y_i > 0, \lambda > 0
+$$
+
+**Part (a):**
+
+> What is the maximum likelihood estimator (MLE) of $\lambda$? Show all the derivation details.
+
+Let's follow the same four steps to find this out! 
+
+
+\begin{align*}
+\ell(\lambda) &= \sum_{i = 1}^n \log [f(y; \lambda)]\\
+&= \sum_{i = 1}^n \log [\lambda e^{-\lambda y_i}]\\
+&= \sum_{i = 1}^n \log (\lambda) - \sum_{i = 1}^n\lambda y_i\\
+&= n \log (\lambda) - \sum_{i = 1}^n\lambda y_i\\
+\frac{d\ell}{d\lambda} &= \frac{n}{\lambda} - \sum_{i = 1}^n y_i\\
+\underline{\text{set}}\quad 0 &= \frac{n}{\hat{\lambda}} - \sum_{i = 1}^n y_i\\
+\implies \frac{n}{\hat{\lambda}} &= \sum_{i = 1}^n y_i\\
+\implies \hat{\lambda} &= \frac{n}{\sum_{i = 1}^n y_i}\\
+\implies \hat{\lambda} &= \frac{1}{\bar{Y}}
+\end{align*}
+
+This is a fun result, especially considering the fact that the rate parameter is the inverse of the scale parameter. So, by the invariance property of MLEs, we know that the MLE for $\theta$ (the scale parameter) is $\bar{Y}$. 
+
+
+
+**Part (b):**
+
+> Suppose $\lambda = e^{\beta}$. Find the MLE of $\beta$. 
+
+We are given that $\lambda = e^{\beta}$. Thus, $\beta = \log{\lambda}$. By the invariance property of MLEs, if $g(\lambda)$ is a function of $\lambda$, then the MLE of $g(\theta)$ is $g(\hat{\theta})$. 
+
+Let $g(\theta) = \log(\lambda) = \beta$. $g(\hat{\lambda}) = \log\left( \frac{1}{\bar{Y}}\right)$, which is the MLE of $\beta$. 
+
+**Part (c):**
+
+> Consider 150 observations $y_i, (i = 1, 2, ..., 150)$ from the exponential distribution with the sum of the 150 observations equal to 30. What is the numerical evaluation of the MLE of $\lambda$ and $\beta$? 
+
+
+Easy peasy. We did all the hard stuff already, so it's just plug and chug time!
+
+
+For $\hat{\lambda}$:
+
+\begin{align*}
+\hat{\lambda} &= \frac{1}{\bar{Y}}\\
+&= \frac{1}{\frac{30}{150}}\\
+&= 5
+\end{align*}
+
+For $\hat{\beta}$:
+
+\begin{align*}
+\hat{\beta} &= \log\left[\frac{1}{\bar{Y}}\right]\\
+&= \log(5)
+\end{align*}
+
