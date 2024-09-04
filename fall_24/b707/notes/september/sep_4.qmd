@@ -1,0 +1,77 @@
+---
+title: "September 4, 2024"
+date: last-modified
+tags: 
+  - reproducible
+---
+
+# September 4, 2024
+
+## Coding Concepts
+
+* What's the difference between the joins? Left, right, inner, outer, and full - not to mention the option to exclude A from B, etc. 
+* What's the difference between `merge` and `join`? 
+  * Merge loses the order of observations
+
+## Describing Variables
+
+
+### Univariate
+
+* Central tendancy
+  * Mean, median, mode
+* Variability
+  * Standard deviation, IQR
+* Skewness
+
+### Bivariate
+
+* Correlation
+  * What's the difference between Pearson's $r$, Spearman's $\rho$, and Kendall's $\tau$? 
+    * Pearson's $r$ is parametric
+    * Spearman's $\rho$ is non-parametric and is rank-based
+    * Kendall's $\tau$ is non-parametric and can handle categorical variables 
+* Variability by group
+* Trajectory
+  * Slope
+
+## Missing Data
+
+### Missing patterns
+
+* Univariate non-response
+  * Single variable missing data
+* Multivariate two patterns
+  * I think this is when there are two patterns in the data. Some variables have no missing data, and other variables have missing data in the same places
+* Monotone
+  * This is when missingness is exacerbated with variables. For example, let's say we yave X1, X2, and X3. X1 is missing values, and because X2 and X3 depend on X1, any missingness in X1 is also present in X2 and X3. Then suppose X3 depends on X2, any missingness in X2 shows up in X3 as well. Finally, X3 may have its own missing values. What we get is a steady increase in missingness from X1 to X2 and X3.  
+* General 
+  * No patterns are evidence
+* File matching
+  * A good example is in a full join of two datasets. Suppose one dataset had variable A and the other had variable B, and both datasets had unique individuals. We will observe a pattern where there is no common missingness for A and B, nor will there be any individual who has both A and B present. 
+* Factor analysis
+  * This is when there is an entire variable is missing
+
+### Mechanisms of Missing Data
+
+* Missing Completely At Random (MCAR)
+  * $E(Y^c) = E(Y^O)$
+  * A patient is scheduled for a visit but breaks his arms while skiing
+  * Approach: use complete case (exclude missing values)
+* Missing At Random (MAR)
+  * $E(Y^c) = E(Y^O | X^O)$
+  * A patient is scheduled for a visit but does not come because he is sick; the sickness is recorded
+  * Approach: multiple imputation
+* Missing Not At Random (MNAR)
+  * $E(Y^c) \ne E(Y^O | X^O)$
+  * A patient is scheduled for a visit but does not come because he is sick; the sickness is NOT recorded
+  * Approach: Model-based correction
+
+## Three Take-aways 
+
+1. Which non-parametric test of correlation can handle categorical variables? 
+2. If values are missing completely at random (MCAR), what should your approach be? 
+3. If values are missing at random (MAR), what should your approach be? 
+
+
+[Back](../notes.qmd)

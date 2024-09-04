@@ -2,10 +2,17 @@
 title: "Course Notes for Statistical Methods for Learning and Discovery"
 ---
 
+# August 
+
+* Week of [August 26, 2024 - August 28, 2024](august/aug_26.qmd)
+
 # September
 
-* [September 2, 2024 - ](september/sep_2.qmd)
+* Week of [September 4, 2024](september/sep_4.qmd)
 
 # October
 
 # November 
+
+
+[Back](../index.qmd)

@@ -1,4 +1,73 @@
 ---
-title: "September 2, 2024 - "
+title: "September 3, 2024 - September 5, 2024"
 ---
 
+# September 3, 2024
+
+## Exponential Family 
+
+* When an outcome is continuous, we consider a LR model like to be: $E(Y_i) = \mu_i = X_i^T \beta$, where $T_i \sim N(\mu_i, \sigma^2)$
+* For models with non-continuous outcomes, the distribution of $Y_i$ is not normal. However, they may be in the **exponential family** and can share some of the nice properties of normality
+* Exponential family definition:
+  * Distribution of Y belongs to the exponential family if it can be written in the form $f(y; \theta) = exp[a(y)b(\theta) + c(\theta) + d(y)]$
+  * Canonical form: if $a(y) = y$, the distribution is in canonical form and $b(\theta)$ is said to be the natural parameter
+  * If there are other parameters other than the parameter of interest (say $\sigma^2$ when we're interested in $\mu$), these are said to be nuisance parameters
+
+## Examples
+
+### Example 1: Poisson distribution 
+
+> Is the Poisson PDF in canonical form? If so, what is the natural parameter? 
+
+Poisson PDF: $f(y; \theta) = \frac{\theta^y e^{-\theta}}{y!}, \quad y = 0, 1, 2, ...$
+
+* $f(y; \theta) = exp[y \log (\theta) - \theta - log(y!)]$
+* $a(y) = y$
+* $b(\theta) = \log(\theta)$
+* $c(\theta) = -\theta$
+* $d(y) = -\log(y!)$
+
+Yes, it's in canonical form, and the natural parameter is $\log(\theta)$. Easy peasy. 
+
+### Example 2: Normal distribution 
+
+> What is the nuisance parameter? Is it in canonical form? What (if yes) is the natural parameter?
+
+
+\begin{align*}
+f(y; \theta) &= \frac{1}{\sqrt{2\pi \sigma^2}} exp\left[-\frac{1}{2\sigma^2}(y - \mu)^2\right]\\
+&= \frac{1}{\sqrt{2\pi \sigma^2}} exp\left[\frac{y\mu}{\sigma^2} - \frac{\mu^2}{2\sigma^2}-\frac{y^2}{2\sigma^2}\right]\\
+&= exp\left[\frac{y\mu}{\sigma^2} - \frac{\mu^2}{2\sigma^2}-\frac{y^2}{2\sigma^2} -\frac{1}{2}log(2\pi\sigma^2)  \right]\\
+\end{align*}
+
+* $a(y) = y$
+* $b(\mu) = \frac{\mu}{\sigma^2}$
+* $c(\mu) = \frac{\mu^2}{2\sigma^2}$
+* $d(y) = - \frac{y^2}{2\sigma^2} - \frac{log(2\pi\sigma^2)}{2}$
+
+The nuisance parameter is $\sigma^2$. It is in canonical form, and the natural parameter is $\mu/\sigma^2$.
+
+
+## Properties of the Exponential Family
+
+Why do we care about the exponential family? Because it has some really useful properties. Specifically, we're going to learn about calculating the mean and variance. 
+
+* Property 1: $E[a(y)] = -c'(\theta)/b'(\theta)$
+* Property 2: $Var[a(y)] = \frac{b''(\theta) c'(\theta) - c''(\theta)b'(\theta)}{[b'(\theta)]^3}$
+
+## The Score Function
+
+Recall that the score function (or score statistic) is the first derivative of the log-likelihood function. Note that because it is a function of Y, it is considered a random variable. There are two extremely interesting properties of the score function. 
+
+Let the random variable U represent the score function. 
+
+* Property 1: $E[U] = 0$
+* Property 2: $Var[U] = \frac{b''(\theta)c'(\theta)}{b'(\theta)} - c''(\theta) = I(\theta)$, where $I(\theta)$ is the Fisher's information of $\theta$. Isn't that crazy? The variance of the first derivative of the log-likelihood is the Fisher's information. 
+
+## Three Take-aways
+
+1. Suppose f(y; \theta) is a PDF. How must f(y; \theta) be written to conclude that it belongs to the exponential family?
+2. Property 1 of the exponential family has to do with E[a(y)]. What is the property?
+3. Property 2 of the exponential family has to do with V(a(y)). What is the property?
+
+[Back](../notes.qmd)

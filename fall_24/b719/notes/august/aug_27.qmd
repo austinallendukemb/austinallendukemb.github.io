@@ -95,3 +95,5 @@ title: "August 27, 2024 - August 29, 2024"
 3. The are two primary ways of structuring a model formula with a factor-level variable:
    1. $Y_i = \beta_0 + \beta_1 X_i + \epsilon_i$, where $X$ is the factor-level variable
    2. $Y_{jk} = \mu + Z_{jk} \alpha + epsilon_{jk}$, where $\mu$ is the mean of the reference group and $\alpha$ is the difference in means of the two groups (assuming two groups)
+
+[Back](../notes.qmd)

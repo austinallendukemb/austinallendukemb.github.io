@@ -142,6 +142,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#problem-1" id="toc-problem-1" class="nav-link active" data-scroll-target="#problem-1">Problem 1</a></li>
+  <li><a href="#problem-2" id="toc-problem-2" class="nav-link" data-scroll-target="#problem-2">Problem 2</a></li>
   </ul>
 </nav>
     </div>
@@ -167,20 +168,6 @@ window.Quarto = {
 </header>
 
 
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-</div>
 <section id="problem-1" class="level2">
 <h2 class="anchored" data-anchor-id="problem-1">Problem 1</h2>
 <p><strong>(6 points) [Textbook Exercise 1.6]</strong></p>
@@ -314,7 +301,61 @@ f(y_i; \theta) = {n_i \choose y_i}\theta^{y_i}(1 - \theta)^{n_i - y_i}
 \implies  \hat{\theta} \sum_{i = 1}^{16} n_i &amp;= \sum_{i = 1}^{16} y_i \\
 \implies \hat{\theta} &amp;= \frac{1}{\sum_{i = 1}^{16} n_i} \sum_{i = 1}^{16} y_i
 \end{align*}\]</span></p>
+<p>To verify whether this is an MLE or not, let’s now complete step 4 and take the second derivative of the log-likelihood function to see whether it is concave down at <span class="math inline">\(\hat{\theta}\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+\frac{d^2\ell}{d\theta^2} &amp;= -\sum_{i = 1}^{16} \frac{y_i}{\theta^2} - \frac{\sum_{i = 1}^{16} n_i - \sum_{i = 1}^{16} y_i}{(1 - \theta)^2}
+\end{align*}\]</span></p>
+<p>Note that because <span class="math inline">\(0 \le \theta \le 1\)</span>, and because <span class="math inline">\(y = 0, 1, 2, ...\)</span>, and because <span class="math inline">\(n = 1, 2, 3, ...\)</span>, the second derivative of the log-likelihood function will be negative for all values of <span class="math inline">\(\theta\)</span>. That means that the first derivative has a maximum at <span class="math inline">\(\hat{\theta}\)</span>.</p>
 <p>Thus, the MLE for a random sample of size 16 is <span class="math inline">\(\hat{\theta} = \frac{1}{\sum_{i = 1}^{16} n_i} \sum_{i = 1}^{16} y_i\)</span>. Intuitively, this makes sense, because this is essentially the total number of females in all progenies divided by the total number of individuals. This value for <span class="math inline">\(\hat{\theta}\)</span> is evaluated to be <span class="math inline">\(363/(371+363) = 0.49\)</span>.</p>
+</section>
+<section id="problem-2" class="level2">
+<h2 class="anchored" data-anchor-id="problem-2">Problem 2</h2>
+<p><strong>(12 points)</strong></p>
+<blockquote class="blockquote">
+<p>Let <span class="math inline">\(Y_i, ... , Y_n\)</span> be independent random variables from the exponential distribution</p>
+</blockquote>
+<p><span class="math display">\[
+f(y_i; \lambda) = \lambda e^{-\lambda y_i}, \quad y_i &gt; 0, \lambda &gt; 0
+\]</span></p>
+<p><strong>Part (a):</strong></p>
+<blockquote class="blockquote">
+<p>What is the maximum likelihood estimator (MLE) of <span class="math inline">\(\lambda\)</span>? Show all the derivation details.</p>
+</blockquote>
+<p>Let’s follow the same four steps to find this out!</p>
+<p><span class="math display">\[\begin{align*}
+\ell(\lambda) &amp;= \sum_{i = 1}^n \log [f(y; \lambda)]\\
+&amp;= \sum_{i = 1}^n \log [\lambda e^{-\lambda y_i}]\\
+&amp;= \sum_{i = 1}^n \log (\lambda) - \sum_{i = 1}^n\lambda y_i\\
+&amp;= n \log (\lambda) - \sum_{i = 1}^n\lambda y_i\\
+\frac{d\ell}{d\lambda} &amp;= \frac{n}{\lambda} - \sum_{i = 1}^n y_i\\
+\underline{\text{set}}\quad 0 &amp;= \frac{n}{\hat{\lambda}} - \sum_{i = 1}^n y_i\\
+\implies \frac{n}{\hat{\lambda}} &amp;= \sum_{i = 1}^n y_i\\
+\implies \hat{\lambda} &amp;= \frac{n}{\sum_{i = 1}^n y_i}\\
+\implies \hat{\lambda} &amp;= \frac{1}{\bar{Y}}
+\end{align*}\]</span></p>
+<p>This is a fun result, especially considering the fact that the rate parameter is the inverse of the scale parameter. So, by the invariance property of MLEs, we know that the MLE for <span class="math inline">\(\theta\)</span> (the scale parameter) is <span class="math inline">\(\bar{Y}\)</span>.</p>
+<p><strong>Part (b):</strong></p>
+<blockquote class="blockquote">
+<p>Suppose <span class="math inline">\(\lambda = e^{\beta}\)</span>. Find the MLE of <span class="math inline">\(\beta\)</span>.</p>
+</blockquote>
+<p>We are given that <span class="math inline">\(\lambda = e^{\beta}\)</span>. Thus, <span class="math inline">\(\beta = \log{\lambda}\)</span>. By the invariance property of MLEs, if <span class="math inline">\(g(\lambda)\)</span> is a function of <span class="math inline">\(\lambda\)</span>, then the MLE of <span class="math inline">\(g(\theta)\)</span> is <span class="math inline">\(g(\hat{\theta})\)</span>.</p>
+<p>Let <span class="math inline">\(g(\theta) = \log(\lambda) = \beta\)</span>. <span class="math inline">\(g(\hat{\lambda}) = \log\left( \frac{1}{\bar{Y}}\right)\)</span>, which is the MLE of <span class="math inline">\(\beta\)</span>.</p>
+<p><strong>Part (c):</strong></p>
+<blockquote class="blockquote">
+<p>Consider 150 observations <span class="math inline">\(y_i, (i = 1, 2, ..., 150)\)</span> from the exponential distribution with the sum of the 150 observations equal to 30. What is the numerical evaluation of the MLE of <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\beta\)</span>?</p>
+</blockquote>
+<p>Easy peasy. We did all the hard stuff already, so it’s just plug and chug time!</p>
+<p>For <span class="math inline">\(\hat{\lambda}\)</span>:</p>
+<p><span class="math display">\[\begin{align*}
+\hat{\lambda} &amp;= \frac{1}{\bar{Y}}\\
+&amp;= \frac{1}{\frac{30}{150}}\\
+&amp;= 5
+\end{align*}\]</span></p>
+<p>For <span class="math inline">\(\hat{\beta}\)</span>:</p>
+<p><span class="math display">\[\begin{align*}
+\hat{\beta} &amp;= \log\left[\frac{1}{\bar{Y}}\right]\\
+&amp;= \log(5)
+\end{align*}\]</span></p>
 
 
 </section>

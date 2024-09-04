@@ -16,5 +16,8 @@ format:
     css: styles.css
     toc: true
 
+exclude:
+  - bigenv/
+  - bsenv/
 
 
