@@ -1,0 +1,80 @@
+---
+title: "August 26, 2024 - August 28, 2024"
+---
+
+
+# August 26, 2024
+
+
+## Trade-offs
+
+* Prediction and inference. 
+  * We care about both. How do we manage that "tug-of-war"?
+* Parametric vs Non-parametric
+  * Parametric models are conveniently powerful, but they require assumptions to be met. 
+  * Non-parametric models are convenient in that they do not require assumptions to be met, but the trade off is power
+* Accuracy vs Interpretability
+  * Chuang showed a diagram of several tools we're familiar with on a plot with "Interpretability" on the Y-axis and "Flexibility" on the X-axis. On the far end (high flexibility, low interpretability) were support vector machines. On the near end (high interpretability, low flexibility) was LASSO. Several others were somewhere in the middle. 
+
+## Goals by the End of the Semester
+
+* Create reproducible reports
+* Create high-quality graphs
+* Explore a new dataset
+* Build a predictive model
+
+## Three Take-aways
+
+1. The first day of class, Chuang showed a diagram of several tools we're familiar with on a plot with "Interpretability" on the Y-axis and "Flexibility" on the X-axis. What was on the near end of the spectrum (high interpretability, low flexibility)? What was on the far end of the spectrum (high interpretability, low flexibility)? 
+2. What are the four goals for this semester? 
+3. Describe the trade-off between power and flexibiliy in the context of parametric and non-parametric models.
+
+# August 28, 2024
+
+## Reproducible Research 
+
+### Steps in Research 
+
+* Specify the population 
+* State the research question 
+* Formulate the hypothesis
+* Design the experiment
+* Specify the experimentor
+* Specify the data collection process
+* Create an analysis plan
+* Specify the analyst 
+* Write the code 
+* Estimate the truth
+* Make claims
+
+### Important concepts of a scientific study
+
+* Publications
+* Reproducible: Given same data, plan, code, etc. obtain the exact results
+* Replicable: Given the same population, hypothesis and design, obtain similar results
+* False discovery: The claim at the end of a study is not equal to the claim you would make if you could observe all data from the population, given your hypothesis, study design, and analysis plan
+* P-hacking: Given a population, hypothesis, design, data, plan and analysis, the code changes to match the desired statement
+* File drawer effect: The probability of publication depends on the caim made at the conclusion of a scientific study
+
+### Reproducibility Do's and Don'ts
+
+* Do: 
+  * Identify source data
+  * Automate process
+  * Document code
+  * Use version control
+  * Track software environment
+  * Set random number generator
+  * Consider full pipeline
+* Don't:
+  * Only save output
+  * Do things by hand
+  * Point and click
+
+## Three Take-aways
+
+1. The claim at the end of a study is not equal to the claim you would make if you could observe all data from the population, given your hypothesis, study design, and analysis plan. What is this? 
+2. Given a population, hypothesis, design, data, plan and analysis, the code changes to match the desired statement. What is this? 
+3. The probability of publication depends on the caim made at the conclusion of a scientific study. What is this?
+
+[Back](../notes.qmd)

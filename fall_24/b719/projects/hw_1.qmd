@@ -2,7 +2,7 @@
 title: "BIOSTAT 719 - Homework 1"
 ---
 
-```{r echo = FALSE}
+```{r echo = FALSE, warning = FALSE, message = FALSE}
 ###################################### R ######################################
 library(tidyverse)
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, fig.align = "center")
@@ -59,4 +59,18 @@ With that in mind, let's jump in!
 \end{align*}
 
 
+To verify whether this is an MLE or not, let's now complete step 4 and take the second derivative of the log-likelihood function to see whether it is concave down at $\hat{\theta}$. 
+
+
+\begin{align*}
+\frac{d^2\ell}{d\theta^2} &= -\sum_{i = 1}^{16} \frac{y_i}{\theta^2} - \frac{\sum_{i = 1}^{16} n_i - \sum_{i = 1}^{16} y_i}{(1 - \theta)^2}
+\end{align*}
+
+Note that because $0 \le \theta \le 1$, and because $y = 0, 1, 2, ...$, and because $n = 1, 2, 3, ...$, the second derivative of the log-likelihood function will be negative for all values of $\theta$. That means that the first derivative has a maximum at $\hat{\theta}$. 
+
+
 Thus, the MLE for a random sample of size 16 is $\hat{\theta} = \frac{1}{\sum_{i = 1}^{16} n_i} \sum_{i = 1}^{16} y_i$. Intuitively, this makes sense, because this is essentially the total number of females in all progenies divided by the total number of individuals. This value for $\hat{\theta}$ is evaluated to be $363/(371+363) = 0.49$. 
+
+
+## Problem 2
+

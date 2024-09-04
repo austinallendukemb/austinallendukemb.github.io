@@ -1,0 +1,13 @@
+{
+    "diffEditor.ignoreTrimWhitespace": false,
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "charliermarsh.ruff",
+    },
+    "editor.rulers": [
+        79
+    ],
+    "python.REPL.enableREPLSmartSend": false,
+    "python.defaultInterpreterPath": "u:/austin_allen/documents/mb-projects/fall_24/b707/bsenv/Scripts/python.exe",
+    "git.ignoreLimitWarning": true
+}

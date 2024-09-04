@@ -3,7 +3,13 @@ title: "Statistical Methods for Learning and Discovery"
 subtitle: "BIOSTAT 707"
 ---
 
+# September
+
+# October
+
+# November
 
 
+To review notes taken during class, follow [this link](./notes/notes.qmd).
 
-* [Course Notes](./notes/notes.qmd)
+[Back](../../index.qmd)

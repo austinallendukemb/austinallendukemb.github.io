@@ -3,4 +3,10 @@ title: Statistical Programming for Big Data
 subtitle: BIOSTAT 823
 ---
 
-* [Course Notes](./notes/notes.qmd)
+# September
+
+# October
+
+# November
+
+To review notes taken during class, follow [this link](./notes/notes.qmd).

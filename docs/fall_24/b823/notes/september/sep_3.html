@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../../styles.css">
 </head>
@@ -114,6 +143,14 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#september-3-2024" id="toc-september-3-2024" class="nav-link active" data-scroll-target="#september-3-2024">September 3, 2024</a>
   <ul class="collapse">
+  <li><a href="#relational-data-modeling" id="toc-relational-data-modeling" class="nav-link" data-scroll-target="#relational-data-modeling">Relational Data Modeling</a>
+  <ul class="collapse">
+  <li><a href="#relational-data-model" id="toc-relational-data-model" class="nav-link" data-scroll-target="#relational-data-model">Relational Data Model</a></li>
+  <li><a href="#entity-relationship-e-r-model" id="toc-entity-relationship-e-r-model" class="nav-link" data-scroll-target="#entity-relationship-e-r-model">Entity-relationship (E-R) Model</a></li>
+  <li><a href="#relationship-cardinalities" id="toc-relationship-cardinalities" class="nav-link" data-scroll-target="#relationship-cardinalities">Relationship Cardinalities</a></li>
+  <li><a href="#keys" id="toc-keys" class="nav-link" data-scroll-target="#keys">Keys</a></li>
+  <li><a href="#normalization" id="toc-normalization" class="nav-link" data-scroll-target="#normalization">Normalization</a></li>
+  </ul></li>
   <li><a href="#three-take-aways" id="toc-three-take-aways" class="nav-link" data-scroll-target="#three-take-aways">Three Take-aways</a></li>
   </ul></li>
   </ul>
@@ -143,8 +180,92 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="september-3-2024" class="level1">
 <h1>September 3, 2024</h1>
+<section id="relational-data-modeling" class="level2">
+<h2 class="anchored" data-anchor-id="relational-data-modeling">Relational Data Modeling</h2>
+<section id="relational-data-model" class="level3">
+<h3 class="anchored" data-anchor-id="relational-data-model">Relational Data Model</h3>
+<ul>
+<li>Relational models are built on first-order predicate logic. What does that mean? Let’s ask ChatGPT.
+<ul>
+<li>AI Summary of first-order predicate logic from ChatGPT: First-order predicate logic (FOPL), also known as first-order logic (FOL), is a formal system used in mathematics, philosophy, and computer science to express statements about objects and their relationships using quantifiers (like “for all” and “there exists”) and predicates that denote properties or relations between objects. In relational data modeling, FOPL is applied to define the structure and constraints of data by expressing rules and conditions that must hold true for data entries in a database. For instance, it can be used to specify relationships between entities (like “every employee works for a department”) and enforce constraints such as uniqueness, referential integrity, or conditional dependencies, ensuring that the data adheres to the logical rules of the modeled domain.</li>
+</ul></li>
+<li>Relations are tables; tuples are rows</li>
+</ul>
+</section>
+<section id="entity-relationship-e-r-model" class="level3">
+<h3 class="anchored" data-anchor-id="entity-relationship-e-r-model">Entity-relationship (E-R) Model</h3>
+<ul>
+<li>An entity is an identifiable “thing” of interest in the domain of interest. For example, an entity in a retail buisiness domain is a “customer.” A “Customer” is an identifiable “thing” of interest, represented by attributes like CustomerID (a unique identifier), Name, Email, and Address, which uniquely identify and describe each customer and relate to other entities, such as “Orders” or “Products.” The set of attributes that uniquely identify the entity is the natural key.</li>
+<li>The E-R model focuses on the relationships betwen entities</li>
+<li>In relational data modeling, there are two main stages of database design: the logical model and the physical model
+<ul>
+<li>Logical Model: This defines the structure of the data independent of how it will be physically stored. It focuses on what data needs to be stored, the relationships between different entities (like “Customer” and “Order”), and the rules or constraints (like uniqueness or referential integrity). The logical model is typically represented using entity-relationship diagrams (ERDs) or similar notations that show entities, attributes, and relationships without concern for specific technical details.</li>
+<li>Physical Model: This represents how the data will be stored on the database system. It translates the logical model into tables, columns, indexes, and keys, and considers performance, storage optimization, and access methods. The physical model depends on the specific database management system (DBMS) used (like MySQL, PostgreSQL, or Oracle) and addresses how data is actually stored on disk, how it will be indexed, and how queries will be optimized.</li>
+</ul></li>
+</ul>
+</section>
+<section id="relationship-cardinalities" class="level3">
+<h3 class="anchored" data-anchor-id="relationship-cardinalities">Relationship Cardinalities</h3>
+<ul>
+<li>Here are the three main relationship cardinalities:
+<ul>
+<li><span class="math inline">\(\{0, 1\}:1\)</span> (0 or 1 to 1)</li>
+<li><span class="math inline">\(\{0, 1\}:n\)</span> (0 or 1 to many)</li>
+<li><span class="math inline">\(n:n\)</span> (many to many)</li>
+</ul></li>
+<li>Crow’s Feet: I’m not going to try to draw the crow’s feet, but they’re essentially a notation to write the relationship cardinalities</li>
+<li>Resolving <span class="math inline">\(n:n\)</span> relationships:
+<ul>
+<li>Suppose we have a table of instructors that reference a table of courses (assume each course can have multiple instructors, like Gennevieve and Zeck). This is a many-to-many relationship problem. This is a problem (I believe) because the many-to-many relationships can’t be represented directly using just foreign keys in a relational database.</li>
+<li>To solve this problem, you have a middle-man table. In this “junction” table (or whatever you call it), you have one-to-many relationship pointing at both the course table and the instructor table. If you know that only one professor will teach certain lessons of the course, you can have the middle-man table be a “lessons” table. Just know that “instructor” and “course” are considered strong entities, but “lessons” are considered weak because they only exist in the context of a course and an instructor.</li>
+</ul></li>
+</ul>
+</section>
+<section id="keys" class="level3">
+<h3 class="anchored" data-anchor-id="keys">Keys</h3>
+<ul>
+<li>Foreign keys
+<ul>
+<li>There are implicit foreign keys and explicit foreign keys. I don’t totally understand how implicit keys work, but essentially if the instructor teaches certain lessons and those lessons are part of a specific course, then the foreign key is explicit if the lesson doesn’t have any information about the instructor or the course. That’s why I don’t understand how they work. Regardless, if the lesson does have the instructor’s ID and the course ID, then the foreign key is explicit</li>
+</ul></li>
+<li>Primary keys
+<ul>
+<li>A surrogate primary key is a kind of like a local variable. It would the the “ID” in the table that’s generated by the system (e.g.&nbsp;autoincrement).</li>
+<li>A natural key is a unique identifier that’s more like a global variable (i.e.&nbsp;isn’t only contained in the database). An email address is a good example of a natural key.</li>
+</ul></li>
+<li>Note that a composite key is two or more attributes that uniquely identify an entity</li>
+</ul>
+</section>
+<section id="normalization" class="level3">
+<h3 class="anchored" data-anchor-id="normalization">Normalization</h3>
+<ul>
+<li>Normalization is used to minimize redundancy and improve data integrity (good things)</li>
+<li>First normal form
+<ul>
+<li>Definition: A relation is in first normal form iff no attribute domain has relations as elements.</li>
+<li>What the heck does that mean? Basically, all attributes have to be “atomic,” i.e.&nbsp;must not be tables, lists, arrays, etc.</li>
+</ul></li>
+<li>Second normal form
+<ul>
+<li>Definition: A relation is in 2NF iff it is in 1NF and it does not have any non-prime attribute functionally dependent on any proper subset of any candidate key of the relation.</li>
+<li>Come again? Apart from being first normal, if any table has a composite natural key (more than one element), no column in that table depends on only a part of the composite key.</li>
+</ul></li>
+<li>Third normal form
+<ul>
+<li>Definition: A relation R is in 3NF iff it is in 2NF and every non-prime attribute of R is non-transitively dependent on every key of R.</li>
+<li>One more time: I don’t know what this means. But here’s what Hilmar said: For every table, any attribute that is not part of a natural key depends directly on every key for the table.</li>
+</ul></li>
+<li>The last thing I’ll mention is that Hilmar said that you definitely want your database in first normal form, preferably second, but you can sometimes get away with not having it in third</li>
+</ul>
+</section>
+</section>
 <section id="three-take-aways" class="level2">
 <h2 class="anchored" data-anchor-id="three-take-aways">Three Take-aways</h2>
+<ol type="1">
+<li>An entity is a thing of interest in a domain of interest that has attributes. The set of attributes that uniquely identify the entity is the natural key.</li>
+<li>In the example of the instructors and courses, the lessons table acted as a middle-man or reference table that changed the many-to-many relationship problem into two one-to-many relationships.</li>
+<li>A primary key identifies an entity in the table; a foreign key identifies an entity in another table; a composite natural key is a set of two or more attributes that uniquely identify an entity; a surrogate key is like a local variable that is only understood by the database and doesn’t exist in the real world (like using “autoincrement”)</li>
+</ol>
 
 
 </section>

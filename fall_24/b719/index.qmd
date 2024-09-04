@@ -16,3 +16,5 @@ subtitle: BIOSTAT 719
 
 
 To review notes taken during class, follow [this link](./notes/notes.qmd).
+
+[Back](../../index.qmd)
