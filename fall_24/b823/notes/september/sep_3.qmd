@@ -59,3 +59,131 @@ title: "September 3, 2024 - September 5, 2024"
 1. An entity is a thing of interest in a domain of interest that has attributes. The set of attributes that uniquely identify the entity is the natural key.
 2. In the example of the instructors and courses, the lessons table acted as a middle-man or reference table that changed the many-to-many relationship problem into two one-to-many relationships.
 3. A primary key identifies an entity in the table; a foreign key identifies an entity in another table; a composite natural key is a set of two or more attributes that uniquely identify an entity; a surrogate key is like a local variable that is only understood by the database and doesn't exist in the real world (like using "autoincrement")
+
+# September 5, 2024
+
+## Follow-up Question About Implicit Foreign Keys
+
+After last lecture, I had the following question that was answered today: 
+
+* Question: We talked about implicit foreign keys and explicit foreign keys. If the foreign key is implicit, how on the good green earth would you be able to reference the foreign entity? 
+* Answer: Foreign keys are **only** implicit in the logical model. In the physical implementation, they most certainly are explicit. 
+
+## SQL - Introduction 
+
+* You can categorize SQL commands into four groups: 
+  * Data Definition Language
+    * This is for executing tasks like creating a table and defining columns
+  * Data Manipulation Language
+    * This is for updating the tables/rows after they're created
+  * Data Query Language
+    * This is for getting data
+  * Data Control Language
+    * I'm not sure what this does yet...
+* Knitr supports a variety of "engines," including the SQL engine
+  * Question: is an engine like a kernal? 
+* In R, DBI is a handy package to remember. It can be used to create a database connection and work with datatables. 
+  * You can choose to create an in-memory database using ":memory:" as an argument. Why would we want to create an in-memory database? What's the advantage over a set of dataframes or datatables?  
+  * I just asked ChatGPT this same question, and here's the response:
+    * An in-memory database in R, created using DBI with ":memory:", offers several advantages over data frames or data tables. It provides faster data access by using RAM instead of disk storage, allows complex SQL queries and joins, supports transactional consistency, and efficiently manages memory allocation. In-memory databases are ideal for temporary data analysis, reducing disk I/O overhead, and can handle larger datasets more effectively, offering a powerful alternative for data manipulation tasks in R.
+
+### DDL ("D-efinition")
+
+* Here are some common verbs: 
+  * CREATE/DROP/ALTER TABLE
+  * CREATE/DROP VIEW
+  * CREATE/DROP INDEX
+* DDL consists of SQL commands that return a status or a count, but not a result set 
+* When creating a table, you can define a foreign key in a couple ways:
+  * The first way is to specify that it's a foreign key when you create the column name:
+
+```{sql eval = FALSE}
+CREATE TABLE Lesson (
+  Name VARCHAR(64),
+  Instructor_OID INTEGER NOT NULL
+      -- foreign key constraint can be part of column definition
+      REFERENCES Instructor (Instructor_OID),
+  PRIMARY KEY (Name, Instructor_OID)
+);
+```
+
+  * The second way is to do it in two statements: 
+
+```{sql eval = FALSE}
+CREATE TABLE Lesson (
+  Name VARCHAR(64) NOT NULL,
+  Instructor_OID INTEGER NOT NULL
+  -- foreign key constraint can be defined separately
+  FOREIGN KEY (Instructor_OID)
+      REFERENCES Instructor (Instructor_OID)
+  PRIMARY KEY (Name, Instructor_OID)
+);
+```
+
+  * Keep in mind that there are three ways to specify how the RDBMS handles a deletion of the foreign entity (instructor). The first way is set the value to NULL, but in this case, where Instructor_OID is part of the composite natural key (and cannot be null anyway), that would create an error. The second way (which is the default) is to restrict, which means if the instructor is deleted and his Instructor_OID is found somewhere as a foreign key in the Lesson table, then an error will arise. This is how it's specified:
+
+```{sql eval = FALSE}
+CREATE TABLE Lesson (
+  Name VARCHAR(64),
+  Instructor_OID INTEGER NOT NULL
+      -- foreign key constraint can be part of column definition
+      REFERENCES Instructor (Instructor_OID)
+      ON DELETE RESTRICT,
+  PRIMARY KEY (Name, Instructor_OID)
+);
+```
+
+  * The last way is to use `CASCADE`, which relies on this logic. If the professor teaching the lesson doesn't exist, and if that implies that the lesson no longer exists, then just remove the lesson! So if the professor is deleted, the lesson is automatically deleted. So be careful when using `CASCADE`! Here's how you specify it: 
+
+```{sql eval = FALSE}
+CREATE TABLE Lesson (
+  Name VARCHAR(64),
+  Instructor_OID INTEGER NOT NULL
+      -- foreign key constraint can be part of column definition
+      REFERENCES Instructor (Instructor_OID)
+      ON DELETE CASCADE,
+  PRIMARY KEY (Name, Instructor_OID)
+);
+```
+  
+
+  * One last thing: For "weak" entities (Lessons), the natural primary key will include a foreign key
+* Creating an index can speed up a query, but they also increase the transaction cost
+* Altering tables: just know it's a thing with lots of documentation, but we're not going to get into the nitty gritty of it in this course
+
+### DML ("M-anagement")
+
+* Common DML commands: 
+  * INSERT
+  * UPDATE
+  * DELETE
+* Returns a status or a count
+* UPDATE and DELETE don't raise an error if the query isn't matched, so look for the count that it returns!
+
+### DQL ("Q-ery")
+
+* Select statement consists of:
+  * SELECT: which columns (or values) to report
+  * FROM: which table(s) to query and how to join tables
+  * WHERE: conditions to be met for rows to be reported
+  * GROUP BY: how to aggregate rows by certain columns
+  * HAVING: conditions to be met for aggregated rows
+  * ORDER BY: how to order the rows in the report
+* I thought this subquery example was kind of neat:
+
+```{sql}
+SELECT DISTINCT Name FROM Lesson
+WHERE Instructor_OID IN (
+   SELECT Instructor_OID
+   FROM Instructor WHERE Name LIKE 'h%'
+)
+```
+
+
+## Three Take-aways 
+
+1. When creating tables that have foreign keys, it is often important to impose constraints on the foreign key. One of those constraints is to ensure the proper handling of the current entity in the case the foreign entity were deleted. Write the SQL command to **delete** the current entity if the foreign entity is deleted. 
+2. When creating tables that have foreign keys, it is often important to impose constraints on the foreign key. One of those constraints is to ensure the proper handling of the current entity in the case the foreign entity were deleted. Write the SQL command to **raise an error** if the foreign entity is deleted. 
+3. For any "weak" entity, what will always be included in the natural primary key? 
+
+[Back](../notes.qmd)
