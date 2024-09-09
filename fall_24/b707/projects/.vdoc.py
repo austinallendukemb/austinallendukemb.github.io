@@ -1,6 +1,7 @@
 # type: ignore
 # flake8: noqa
 ################################### Python ####################################
+
 import pandas as pd
 
 # Import data
@@ -47,7 +48,7 @@ categorical_vars = [
 ]
 
 # Create the first table
-table_1 = pd.DataFrame({"Factor": [], "Statistic": []})
+table_1 = pd.DataFrame(["Factor", "Statistic"])
 
 # Summary for continuous variables
 continuous_summary = (
@@ -60,15 +61,25 @@ continuous_summary = continuous_summary.rename(
 
 # Summary for categorical variables
 all_cat_summaries: dict[str, dict[str, list[any]]] = {}
+
+for var in categorical_vars:
+    counts = surgery_dataset[var].value_counts()
+    percentages = surgery_dataset[var].value_counts(normalize=True) * 100
+    cat_summary = {
+        "Level": counts.index,
+        "Count": counts.values,
+        "Percentage": percentages.values,
+    }
+    all_cat_summaries[var] = cat_summary
+
 table_index = 0
+# Create a new table with formatted values
 # Example corrected code to add rows:
 for var in baseline_vars:
     if var in continuous_vars:
         # Corrected to use .iloc and assign correctly formatted summary stats
         var_mean = round(continuous_summary.loc[var].iloc[0], 2)
         var_std_dev = round(continuous_summary.loc[var].iloc[1], 3)
-        table_1.loc[table_index] = [var, f"{var_mean} ± {var_std_dev}"]
-        table_index += 1
     elif var in categorical_vars:
         var_info = all_cat_summaries[var]
         var_levels = var_info["Level"]
@@ -89,7 +100,6 @@ for var in baseline_vars:
             table_index += 1
     else:
         raise Exception(f"Variable {var} was not included\n")
-
 print("Table 1")
 print(table_1)
 
