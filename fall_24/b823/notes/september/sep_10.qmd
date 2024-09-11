@@ -1,0 +1,54 @@
+---
+title: "September 10, 2024 - September 12, 2024"
+---
+
+# September 10, 2024
+
+
+## Logging into the Jupyter Apptainer
+
+* Navigate to [https://dcc-ondemand-01.oit.duke.edu](https://dcc-ondemand-01.oit.duke.edu/)
+* Login with Duke credentials when prompted
+* Select `Interactive Apps` from the menu bar
+* Select `Jupyter Lab Apptainer`
+* Select the number of hours estimated (probably a good idea to increase it by an hour)
+* ALWAYS increase the memory above the default of 2 (app will not launch properly)
+* Select path
+  * /opt/apps/containers/community/biostat/biostat-823-jupyter.sif
+  * Hit `Select` once you've identified everything correctly
+* Hit `Launch`
+
+## Joining Tables 
+
+* One interesting note about joins is that we're usually taking a step backwards from normalization. This is totally acceptable and appropriate. Sometimes we need to summarize data in a different or non-standard way
+* Inner Joins
+  * Inner Joins are the default, but it's always important to specify for clarity
+  * Example: `SELECT c.Name AS Course, c.Semester, l.Name AS Lesson FROM Course AS c INNER JOIN Lesson AS l ON (c.Course_OID = l.Course_OID);`
+  * No null values (I believe... unless there were existing NULL values in the selected columns before the join?)
+  * If the column names are the same (as is the case in the example with `Course_OID` in both tables), we can shorten it to `USING(...)`
+* Outer Joins
+  * Specify whether it's a left outer join or a right outer join
+  * Keeps all rows in the specified table (left or right), but it drops any rows in the adjacent table that do not match rows in the "outer" table
+  * Example: `SELECT c.Name AS Course, c.Semester, r.Name AS Room FROM Course AS c LEFT OUTER JOIN Room AS r USING (Room_OID)`
+    * In this example, all courses are kept whether or not they have a Room (think online class), but any room that does NOT have a course is dropped (i.e. the kitchen probably doesn't make it onto the output table)
+  * Example: `SELECT DISTINCT i.Name AS Instructor, c.Name AS Course, c.Semester, r.Name AS Room FROM Instructor AS i LEFT OUTER JOIN Lesson AS l USING (Instructor_OID) LEFT OUTER JOIN Course AS c USING (Course_OID) LEFT OUTER JOIN Room AS r USING (Room_OID)`
+    * In this example, all instructors are listed; only courses taught by instructors are listed, but not every instructor has a course; next, only rooms that have a course are listed, but not every course has a room
+* Existential subquery vs join
+  * Some queries that can e answered joining related facts may be easier to define and faster to execute by querying for existence of a fact. For example, which instructors are teaching in a given semester:
+    * `SELECT i.Name AS Instructor, i.Email FROM Instructor AS i WHERE EXISTS ( SELECT 1 FROM Lesson as l INNER JOIN Course c USING (Course_OID) WHERE c.Semester = 'Fall 2023' AND l.Instructor_OID = i.Instructor_OID)`
+    * I'll be honest, this is the most challenging bit of code for me in this lecture. I'm going to try to break it down a little (for my own sanity)
+      * First, we want to select an instructor name and email from the instructor table under a given condition. That's simple enough
+      * The given condition is that something exists
+      * The 'something' that exists is that we are able to select 1 (the number) for every row in an inner-joined table
+      * That inner-joined table is Lesson and Course joined on Course_OID, but only where the semester is Fall 2023. Thus, only lessons taught in courses from fall 2023 will appear in this joined table
+      * Oh. One more condition. AND the lesson instructor is the same as the instructor we're querying? I don't totally understand this
+      * Anyhoot, if these conditions are met, there is a 1 selected from this table for every row, and if at least one row 'exists', then that instructor taught a course in fall 2023, and his or her name and email address will appear on the output table
+
+
+## Three Take-aways
+
+1. What is the address for the DCC On-Demand website?
+2. Look at this code: `SELECT c.Name AS Course, c.Semester, r.Name AS Room FROM Course AS c LEFT OUTER JOIN Room AS r USING (Room_OID)`. Assume neither Course nor Room have any null values. What is the name of the column that could have null values in the output table? 
+3. The following code uses existential subquerying, which can be more efficient than a join if your goal is to check that a condition is met: `SELECT i.Name AS Instructor, i.Email FROM Instructor AS i WHERE EXISTS ( SELECT 1 FROM Lesson as l INNER JOIN Course c USING (Course_OID) WHERE c.Semester = 'Fall 2023' AND l.Instructor_OID = i.Instructor_OID)`. 1. What are the two columns in the output table? 2. Which professors will be displayed in the output table? Only those who had a BLANK during BLANK BLANK
+
+[Back](../notes.qmd)

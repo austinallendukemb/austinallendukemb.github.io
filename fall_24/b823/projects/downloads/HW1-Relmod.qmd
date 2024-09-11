@@ -1,0 +1,125 @@
+---
+title: "Biostat 823 - Fall 2024: Homework 1"
+author:
+  - "Chengxin Yang"
+  - "Hilmar Lapp"
+date: "2024-09-10"
+#format: pdf
+format:
+  html:
+    embed-resources: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 1 (25 points)
+
+Note: The two subquestions below both require you to create diagrams. You can use a diagramming tool of your choice, or you can use the same Rmarkdown-supported "plugin" ([mermaid](https://mermaid.js.org)) used in the course slides. (BTW you can use mermaid also in some plain Markdown renderers, such as [Hackmd.io](https://hackmd.io). For example, here’s the [E-R diagram from the course slides](https://hackmd.io/hb9LNgnEQjez-I5sBhy2dg?both) in Hackmd.io.) If you choose to use a scanned copy of your handwriting, make sure it’s clear and readable.
+
+a.	(10 points) Create an E-R diagram to represent a _physical_ data model for the following scenario, and use crow’s foot notation to show relationship cardinalities (similar to page 11 in module “Relational Data Modeling”). 
+
+    **Scenario**: Cancer patients who are receiving routine chemotheapies under certain treatment guidelines (plans). 
+
+    _Remark 1_: In clinical practice, there are usually existing mature treatment guidelines for treating a certain type of cancer. We focus on guidelines for chemotherapy. The treatment guidelines consist of the number of sessions, the chemotherapeutic drugs for each session, and how the drugs are administrated for each session (e.g., injection or taken orally).
+
+    _Remark 2_: Choose a set of entities to represent the data you would like to collect at a minimum and explain your choices. You don’t have to be very comprehensive.
+
+b.	(15 points) Normalize the following database of inpatients to relational models in 1NF, 2NF, and 3NF. Create _physical_ models (not _logical_ ones); however, ignore indexes etc. 
+(Note: Diagnosis depends on symptoms, and treatment is prescribed based on diagnosis.)
+
+    <div style="width: 40%; margin: auto">
+
+    | Datatype | Field    |
+    |---|-----------------|
+    | String	 | Name     |
+    | String	 | Room     |
+    | Integer	 | Age      |
+    | Array	   | Doctors  |
+    | Array	   | Symptons |
+    | String	 | Diagnosis |
+    | Array	   | Treatments |
+
+    : Inpatient database (not normalized) {.bordered tbl-colwidths="[30,70]"}
+
+    </div>
+
+## Question 2 (25 points)
+
+Suppose you are implementing an E-R model for the following scenario:
+
+<div style="float: right">
+```{mermaid erdiag}
+erDiagram
+    Room       ||--o{ Student : "accommodates"
+    Building   ||--|{ Room    : "consists of"
+    Building {
+      integer building_id PK
+      string  name
+      string  address
+    }
+    Room {
+      integer room_id PK
+      integer number
+      string  building_id FK
+    }
+    Student {
+      integer student_id PK
+      string  name
+      integer room_id FK
+    }
+```
+</div>
+
+**Scenario**: Your school is welcoming a new cohort of undergraduate students this year. Every new student will be assigned to a room in an on-campus dormitory building. A building can contain many rooms, and rooms in one building are numbered by its floor level and sequence (e.g., 1089 means room 89 on the 10-th floor). You will be recording these on-campus address information for these students. The E-R model diagram is show on the right.
+
+Then, referring to pages 7 to 28 in Lesson “Structured Query Language”, answer the following questions (a to g). You should submit a reproducible literate programming notebook (Jupyter or Rmarkdown) with SQL statements to generate the answers for these questions (samples of reproducible notebooks for SQL can be found in the [course's GitHub repository](https://github.com/Duke-GCB/biostat-823/). Using [SQLite](https://www.sqlite.org) as the RDBMS is not mandatory but highly recommended. 
+
+_Note: You are only expected to provide answers (SQL codes) that are reproducible and comparable to those in lecture slides. You're not expected to be extremely comprehensive or implement what hasn’t been covered in the lecture so far._
+
+```{r csvdata, echo=FALSE}
+buildings <- read.csv(textConnection("name,address
+Green Light Building,1000 Univ. Rd
+Lakeview Building,1080 Univ. Rd
+East Grand Complex,3810 Univ. Rd
+Mountainview Building,NULL"))
+rooms <- read.csv(textConnection("room,building
+1001,Green Light Building
+1301,East Grand Complex
+1311,Lakeview Building"))
+students <- read.csv(textConnection("student_id,name,room,building
+20240001,Alpha Beta,1001,Green Light Building
+20240002,Gamma Delta,1311,Lakeview Building"))
+```
+
+a)	(5 points) Create three tables: Building, Room, and Student. You need to satisfy the constraints that if a building is deleted, its rooms must be also deleted concurrently, and that a room cannot be removed if there are students assigned to that room. Also, for each entity (table), decide which attributes (columns) constitute(s) the natural primary key, and declare a unique constraint on those columns. Assume that columns that are neither primary nor foreign keys are not required (i.e., NULLable).
+
+b)	(5 points) Populate the following data into your tables (you can find the data in CSV format for copy\&pasting below):
+
+    <div style="width: 60%; margin: auto;">
+    ```{r dataTables, echo=FALSE}
+    knitr::kable(buildings, caption = "Buildings")
+    knitr::kable(rooms, caption = "Rooms")
+    knitr::kable(students, caption = "Students")
+    ```
+    </div>
+
+c)	(4 points) Add one row to table “Student”, where the student: id is 20240003, name is “Theta Epsilon”, lives in room with number 1301 at East Grand Complex. Suppose you don’t know the room_id or the building_id (i.e., you need to include a query for room_id and building_id in your statement).
+d)	(3 points) Select the buildings with missing (i.e., NULL) building address.
+e)	(2 points) Update the address of Mountainview Building as “2420 Univ. Rd”.
+f)	(3 points) Display buildings (name and address) on the 1000 block (addresses in the range of 1000 to 1100) of Univ. Rd.
+g)	(3 points) Display the name and id of students who live in a room on the 13-th floor in a building on the 1000 block of Univ. Rd.
+
+### Bonus question (5 points)
+
+Even though after correctly populating the data as per b) above there should be no _enforceable_ constraint violations (i.e., foreign keys, primary keys, uniqueness, `NOT NULL`), the data as given nonetheless are not fully consistent with the depicted E-R model. Where is the inconsistency, and what is its nature? (Hint: consider the relationship cardinalities as depicted in the diagram, and whether the given dataset satisfies them.)
+
+### Data (if useful)
+
+The above data tables in CSV format:
+```{r renderCsv}
+write.csv(buildings, quote = FALSE, row.names = FALSE)
+write.csv(rooms, quote = FALSE, row.names = FALSE)
+write.csv(students, quote = FALSE, row.names = FALSE)
+```

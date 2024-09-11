@@ -1,0 +1,208 @@
+---
+title: "BIOSTAT 719 - Homework 2"
+---
+
+
+
+## Problem 1
+
+> Show that the following probability density functions belong to the exponential family. Define a(·), b(·), c(·), d(·) components.
+
+**Part (a):** Pareto distribution $f(y; \theta) = \theta y^{-\theta-1}$
+
+For all of these, we must show that the function holds the form $\exp\left[ a(y)b(\theta) + c(\theta) + d(y) \right]$. Let's rewrite the Pareto PDF just a smidge: 
+
+
+\begin{align*}
+f(y; \theta) &= \exp[-\theta \log(y)+ \log(\theta) - \log(y)]\\
+&= \exp[a(y)b(\theta) + c(\theta) + d(y)],
+\end{align*}
+
+
+Where: 
+
+* $a(y) = \log(y)$
+* $b(\theta) = -\theta$
+* $c(\theta) = \log(\theta)$
+* $d(y) = -\log(y)$
+
+We can clearly see that the Pareto distribution is a member of the exponential family. 
+
+
+**Part (b):** Exponential distribution $f(y; \theta) = \theta^{-y\theta}$
+
+Once again, let's rewrite this PDF:
+
+
+\begin{align*}
+f(y; \theta) &= \exp[-y\theta + \log(\theta)]\\
+&= \exp[a(y)b(\theta) + c(\theta) + d(y)],
+\end{align*}
+
+Where: 
+
+* $a(y) = y$
+* $b(\theta) = -\theta$
+* $c(\theta) = \log(\theta)$
+* $d(y) = 0$
+
+The exponential distribution, thankfully, is a member of the exponential family. Otherwise, I think that would get awkward at family reunions.
+
+
+**Part (c):** Negative binomial distribution $f(y; \theta) = {y + r - 1 \choose r - 1} \theta^r(1 - \theta)^y$, where $r$ is known
+
+Using the same method, we get the following:
+
+
+\begin{align*}
+f(y; \theta) &= exp\left[y\log(1 - \theta) + r\log(\theta) + \log\left[{y + r - 1\choose r - 1} \right]\right]\\
+&= \exp[a(y)b(\theta) + c(\theta) + d(y)],
+\end{align*}
+
+Where: 
+
+* $a(y) = y$
+* $b(\theta) = \log(1 - \theta)$
+* $c(\theta) = r\log(\theta)$
+* $d(y) = \log\left[{y + r - 1\choose r - 1} \right]$
+
+The negative binomial distribution is also part of the exponential family. 
+
+**Part (d):** Extreme value (Gumbel) distribution $f(y; \theta) = \frac{1}{\Phi} exp\left \{  \frac{y - \theta}{\Phi} - exp\left[ \frac{y - \theta}{\Phi} \right]  \right \}$, where $\Phi > 0$ is considered a nuissance parameter. 
+
+Similar to how we conducted part (c), we are going to ignore nuissance parameters (i.e. treat them as constants) and focus on the parameter of interest, $\theta$. 
+
+We can rewrite the PDF as follows: 
+
+
+\begin{align*}
+f(y; \theta) &= exp\left[ -exp\left[ \frac{y - \theta}{\Phi} \right] - \frac{\theta}{\Phi} + \frac{y}{\Phi} + \log\left(\frac{1}{\Phi} \right)\right]\\
+&= \exp[a(y)b(\theta) + c(\theta) + d(y)],
+\end{align*}
+
+
+Where: 
+
+* $a(y) = -e^{y/\Phi}$
+* $b(\theta) = e^{-\theta/\Phi}$
+* $c(\theta) = -\frac{\theta}{\Phi}$
+* $d(y) = \frac{y}{\Phi} + \log\left[\frac{1}{\Phi} \right]$
+
+This, too, is part of the exponential family. 
+
+
+## Problem 2
+
+
+> Consider a randome variable Y with the following Gamma distribution with a scale parameter, $\beta$, of interest, and a known shape parameter $\alpha$: 
+
+$$
+f(y; \beta) = \frac{\beta^{\alpha}}{\Gamma(\alpha)}y^{\alpha - 1}e^{-y\beta}, \text{  where } y > 0, \quad \alpha > 0, \quad \beta > 0
+$$
+
+**Part (a):**
+
+> Does this distribution belong to the exponential family?
+
+To answer this question, let's once again see if we can rewrite this function in terms of a(.), b(.), c(.), and d(.). Note that because $\beta$ is the parameter of interest, we treat $\alpha$ as the nuissance parameter. 
+
+
+$$
+\begin{align*}
+f(y; \theta) &= exp\left[ -y\beta + \alpha \log(\beta) - \log\left( \Gamma(\alpha)\right)+ \alpha\log(y) - \log(y)\right]\\
+&= \exp[a(y)b(\beta) + c(\beta) + d(y)],
+\end{align*}
+$$
+
+Where: 
+
+* $a(y) = y$
+* $b(\beta) = -\beta$
+* $c(\theta) = \alpha \log(\beta) - \log\left( \Gamma(\alpha)\right)$
+* $d(y) = \alpha\log(y) - \log(y)$
+
+Yes, the Gamma distribution belongs to the exponential family. This will assist us in deriving expectation and variance. 
+
+**Part (b):**
+
+> Derive expectation of Y
+
+Recall that for any random variable $Y$ with a distribution belonging to the exponential family, $E[a(y)] = -c'(\theta)/b'(\theta)$. We can solve for these values and evaluate $E(a(y))$, which is $E[Y]$. 
+
+
+\begin{align*}
+-c'(\beta) &= - \frac{d c(\beta)}{d\beta}\\
+&= -\frac{d}{d\beta}\left[ \alpha \log(\beta) - \log\left( \Gamma(\alpha)\right)\right]\\
+&= -\frac{\alpha}{\beta}\\
+b'(\beta) &= \frac{d b(\beta)}{d\beta}\\
+&= \frac{d}{d\beta} - \beta\\
+&= -1\\
+-c'(\beta)/b'(\beta) &= -\frac{\alpha}{\beta}/-1\\
+&= \frac{\alpha}{\beta}
+\end{align*}
+
+
+**Part (c):**
+
+> Derive the variance of Y
+
+Recall another important property of the exponential family. For any random variable $Y$ with a distribution belonging to the exponential family, $V[a(y)] = \frac{b''(\theta)c'(\theta) - c''(\theta)b'(\theta)}{[b'(\theta)]^3}$. 
+
+
+\begin{align*}
+b'(\beta) &= -1\\
+c'(\beta) &= \frac{\alpha}{\beta}\\
+b''(\beta) &= 0\\
+c''(\beta) &= -\frac{\alpha}{\beta^2}\\
+V[a(y)] &= \frac{b''(\beta)c'(\beta) - c''(\beta)b'(\beta)}{[b'(\beta)]^3}\\
+&= \frac{0 - \frac{\alpha}{\beta^2}}{[-1]^3}\\
+&= \frac{\alpha}{\beta^2}
+\end{align*}
+
+
+
+**Part (d):**
+
+> Derive variance of the score statistic
+
+Recall that the variance of the score statistic, also known as the Fisher's information, can be expressed as follows: $V[U] = I(\theta) = \frac{b''(\theta) c'(\theta)}{b'(\theta)} - c''(\theta)$. Once again, we can plug and chug. 
+
+
+\begin{align*}
+b'(\beta) &= -1\\
+c'(\beta) &= \frac{\alpha}{\beta}\\
+b''(\beta) &= 0\\
+c''(\beta) &= -\frac{\alpha}{\beta^2}\\
+V[U] &= \frac{b''(\beta)c'(\beta) }{b'(\beta)} - c''(\beta)\\
+&= 0 - \left( -\frac{\alpha}{\beta^2}\right)\\
+&= \frac{\alpha}{\beta^2}
+\end{align*}
+
+
+## Problem 3 
+
+> Derive expression for information (consider $\theta$ the parameter of interest) for a single observation from the Weibull distribution:
+
+$$
+f(y; \lambda , \theta) = \frac{\lambda y^{\lambda - 1}}{\theta^{\lambda}}\exp\left[ -\left(\frac{y}{\theta}\right)^{\lambda}\right],
+$$
+
+> where $y \ge 0, \lambda > 0,$ and $\theta > 0$. Show all your work. 
+
+Let's start by identifying a(.), b(.), c(.), and d(.). 
+
+
+\begin{align*}
+f(y; \lambda, \theta) &= \frac{\lambda y^{\lambda - 1}}{\theta^{\lambda}}\exp\left[ -\left(\frac{y}{\theta}\right)^{\lambda}\right]\\
+&= \exp\left[- \frac{y^{\lambda}}{\theta^{\lambda}} -\lambda \log(\theta) - \log(y) + \lambda\log(y) + \log(\lambda)  \right]\\
+&= \exp[a(y)b(\theta) + c(\theta) + d(y)],
+\end{align*}
+
+where 
+
+* $a(y) = y^{\lambda}$
+* $b(\theta) = -\frac{1}{\theta^{\lambda}}$
+* $c(\theta) = -\lambda \log(\theta)$
+* $d(y) = - \log(y) + \lambda\log(y) + \log(\lambda)$
+
+Using our previously helpful formula for 
