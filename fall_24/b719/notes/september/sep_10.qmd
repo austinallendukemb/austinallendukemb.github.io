@@ -1,0 +1,102 @@
+---
+title: "September 10, 2024 - September 12, 2024"
+---
+
+# September 10, 2024
+
+
+## Numerical Methods for Approximating MLEs
+
+### Newton-Raphson Algorithm
+
+* This method can be used anytime we are unable to use another method (like the calculus method) for some reason (e.g. closed form, unable to differentiate etc.)
+* The underlying theory for this method is to find tangential lines to the first derivative of the log-likelihood function at informed values of $\theta$. As we update $\theta$, we will approach the tangential line at $\theta^{(m)}$ where $y(\theta^{(m)}) = 0$
+* Method:
+  1. Start with a reasonable value for $\theta^{(0)}$. For example, you might try the sample mean or a value close to what you believe could represent the MLE
+  2. I'm going to be skipping some of the math in this step and cutting to the chase. Again, you can find this formula by solving for the equation of the line tangent to the score function at $\theta^{(m)}$. $\theta^{(m)} = \theta^{(m - 1)} - \frac{U(\theta^{(m - 1)})}{U'(\theta^{(m - 1)})}$
+  3. Iterate through values of $m$ until $\theta^{(m)} - \theta^{(m - 1)}$ is satisfactorily small
+* Here's an example in R that looks at data distributed i.i.d. from a Poisson distribution: $Y_i \sim POI(\theta)$
+
+```{r}
+###################################### R ######################################
+# Count of cyclones distributed as Y_i \sim POI(\theta)
+season <- 1:13
+cyclone_count <- c(6, 5, 4, 6, 6, 3, 12, 7, 4, 2, 6, 7, 4)
+
+# Function to find U and dU of Poisson distribution
+poisson_function <- function(y, theta) {
+    # y: vector of sample values
+    # theta: arbitrary value of theta for log-liklihood input
+    n <- length(y)
+    u <- sum(y) * (1 / theta) - n
+    du <- -sum(y) * (1 / theta^2)
+    return(list(u = u, du = du))
+}
+
+theta0 <- 3.5
+tmp.iter <- NULL
+for (i in 1:10) {
+    one <- poisson_function(cyclone_count, theta0)
+    tmp.iter <- rbind(tmp.iter, c(theta = theta0, u = one$u, du = one$du))
+    theta0 <- theta0 - one$u / one$du
+}
+
+# Function to find MLE through the Newton-Raphson algorithm
+newton_raphson_algorithm <- function(f, y, theta_0) {
+    # f: function returning u and du of given PDF
+    # y: vector of sample values
+    # theta_0: initial value for theta
+
+    # Set theta_m for algorithm
+    theta_m <- theta_0 + 1
+    # Set return matrix to null
+    return_matrix <- NULL
+    # Set counter to protect against endless looping
+    loop_counter <- 0
+    while (theta_m - theta_0 > 0.0000001 & loop_counter < 1000) {
+        if (loop_counter > 0) {
+            theta_0 <- theta_m
+        }
+        function_list <- f(y, theta_0)
+        u <- function_list$u
+        du <- function_list$du
+        return_matrix <- rbind(
+            return_matrix, c(theta = theta_0, u = u, du = du)
+        )
+        theta_m <- theta_0 - u / du
+        loop_counter <- loop_counter + 1
+    }
+
+    # Return the matrix
+    return(return_matrix)
+}
+
+# Let's test it out!
+my_matrix <- newton_raphson_algorithm(
+    poisson_function, cyclone_count, 3.5
+)
+print(paste("The mean of the Cyclone Counts is", mean(cyclone_count)))
+print("Matrix of Algorithm Iterations:")
+print(my_matrix)
+###############################################################################
+```
+
+
+### Method of Scoring Algorithm
+
+* The method of scoring algorithm is extremely similar to the Newton-Raphson algorithm. However, if you know that your distribution meets the requirements for GLMs, then you can use the method of scoring algorithm. This can be easier to calculate (because of GLM properties), and it's also a little more efficient than the Newton-Raphon algorithm
+* This is built on the idea that we can **approximate** $U'$ with $E[U']$, and $I = -E[U']$
+* Method
+  * Similar to the NRA, we start with some value for $\theta^{(0)}$. We then implement the same iterative process as before, using this new formula to calculate $\theta^{(m)}$: $\theta^{(m)} = \theta^{(m - 1)} + \frac{U(\theta^{(m - 1)})}{I(\theta^{(m - 1)})}$
+
+## Three Take-aways
+
+1. What is the formula to calculate \theta^{(m)} for the Newton-Raphson algorithm? 
+2. What is the formula to calculate \theta^{(m)} for the method of scoring algorithm?
+3. The Newton-Raphson algorithm and the method of scoring are very similar, but the method of scoring can be easier to implement and more efficient in application. What requirements must be satisfied to use this method?
+
+\theta^{(m)} = \theta^{(m - 1)} - \frac{U(\theta^{(m - 1)})}{U'(\theta^{(m - 1)})}
+
+\theta^{(m)} = \theta^{(m - 1)} + \frac{U(\theta^{(m - 1)})}{I(\theta^{(m - 1)})}
+
+PDF must satisfy reqirements for GLMs

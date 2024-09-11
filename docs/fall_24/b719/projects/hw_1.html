@@ -334,6 +334,8 @@ f(y_i; \lambda) = \lambda e^{-\lambda y_i}, \quad y_i &gt; 0, \lambda &gt; 0
 \implies \hat{\lambda} &amp;= \frac{1}{\bar{Y}}
 \end{align*}\]</span></p>
 <p>This is a fun result, especially considering the fact that the rate parameter is the inverse of the scale parameter. So, by the invariance property of MLEs, we know that the MLE for <span class="math inline">\(\theta\)</span> (the scale parameter) is <span class="math inline">\(\bar{Y}\)</span>.</p>
+<p>However, remember that we still need to check the second derivative to ensure this actually is an MLE.</p>
+<p>We can easily see that the second derivative of the log-likelihood function, <span class="math inline">\(\frac{d^2\ell}{d\lambda^2}\)</span>, is <span class="math inline">\(-\frac{n}{\lambda^2}\)</span>. Considering that neither <span class="math inline">\(n\)</span> nor <span class="math inline">\(\lambda\)</span> can take on a negative value, the first derivative (i.e.&nbsp;the score function) will always be concave down, and we can state with certainty that the MLE for <span class="math inline">\(\lambda\)</span> is <span class="math inline">\(\frac{1}{\bar{Y}}\)</span></p>
 <p><strong>Part (b):</strong></p>
 <blockquote class="blockquote">
 <p>Suppose <span class="math inline">\(\lambda = e^{\beta}\)</span>. Find the MLE of <span class="math inline">\(\beta\)</span>.</p>
@@ -356,6 +358,7 @@ f(y_i; \lambda) = \lambda e^{-\lambda y_i}, \quad y_i &gt; 0, \lambda &gt; 0
 \hat{\beta} &amp;= \log\left[\frac{1}{\bar{Y}}\right]\\
 &amp;= \log(5)
 \end{align*}\]</span></p>
+<p>Thus, the numerical evaluations of the MLEs of <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(\beta\)</span> are <span class="math inline">\(5\)</span> and <span class="math inline">\(\log(5)\)</span>, respectively.</p>
 
 
 </section>

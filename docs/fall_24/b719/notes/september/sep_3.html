@@ -153,6 +153,17 @@ window.Quarto = {
   <li><a href="#the-score-function" id="toc-the-score-function" class="nav-link" data-scroll-target="#the-score-function">The Score Function</a></li>
   <li><a href="#three-take-aways" id="toc-three-take-aways" class="nav-link" data-scroll-target="#three-take-aways">Three Take-aways</a></li>
   </ul></li>
+  <li><a href="#september-5-2024" id="toc-september-5-2024" class="nav-link" data-scroll-target="#september-5-2024">September 5, 2024</a>
+  <ul class="collapse">
+  <li><a href="#information---review" id="toc-information---review" class="nav-link" data-scroll-target="#information---review">Information - Review</a></li>
+  <li><a href="#glms" id="toc-glms" class="nav-link" data-scroll-target="#glms">GLMs</a>
+  <ul class="collapse">
+  <li><a href="#research-process-again" id="toc-research-process-again" class="nav-link" data-scroll-target="#research-process-again">Research Process (again)</a></li>
+  <li><a href="#definition-of-the-generalized-linear-model" id="toc-definition-of-the-generalized-linear-model" class="nav-link" data-scroll-target="#definition-of-the-generalized-linear-model">Definition of the Generalized Linear Model</a></li>
+  <li><a href="#the-link-function" id="toc-the-link-function" class="nav-link" data-scroll-target="#the-link-function">The Link Function</a></li>
+  </ul></li>
+  <li><a href="#three-take-aways-1" id="toc-three-take-aways-1" class="nav-link" data-scroll-target="#three-take-aways-1">Three Take-aways</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -252,6 +263,75 @@ f(y; \theta) &amp;= \frac{1}{\sqrt{2\pi \sigma^2}} exp\left[-\frac{1}{2\sigma^2}
 <li>Suppose f(y; ) is a PDF. How must f(y; ) be written to conclude that it belongs to the exponential family?</li>
 <li>Property 1 of the exponential family has to do with E[a(y)]. What is the property?</li>
 <li>Property 2 of the exponential family has to do with V(a(y)). What is the property?</li>
+</ol>
+</section>
+</section>
+<section id="september-5-2024" class="level1">
+<h1>September 5, 2024</h1>
+<section id="information---review" class="level2">
+<h2 class="anchored" data-anchor-id="information---review">Information - Review</h2>
+<ul>
+<li>We find an MLE of <span class="math inline">\(\theta\)</span> setting U (the score function) to 0. We also know that the variance of <span class="math inline">\(U\)</span> is the Fisher’s information. But what is information? How is it related to MLEs?</li>
+<li>Information is a way to measure the amount of information that your data carry about the unkown parameter, <span class="math inline">\(\theta\)</span>. As an aside, I verified that <span class="math inline">\(I = 1/\text{curvature}\)</span>, which is really interesting.</li>
+</ul>
+</section>
+<section id="glms" class="level2">
+<h2 class="anchored" data-anchor-id="glms">GLMs</h2>
+<section id="research-process-again" class="level3">
+<h3 class="anchored" data-anchor-id="research-process-again">Research Process (again)</h3>
+<ol type="1">
+<li>Model specification
+<ol type="1">
+<li><span class="math inline">\(y\sim \text{exponential family}\)</span></li>
+<li>Linear association between Y and X with model parameter <span class="math inline">\(E(y) = X^T\beta\)</span></li>
+<li>You got yourself a GLM (this is where we are going to be in the process for the next week or two)</li>
+</ol></li>
+<li>Estimation
+<ol type="1">
+<li><span class="math inline">\(y\sim N(\mu, \sigma^2)\)</span>: <span class="math inline">\(\hat{\mu}\)</span></li>
+<li><span class="math inline">\(y\sim N(\beta X, \sigma^2)\)</span>: <span class="math inline">\(\hat{\beta}\)</span></li>
+<li><span class="math inline">\(y\sim Pois(\beta X)\)</span>: <span class="math inline">\(\hat{\beta}\)</span>, this gets complicated</li>
+</ol></li>
+<li>Model fit
+<ol type="1">
+<li>AIC, LRT, deviance</li>
+</ol></li>
+<li>Inference</li>
+</ol>
+</section>
+<section id="definition-of-the-generalized-linear-model" class="level3">
+<h3 class="anchored" data-anchor-id="definition-of-the-generalized-linear-model">Definition of the Generalized Linear Model</h3>
+<p>GLM is defined in terms of a set of independent random variables <span class="math inline">\(Y_1, ..., Y_n\)</span>, each with a distribution from the exponential family and having the following three properties:</p>
+<ol type="1">
+<li>The distribution of each <span class="math inline">\(Y_i\)</span> has the canonical form and depends on a single parameter <span class="math inline">\(\theta_i\)</span></li>
+<li>The distibution of all the <span class="math inline">\(Y_i\)</span>’s are of the same form so that <span class="math inline">\(b_i(.) = b(.)\)</span>, <span class="math inline">\(c_i(.) = c(.)\)</span>, and <span class="math inline">\(d_i(.) = d(.)\)</span>.</li>
+<li>Suppose <span class="math inline">\(E(Y_i) = \mu_i\)</span>, where <span class="math inline">\(\mu\)</span> is some function of <span class="math inline">\(\theta_i\)</span>. For a GLM, there exists a transformation of <span class="math inline">\(\mu_i\)</span> such that <span class="math inline">\(g(\mu_i) = X_i^T\beta = \eta_i\)</span>
+<ol type="1">
+<li><span class="math inline">\(g(.)\)</span> is a monotone, differentiable function called the link function</li>
+<li><span class="math inline">\(X^T_i\)</span> is the 1 X p design vector (ith row of the design matrix X)</li>
+<li><span class="math inline">\(\beta\)</span> is the p X 1 vector of parameters</li>
+</ol></li>
+</ol>
+</section>
+<section id="the-link-function" class="level3">
+<h3 class="anchored" data-anchor-id="the-link-function">The Link Function</h3>
+<ul>
+<li>For linear regression, the link function is the identity function: <span class="math inline">\(g(\mu_i) = \mu_i\)</span></li>
+<li>For logistic regression, the link function is the logit function: <span class="math inline">\(g(\pi_i) = \log\left(\frac{\pi_i}{1 - \pi_i}\right) = X^T_i \beta\)</span></li>
+<li>For Poisson regression, the link function is <span class="math inline">\(g(\theta_i) = X^T_i\beta = \log(\theta_i)\)</span></li>
+<li>The inverse link function gives us <span class="math inline">\(\mu_i\)</span>, which can be very useful (think getting <span class="math inline">\(\pi\)</span> in logistic regression)
+<ul>
+<li>The inverse link function for logistic regression (called the expit) is <span class="math inline">\(\frac{1}{1 + e^{-x^T_i\beta}}\)</span></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="three-take-aways-1" class="level2">
+<h2 class="anchored" data-anchor-id="three-take-aways-1">Three Take-aways</h2>
+<ol type="1">
+<li>For a set of independent random variables to be a GLM, there are three properties that need to be met. The first is that the distribution of each Y_i depends on a single parameter and has what special form?</li>
+<li>For a set of independent random variables to be a GLM, there are three properties that need to be met. The third and most important property is that for E(Y_i) = , there exists a transformation of such that … (fill in the blank).</li>
+<li>What is the form of the inverse link function for logistic regression? (Reminder: this is the function known as the expit function)</li>
 </ol>
 <p><a href="../../../../fall_24/b719/notes/notes.html">Back</a></p>
 

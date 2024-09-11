@@ -70,4 +70,55 @@ Let the random variable U represent the score function.
 2. Property 1 of the exponential family has to do with E[a(y)]. What is the property?
 3. Property 2 of the exponential family has to do with V(a(y)). What is the property?
 
+
+# September 5, 2024
+
+
+## Information - Review
+
+* We find an MLE of $\theta$ setting U (the score function) to 0. We also know that the variance of $U$ is the Fisher's information. But what is information? How is it related to MLEs? 
+* Information is a way to measure the amount of information that your data carry about the unkown parameter, $\theta$. As an aside, I verified that $I = 1/\text{curvature}$, which is really interesting. 
+
+## GLMs
+
+### Research Process (again)
+
+1. Model specification 
+   1. $y\sim \text{exponential family}$
+   2. Linear association between Y and X with model parameter $E(y) = X^T\beta$
+   3. You got yourself a GLM (this is where we are going to be in the process for the next week or two)
+2. Estimation
+   1. $y\sim N(\mu, \sigma^2)$: $\hat{\mu}$
+   2. $y\sim N(\beta X, \sigma^2)$: $\hat{\beta}$
+   3. $y\sim Pois(\beta X)$: $\hat{\beta}$, this gets complicated
+3. Model fit
+   1. AIC, LRT, deviance
+4. Inference
+
+### Definition of the Generalized Linear Model
+
+GLM is defined in terms of a set of independent random variables $Y_1, ..., Y_n$, each with a distribution from the exponential family and having the following three properties: 
+
+1.  The distribution of each $Y_i$ has the canonical form and depends on a single parameter $\theta_i$
+2.  The distibution of all the $Y_i$'s are of the same form so that $b_i(.) = b(.)$, $c_i(.) = c(.)$, and $d_i(.) = d(.)$.
+3.  Suppose $E(Y_i) = \mu_i$, where $\mu$ is some function of $\theta_i$. For a GLM, there exists a transformation of $\mu_i$ such that $g(\mu_i) = X_i^T\beta = \eta_i$
+    1.  $g(.)$ is a monotone, differentiable function called the link function
+    2.  $X^T_i$ is the 1 X p design vector (ith row of the design matrix X)
+    3.  $\beta$ is the p X 1 vector of parameters
+
+
+### The Link Function 
+
+* For linear regression, the link function is the identity function: $g(\mu_i) = \mu_i$
+* For logistic regression, the link function is the logit function: $g(\pi_i) = \log\left(\frac{\pi_i}{1 - \pi_i}\right) = X^T_i \beta$
+* For Poisson regression, the link function is $g(\theta_i) = X^T_i\beta = \log(\theta_i)$
+* The inverse link function gives us $\mu_i$, which can be very useful (think getting $\pi$ in logistic regression)
+  * The inverse link function for logistic regression (called the expit) is $\frac{1}{1 + e^{-x^T_i\beta}}$
+
+## Three Take-aways
+
+1. For a set of independent random variables to be a GLM, there are three properties that need to be met. The first is that the distribution of each Y_i depends on a single parameter and has what special form?
+2. For a set of independent random variables to be a GLM, there are three properties that need to be met. The third and most important property is that for E(Y_i) = \mu, there exists a transformation of \mu such that ... (fill in the blank).
+3. What is the form of the inverse link function for logistic regression? (Reminder: this is the function known as the expit function)
+
 [Back](../notes.qmd)

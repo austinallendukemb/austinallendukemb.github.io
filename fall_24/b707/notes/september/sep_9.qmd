@@ -1,0 +1,111 @@
+---
+title: "September 9, 2024 - September 11, 2024"
+---
+
+
+# September 9, 2024
+
+## Data Visualization 
+
+
+### Overview
+
+Here's a cheat-sheet for plotting: 
+
+* Continuous variable
+  * Histograms
+  * Kernel density
+  * Box plot
+  * violin plot
+  * QQ-plot
+* Categorical variable
+  * Bar chart
+  * Pi chart (ew) 
+* Visualizing relationship between variables
+  * Hexbin plots
+  * Scatter plot matrix
+  * 3D plots
+  * Trellis plots and heatmap
+* Time-series and longitudinal data visualizations
+  * Time series plots
+  * Spaghetti plots
+  * Lasagna plots (yum)
+* Specializaed visualization techniques
+  * Networks and maps, survival plots, waterfall and forest plots, Venn diagrams
+
+### Continuous Variables
+
+* Histogram
+  * When should you plot frequency? When should you plot density?
+    * If sample size is important, plot frequency
+    * When comparing the shape of the data to another distribution, use density
+* Density plot
+  * What is density?
+    * The area under the curve = 1
+* Box plot
+  * What information do we lose going from a density plot/histogram to a box plot?
+    * We lose important information about the shape of the distribution. Looking at the box plot is like looking down at an aerial map of a mountain range. We can get an idea of its shape, but we can't necessarily see the contours of the peaks and ridges that we would get from the ground looking up
+  * What information do we gain?   
+    * We gain median + IQR information, plus whiskers
+* Violin plot
+  * Attempts to bridge the density and the box plot
+  * Here's my question. Why not overlay the box plot at the bottom of a histogram/density curve? 
+* Hexbin plot
+  * This is like a heat map plotting two continuous variables. I think the advantage of this over a 2D scatterplot is that if we have very large datasets, it gives us additional information about the density of the data
+* QQ-plot
+  * We can set a QQ-plot to see where the expected quantiles and the actual quantiles align for any distribution 
+* Distribution of the p-value
+  * Did you know that under the null hypothesis, the p-value is distributed uniformly between 0 and 1? So, if you have LOTS and LOTS of p-values (think GWAS), you can create a density plot to see if it appears to be uniformly distributed
+
+### Categorical variables
+
+* Bar plot
+  * What's the difference between `ggplot2::geom_bar` and `ggplot2::geom_col`? 
+    * geom_bar is for frequency bar plots, and geom_col is for a numeric y value (like revenue) and multiple categories (departments A, B, and C)
+* Pie plot
+  * Emphasizes proportions
+  * Often hard to interpret because our eyes aren't great at area
+
+### Mutliple variables 
+
+
+* Group vs Stacked bar plots
+  * Grouped bar plots emphasizes comparison within groups
+  * Stacked bar plots emphasizes comparison between groups
+* Scatter plot matrix
+  * Useful to look at relationships between multiple continous variables 
+  * Can add correlation as another dimension to the plot (e.g. color)
+* 3D scatter plots
+  * Can check linearity in 3 dimensions
+* Trellis plot
+  * Stratify to see within group detail
+  * Is often helpful to have all groups in a single plot too for comparison between groups
+* Heatmaps
+  * Good for correlation, gene mapping, etc.
+* Time
+  * Time-series
+  * Spaghettie plot
+  * Lasagna plot
+* Networks
+  * Mapping knowledge networks
+* Arc diagram
+  * Similar information as a network graph, emphasizes different things
+* Map plots
+  * Often a "heat" map
+* K-M curves
+* Waterfall plots
+* Forest plot
+  * Useful in meta-analysis
+* Venn diagram
+  * Overlapping data
+
+## Three take-aways
+
+1. Picture a QQ plot generated with this R code: `x <- runif(1000, 0, 1); car::qqPlot(x)`. This will create a plot shaped like an 'S'. This is because the y values left of the line are much HIGHER/LOWER than expected in a normal distribution, and the y values right of the line are much HIGHER/LOWER than expected in a normal distribution. Using this logic, plots with both tails **above** the line will be RIGHT/LEFT skewed (think: lower y-values onto the line shifts distribution in what direction?), and plots with both tails **below** the line will be RIGHT/LEFT skewed (think: raising y-values onto the line shifts distribution in what direction?).
+2. In what type of analyses are forest plots particularly useful? 
+3. Histograms can be constructed to show either frequency counts or density. Explain what density is (i.e. the actual value on the y-axis). 
+
+
+
+
+[Back](../notes.qmd)

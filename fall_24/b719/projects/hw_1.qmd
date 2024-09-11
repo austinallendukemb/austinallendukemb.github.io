@@ -103,7 +103,9 @@ Let's follow the same four steps to find this out!
 
 This is a fun result, especially considering the fact that the rate parameter is the inverse of the scale parameter. So, by the invariance property of MLEs, we know that the MLE for $\theta$ (the scale parameter) is $\bar{Y}$. 
 
+However, remember that we still need to check the second derivative to ensure this actually is an MLE. 
 
+We can easily see that the second derivative of the log-likelihood function, $\frac{d^2\ell}{d\lambda^2}$, is $-\frac{n}{\lambda^2}$. Considering that neither $n$ nor $\lambda$ can take on a negative value, the first derivative (i.e. the score function) will always be concave down, and we can state with certainty that the MLE for $\lambda$ is $\frac{1}{\bar{Y}}$
 
 **Part (b):**
 
@@ -136,3 +138,4 @@ For $\hat{\beta}$:
 &= \log(5)
 \end{align*}
 
+Thus, the numerical evaluations of the MLEs of $\lambda$ and $\beta$ are $5$ and $\log(5)$, respectively. 

@@ -1,0 +1,5 @@
+---
+title: "BIOSTAT 707 - Homework 1"
+---
+
+{{< include b707_hw1.html >}}

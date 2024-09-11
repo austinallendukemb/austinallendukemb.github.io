@@ -153,6 +153,17 @@ window.Quarto = {
   </ul></li>
   <li><a href="#three-take-aways" id="toc-three-take-aways" class="nav-link" data-scroll-target="#three-take-aways">Three Take-aways</a></li>
   </ul></li>
+  <li><a href="#september-5-2024" id="toc-september-5-2024" class="nav-link" data-scroll-target="#september-5-2024">September 5, 2024</a>
+  <ul class="collapse">
+  <li><a href="#follow-up-question-about-implicit-foreign-keys" id="toc-follow-up-question-about-implicit-foreign-keys" class="nav-link" data-scroll-target="#follow-up-question-about-implicit-foreign-keys">Follow-up Question About Implicit Foreign Keys</a></li>
+  <li><a href="#sql---introduction" id="toc-sql---introduction" class="nav-link" data-scroll-target="#sql---introduction">SQL - Introduction</a>
+  <ul class="collapse">
+  <li><a href="#ddl-d-efinition" id="toc-ddl-d-efinition" class="nav-link" data-scroll-target="#ddl-d-efinition">DDL (“D-efinition”)</a></li>
+  <li><a href="#dml-m-anagement" id="toc-dml-m-anagement" class="nav-link" data-scroll-target="#dml-m-anagement">DML (“M-anagement”)</a></li>
+  <li><a href="#dql-q-ery" id="toc-dql-q-ery" class="nav-link" data-scroll-target="#dql-q-ery">DQL (“Q-ery”)</a></li>
+  </ul></li>
+  <li><a href="#three-take-aways-1" id="toc-three-take-aways-1" class="nav-link" data-scroll-target="#three-take-aways-1">Three Take-aways</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -266,6 +277,130 @@ window.Quarto = {
 <li>In the example of the instructors and courses, the lessons table acted as a middle-man or reference table that changed the many-to-many relationship problem into two one-to-many relationships.</li>
 <li>A primary key identifies an entity in the table; a foreign key identifies an entity in another table; a composite natural key is a set of two or more attributes that uniquely identify an entity; a surrogate key is like a local variable that is only understood by the database and doesn’t exist in the real world (like using “autoincrement”)</li>
 </ol>
+</section>
+</section>
+<section id="september-5-2024" class="level1">
+<h1>September 5, 2024</h1>
+<section id="follow-up-question-about-implicit-foreign-keys" class="level2">
+<h2 class="anchored" data-anchor-id="follow-up-question-about-implicit-foreign-keys">Follow-up Question About Implicit Foreign Keys</h2>
+<p>After last lecture, I had the following question that was answered today:</p>
+<ul>
+<li>Question: We talked about implicit foreign keys and explicit foreign keys. If the foreign key is implicit, how on the good green earth would you be able to reference the foreign entity?</li>
+<li>Answer: Foreign keys are <strong>only</strong> implicit in the logical model. In the physical implementation, they most certainly are explicit.</li>
+</ul>
+</section>
+<section id="sql---introduction" class="level2">
+<h2 class="anchored" data-anchor-id="sql---introduction">SQL - Introduction</h2>
+<ul>
+<li>You can categorize SQL commands into four groups:
+<ul>
+<li>Data Definition Language
+<ul>
+<li>This is for executing tasks like creating a table and defining columns</li>
+</ul></li>
+<li>Data Manipulation Language
+<ul>
+<li>This is for updating the tables/rows after they’re created</li>
+</ul></li>
+<li>Data Query Language
+<ul>
+<li>This is for getting data</li>
+</ul></li>
+<li>Data Control Language
+<ul>
+<li>I’m not sure what this does yet…</li>
+</ul></li>
+</ul></li>
+<li>Knitr supports a variety of “engines,” including the SQL engine
+<ul>
+<li>Question: is an engine like a kernal?</li>
+</ul></li>
+<li>In R, DBI is a handy package to remember. It can be used to create a database connection and work with datatables.
+<ul>
+<li>You can choose to create an in-memory database using “:memory:” as an argument. Why would we want to create an in-memory database? What’s the advantage over a set of dataframes or datatables?<br>
+</li>
+<li>I just asked ChatGPT this same question, and here’s the response:
+<ul>
+<li>An in-memory database in R, created using DBI with “:memory:”, offers several advantages over data frames or data tables. It provides faster data access by using RAM instead of disk storage, allows complex SQL queries and joins, supports transactional consistency, and efficiently manages memory allocation. In-memory databases are ideal for temporary data analysis, reducing disk I/O overhead, and can handle larger datasets more effectively, offering a powerful alternative for data manipulation tasks in R.</li>
+</ul></li>
+</ul></li>
+</ul>
+<section id="ddl-d-efinition" class="level3">
+<h3 class="anchored" data-anchor-id="ddl-d-efinition">DDL (“D-efinition”)</h3>
+<ul>
+<li>Here are some common verbs:
+<ul>
+<li>CREATE/DROP/ALTER TABLE</li>
+<li>CREATE/DROP VIEW</li>
+<li>CREATE/DROP INDEX</li>
+</ul></li>
+<li>DDL consists of SQL commands that return a status or a count, but not a result set</li>
+<li>When creating a table, you can define a foreign key in a couple ways:
+<ul>
+<li>The first way is to specify that it’s a foreign key when you create the column name:</li>
+</ul></li>
+</ul>
+<p><code>{sql eval = FALSE} CREATE TABLE Lesson (   Name VARCHAR(64),   Instructor_OID INTEGER NOT NULL       -- foreign key constraint can be part of column definition       REFERENCES Instructor (Instructor_OID),   PRIMARY KEY (Name, Instructor_OID) );</code></p>
+<ul>
+<li>The second way is to do it in two statements:</li>
+</ul>
+<p><code>{sql eval = FALSE} CREATE TABLE Lesson (   Name VARCHAR(64) NOT NULL,   Instructor_OID INTEGER NOT NULL   -- foreign key constraint can be defined separately   FOREIGN KEY (Instructor_OID)       REFERENCES Instructor (Instructor_OID)   PRIMARY KEY (Name, Instructor_OID) );</code></p>
+<ul>
+<li>Keep in mind that there are three ways to specify how the RDBMS handles a deletion of the foreign entity (instructor). The first way is set the value to NULL, but in this case, where Instructor_OID is part of the composite natural key (and cannot be null anyway), that would create an error. The second way (which is the default) is to restrict, which means if the instructor is deleted and his Instructor_OID is found somewhere as a foreign key in the Lesson table, then an error will arise. This is how it’s specified:</li>
+</ul>
+<p><code>{sql eval = FALSE} CREATE TABLE Lesson (   Name VARCHAR(64),   Instructor_OID INTEGER NOT NULL       -- foreign key constraint can be part of column definition       REFERENCES Instructor (Instructor_OID)       ON DELETE RESTRICT,   PRIMARY KEY (Name, Instructor_OID) );</code></p>
+<ul>
+<li>The last way is to use <code>CASCADE</code>, which relies on this logic. If the professor teaching the lesson doesn’t exist, and if that implies that the lesson no longer exists, then just remove the lesson! So if the professor is deleted, the lesson is automatically deleted. So be careful when using <code>CASCADE</code>! Here’s how you specify it:</li>
+</ul>
+<p><code>{sql eval = FALSE} CREATE TABLE Lesson (   Name VARCHAR(64),   Instructor_OID INTEGER NOT NULL       -- foreign key constraint can be part of column definition       REFERENCES Instructor (Instructor_OID)       ON DELETE CASCADE,   PRIMARY KEY (Name, Instructor_OID) );</code></p>
+<ul>
+<li>One last thing: For “weak” entities (Lessons), the natural primary key will include a foreign key</li>
+<li>Creating an index can speed up a query, but they also increase the transaction cost</li>
+<li>Altering tables: just know it’s a thing with lots of documentation, but we’re not going to get into the nitty gritty of it in this course</li>
+</ul>
+</section>
+<section id="dml-m-anagement" class="level3">
+<h3 class="anchored" data-anchor-id="dml-m-anagement">DML (“M-anagement”)</h3>
+<ul>
+<li>Common DML commands:
+<ul>
+<li>INSERT</li>
+<li>UPDATE</li>
+<li>DELETE</li>
+</ul></li>
+<li>Returns a status or a count</li>
+<li>UPDATE and DELETE don’t raise an error if the query isn’t matched, so look for the count that it returns!</li>
+</ul>
+</section>
+<section id="dql-q-ery" class="level3">
+<h3 class="anchored" data-anchor-id="dql-q-ery">DQL (“Q-ery”)</h3>
+<ul>
+<li>Select statement consists of:
+<ul>
+<li>SELECT: which columns (or values) to report</li>
+<li>FROM: which table(s) to query and how to join tables</li>
+<li>WHERE: conditions to be met for rows to be reported</li>
+<li>GROUP BY: how to aggregate rows by certain columns</li>
+<li>HAVING: conditions to be met for aggregated rows</li>
+<li>ORDER BY: how to order the rows in the report</li>
+</ul></li>
+<li>I thought this subquery example was kind of neat:</li>
+</ul>
+<pre class="{sql}"><code>SELECT DISTINCT Name FROM Lesson
+WHERE Instructor_OID IN (
+   SELECT Instructor_OID
+   FROM Instructor WHERE Name LIKE 'h%'
+)</code></pre>
+</section>
+</section>
+<section id="three-take-aways-1" class="level2">
+<h2 class="anchored" data-anchor-id="three-take-aways-1">Three Take-aways</h2>
+<ol type="1">
+<li>When creating tables that have foreign keys, it is often important to impose constraints on the foreign key. One of those constraints is to ensure the proper handling of the current entity in the case the foreign entity were deleted. Write the SQL command to <strong>delete</strong> the current entity if the foreign entity is deleted.</li>
+<li>When creating tables that have foreign keys, it is often important to impose constraints on the foreign key. One of those constraints is to ensure the proper handling of the current entity in the case the foreign entity were deleted. Write the SQL command to <strong>raise an error</strong> if the foreign entity is deleted.</li>
+<li>For any “weak” entity, what will always be included in the natural primary key?</li>
+</ol>
+<p><a href="../../../../fall_24/b823/notes/notes.html">Back</a></p>
 
 
 </section>
