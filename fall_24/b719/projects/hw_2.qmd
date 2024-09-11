@@ -205,4 +205,15 @@ where
 * $c(\theta) = -\lambda \log(\theta)$
 * $d(y) = - \log(y) + \lambda\log(y) + \log(\lambda)$
 
-Using our previously helpful formula for 
+Using our previously helpful formula for calculating Fisher's information, we can derive an expression for the Fisher's information:
+$$
+\begin{align*}
+b'(\theta) &= \lambda \theta^{-\lambda - 1}\\
+c'(\theta) &= - \lambda\theta^{-1}\\
+b''(\theta) &= (-\lambda - 1)\lambda\theta^{-\lambda - 2}\\
+c''(\theta) &= \lambda\theta^{-2}\\
+I(\theta) &= \frac{b''(\beta)c'(\beta) }{b'(\beta)} - c''(\beta)\\
+&= \frac{\left[ (-\lambda-1)\lambda\theta^{-\lambda - 2}\right]\left[-lambda\theta^{-1}\right]}{} - \lambda\theta^{-2}\\
+&= 
+\end{align*}
+$$
