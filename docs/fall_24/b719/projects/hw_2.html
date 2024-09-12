@@ -144,6 +144,8 @@ window.Quarto = {
   <li><a href="#problem-1" id="toc-problem-1" class="nav-link active" data-scroll-target="#problem-1">Problem 1</a></li>
   <li><a href="#problem-2" id="toc-problem-2" class="nav-link" data-scroll-target="#problem-2">Problem 2</a></li>
   <li><a href="#problem-3" id="toc-problem-3" class="nav-link" data-scroll-target="#problem-3">Problem 3</a></li>
+  <li><a href="#problem-4" id="toc-problem-4" class="nav-link" data-scroll-target="#problem-4">Problem 4</a></li>
+  <li><a href="#end-of-problem-set" id="toc-end-of-problem-set" class="nav-link" data-scroll-target="#end-of-problem-set">End of problem set</a></li>
   </ul>
 </nav>
     </div>
@@ -173,8 +175,8 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="problem-1">Problem 1</h2>
 <blockquote class="blockquote">
 <p>Show that the following probability density functions belong to the exponential family. Define a(·), b(·), c(·), d(·) components.</p>
-</blockquote>
 <p><strong>Part (a):</strong> Pareto distribution <span class="math inline">\(f(y; \theta) = \theta y^{-\theta-1}\)</span></p>
+</blockquote>
 <p>For all of these, we must show that the function holds the form <span class="math inline">\(\exp\left[ a(y)b(\theta) + c(\theta) + d(y) \right]\)</span>. Let’s rewrite the Pareto PDF just a smidge:</p>
 <p><span class="math display">\[\begin{align*}
 f(y; \theta) &amp;= \exp[-\theta \log(y)+ \log(\theta) - \log(y)]\\
@@ -188,7 +190,9 @@ f(y; \theta) &amp;= \exp[-\theta \log(y)+ \log(\theta) - \log(y)]\\
 <li><span class="math inline">\(d(y) = -\log(y)\)</span></li>
 </ul>
 <p>We can clearly see that the Pareto distribution is a member of the exponential family.</p>
+<blockquote class="blockquote">
 <p><strong>Part (b):</strong> Exponential distribution <span class="math inline">\(f(y; \theta) = \theta^{-y\theta}\)</span></p>
+</blockquote>
 <p>Once again, let’s rewrite this PDF:</p>
 <p><span class="math display">\[\begin{align*}
 f(y; \theta) &amp;= \exp[-y\theta + \log(\theta)]\\
@@ -202,7 +206,9 @@ f(y; \theta) &amp;= \exp[-y\theta + \log(\theta)]\\
 <li><span class="math inline">\(d(y) = 0\)</span></li>
 </ul>
 <p>The exponential distribution, thankfully, is a member of the exponential family. Otherwise, I think that would get awkward at family reunions.</p>
+<blockquote class="blockquote">
 <p><strong>Part (c):</strong> Negative binomial distribution <span class="math inline">\(f(y; \theta) = {y + r - 1 \choose r - 1} \theta^r(1 - \theta)^y\)</span>, where <span class="math inline">\(r\)</span> is known</p>
+</blockquote>
 <p>Using the same method, we get the following:</p>
 <p><span class="math display">\[\begin{align*}
 f(y; \theta) &amp;= exp\left[y\log(1 - \theta) + r\log(\theta) + \log\left[{y + r - 1\choose r - 1} \right]\right]\\
@@ -236,11 +242,13 @@ f(y; \theta) &amp;= exp\left[ -exp\left[ \frac{y - \theta}{\Phi} \right] - \frac
 <h2 class="anchored" data-anchor-id="problem-2">Problem 2</h2>
 <blockquote class="blockquote">
 <p>Consider a randome variable Y with the following Gamma distribution with a scale parameter, <span class="math inline">\(\beta\)</span>, of interest, and a known shape parameter <span class="math inline">\(\alpha\)</span>:</p>
-</blockquote>
 <p><span class="math display">\[
 f(y; \beta) = \frac{\beta^{\alpha}}{\Gamma(\alpha)}y^{\alpha - 1}e^{-y\beta}, \text{  where } y &gt; 0, \quad \alpha &gt; 0, \quad \beta &gt; 0
 \]</span></p>
+</blockquote>
+<blockquote class="blockquote">
 <p><strong>Part (a):</strong></p>
+</blockquote>
 <blockquote class="blockquote">
 <p>Does this distribution belong to the exponential family?</p>
 </blockquote>
@@ -307,11 +315,9 @@ V[U] &amp;= \frac{b''(\beta)c'(\beta) }{b'(\beta)} - c''(\beta)\\
 <h2 class="anchored" data-anchor-id="problem-3">Problem 3</h2>
 <blockquote class="blockquote">
 <p>Derive expression for information (consider <span class="math inline">\(\theta\)</span> the parameter of interest) for a single observation from the Weibull distribution:</p>
-</blockquote>
 <p><span class="math display">\[
 f(y; \lambda , \theta) = \frac{\lambda y^{\lambda - 1}}{\theta^{\lambda}}\exp\left[ -\left(\frac{y}{\theta}\right)^{\lambda}\right],
 \]</span></p>
-<blockquote class="blockquote">
 <p>where <span class="math inline">\(y \ge 0, \lambda &gt; 0,\)</span> and <span class="math inline">\(\theta &gt; 0\)</span>. Show all your work.</p>
 </blockquote>
 <p>Let’s start by identifying a(.), b(.), c(.), and d(.).</p>
@@ -327,7 +333,68 @@ f(y; \lambda, \theta) &amp;= \frac{\lambda y^{\lambda - 1}}{\theta^{\lambda}}\ex
 <li><span class="math inline">\(c(\theta) = -\lambda \log(\theta)\)</span></li>
 <li><span class="math inline">\(d(y) = - \log(y) + \lambda\log(y) + \log(\lambda)\)</span></li>
 </ul>
-<p>Using our previously helpful formula for calculating Fisher’s information, we can derive an expression for the Fisher’s information:</p>
+<p>Using our previously helpful formula for calculating Fisher’s information, we can derive an expression for <span class="math inline">\(I(\theta)\)</span>:</p>
+<p><span class="math display">\[\begin{align*}
+b'(\theta) &amp;= \lambda \theta^{-\lambda - 1}\\
+c'(\theta) &amp;= - \lambda\theta^{-1}\\
+b''(\theta) &amp;= (-\lambda - 1)\lambda\theta^{-\lambda - 2}\\
+c''(\theta) &amp;= \lambda\theta^{-2}\\
+I(\theta) &amp;= \frac{b''(\beta)c'(\beta) }{b'(\beta)} - c''(\beta)\\
+&amp;= \frac{\left[ (-\lambda-1)\lambda\theta^{-\lambda - 2}\right]\left[-\lambda\theta^{-1}\right]}{\lambda\theta^{-\lambda-1}} - \lambda\theta^{-2}\\
+&amp;= (-\lambda)(-\lambda-1)(\lambda)(\lambda^{-1})(\theta^{-\lambda-3})(\theta^{\lambda+1})-\lambda\theta^{-2}\\
+&amp;= (-\lambda)(-\lambda-1)(\theta^{-2})-\lambda\theta^{-2}\\
+&amp;= (\lambda\theta^{-2})(\lambda+1)-\lambda\theta^{-2}\\
+&amp;= \lambda\theta^{-2}((\lambda+1)-1)\\
+&amp;= \lambda\theta^{-2}(\lambda)\\
+&amp;= \left(\frac{\lambda}{\theta}\right)^{2}\\
+\end{align*}\]</span></p>
+</section>
+<section id="problem-4" class="level2">
+<h2 class="anchored" data-anchor-id="problem-4">Problem 4</h2>
+<blockquote class="blockquote">
+<p>Suppose <span class="math inline">\(Y_1, ..., Y_n\)</span> are independent random variables, each with the Pareto distribution:</p>
+<p><span class="math display">\[
+f(y_i;\theta) = \frac{\theta}{y_i^{\theta + 1}}, \text{ where } y_i &gt; 1, \theta &gt; 0 \text{ for all } i = 1, ..., n
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+E(Y_i) = (\beta_0 + \beta_1x_i)^2
+\]</span></p>
+<p><strong>Part (a):</strong> Does this distribution have the canonical form?</p>
+</blockquote>
+<p>Let’s first examine this PDF using the definition of the exponential family:</p>
+<p><span class="math display">\[
+\begin{align*}
+f(y_i; \theta) &amp;= \frac{\theta}{y_i^{\theta + 1}}\\
+&amp;= \exp\left[\log(\theta) - (\theta + 1)\log(y_i)\right]\\
+&amp;= \exp\left[- \log(y_i)\theta + \log(\theta) - \log(y_i) \right]\\
+&amp;= \exp\left[a(y_i)b(\theta) + c(\theta) + d(y_i)\right],
+\end{align*}
+\]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(a(y_i) = - \log(y_i)\)</span></li>
+<li><span class="math inline">\(b(\theta) = \theta\)</span></li>
+<li><span class="math inline">\(c(\theta) = \log(\theta)\)</span></li>
+<li><span class="math inline">\(d(y_i) = -\log(y_i)\)</span></li>
+</ul>
+<p>Because <span class="math inline">\(a(y_i) \ne y_i\)</span>, this distribution does <strong>not</strong> have the canonical form.</p>
+<blockquote class="blockquote">
+<p><strong>Part (b):</strong> Are the distributions of all the <span class="math inline">\(Y_i\)</span>’s of the same form?</p>
+</blockquote>
+<p>Because each <span class="math inline">\(Y_i\)</span> follows the same distribution, <span class="math inline">\(b_i(\theta) = b(\theta)\)</span>, <span class="math inline">\(c_i(\theta) = c(\theta)\)</span> and <span class="math inline">\(d_i(y) = d(y)\)</span> for all <span class="math inline">\(i = 1,2,...,n\)</span>. This being the case, we know that all <span class="math inline">\(Y_i\)</span>’s are of the same form.</p>
+<blockquote class="blockquote">
+<p><strong>Part (c):</strong> What is the link function? Is it monotone and differentiable?</p>
+</blockquote>
+<p>The link function is a transformation of <span class="math inline">\(E(Y_i)\)</span> such that <span class="math inline">\(g(E(Y_i)) = X_i^T\beta\)</span>. Because we know that <span class="math inline">\(E(Y_i) = (X_i^T\beta)^2\)</span>, the link function is <span class="math inline">\(\sqrt{E(Y_i)}\)</span>, which is both differentiable and monotone.</p>
+<blockquote class="blockquote">
+<p><strong>Part (d):</strong> Given your answers in (a) to (c), is this a generalized linear model? Give reasons for your answer.</p>
+</blockquote>
+<p>While two of the three properties of GLMs are met by the pareto distribution, importantly, it does <strong>not</strong> have the canonical form. This is not a generalized linear model.</p>
+</section>
+<section id="end-of-problem-set" class="level2">
+<h2 class="anchored" data-anchor-id="end-of-problem-set">End of problem set</h2>
+<p><a href="../../../fall_24/b719/index.html">Back</a></p>
 
 
 </section>

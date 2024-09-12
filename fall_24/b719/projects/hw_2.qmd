@@ -7,8 +7,8 @@ title: "BIOSTAT 719 - Homework 2"
 ## Problem 1
 
 > Show that the following probability density functions belong to the exponential family. Define a(·), b(·), c(·), d(·) components.
-
-**Part (a):** Pareto distribution $f(y; \theta) = \theta y^{-\theta-1}$
+>
+>**Part (a):** Pareto distribution $f(y; \theta) = \theta y^{-\theta-1}$
 
 For all of these, we must show that the function holds the form $\exp\left[ a(y)b(\theta) + c(\theta) + d(y) \right]$. Let's rewrite the Pareto PDF just a smidge: 
 
@@ -29,7 +29,7 @@ Where:
 We can clearly see that the Pareto distribution is a member of the exponential family. 
 
 
-**Part (b):** Exponential distribution $f(y; \theta) = \theta^{-y\theta}$
+> **Part (b):** Exponential distribution $f(y; \theta) = \theta^{-y\theta}$
 
 Once again, let's rewrite this PDF:
 
@@ -49,7 +49,7 @@ Where:
 The exponential distribution, thankfully, is a member of the exponential family. Otherwise, I think that would get awkward at family reunions.
 
 
-**Part (c):** Negative binomial distribution $f(y; \theta) = {y + r - 1 \choose r - 1} \theta^r(1 - \theta)^y$, where $r$ is known
+> **Part (c):** Negative binomial distribution $f(y; \theta) = {y + r - 1 \choose r - 1} \theta^r(1 - \theta)^y$, where $r$ is known
 
 Using the same method, we get the following:
 
@@ -95,12 +95,12 @@ This, too, is part of the exponential family.
 
 
 > Consider a randome variable Y with the following Gamma distribution with a scale parameter, $\beta$, of interest, and a known shape parameter $\alpha$: 
+>
+> $$
+>f(y; \beta) = \frac{\beta^{\alpha}}{\Gamma(\alpha)}y^{\alpha - 1}e^{-y\beta}, \text{  where } y > 0, \quad \alpha > 0, \quad \beta > 0
+>$$
 
-$$
-f(y; \beta) = \frac{\beta^{\alpha}}{\Gamma(\alpha)}y^{\alpha - 1}e^{-y\beta}, \text{  where } y > 0, \quad \alpha > 0, \quad \beta > 0
-$$
-
-**Part (a):**
+>**Part (a):**
 
 > Does this distribution belong to the exponential family?
 
@@ -182,11 +182,11 @@ V[U] &= \frac{b''(\beta)c'(\beta) }{b'(\beta)} - c''(\beta)\\
 ## Problem 3 
 
 > Derive expression for information (consider $\theta$ the parameter of interest) for a single observation from the Weibull distribution:
-
-$$
-f(y; \lambda , \theta) = \frac{\lambda y^{\lambda - 1}}{\theta^{\lambda}}\exp\left[ -\left(\frac{y}{\theta}\right)^{\lambda}\right],
-$$
-
+>
+>$$
+>f(y; \lambda , \theta) = \frac{\lambda y^{\lambda - 1}}{\theta^{\lambda}}\exp\left[ -\left(\frac{y}{\theta}\right)^{\lambda}\right],
+>$$
+>
 > where $y \ge 0, \lambda > 0,$ and $\theta > 0$. Show all your work. 
 
 Let's start by identifying a(.), b(.), c(.), and d(.). 
@@ -205,15 +205,73 @@ where
 * $c(\theta) = -\lambda \log(\theta)$
 * $d(y) = - \log(y) + \lambda\log(y) + \log(\lambda)$
 
-Using our previously helpful formula for calculating Fisher's information, we can derive an expression for the Fisher's information:
-$$
+Using our previously helpful formula for calculating Fisher's information, we can derive an expression for $I(\theta)$:
+
 \begin{align*}
 b'(\theta) &= \lambda \theta^{-\lambda - 1}\\
 c'(\theta) &= - \lambda\theta^{-1}\\
 b''(\theta) &= (-\lambda - 1)\lambda\theta^{-\lambda - 2}\\
 c''(\theta) &= \lambda\theta^{-2}\\
 I(\theta) &= \frac{b''(\beta)c'(\beta) }{b'(\beta)} - c''(\beta)\\
-&= \frac{\left[ (-\lambda-1)\lambda\theta^{-\lambda - 2}\right]\left[-lambda\theta^{-1}\right]}{} - \lambda\theta^{-2}\\
-&= 
+&= \frac{\left[ (-\lambda-1)\lambda\theta^{-\lambda - 2}\right]\left[-\lambda\theta^{-1}\right]}{\lambda\theta^{-\lambda-1}} - \lambda\theta^{-2}\\
+&= (-\lambda)(-\lambda-1)(\lambda)(\lambda^{-1})(\theta^{-\lambda-3})(\theta^{\lambda+1})-\lambda\theta^{-2}\\
+&= (-\lambda)(-\lambda-1)(\theta^{-2})-\lambda\theta^{-2}\\
+&= (\lambda\theta^{-2})(\lambda+1)-\lambda\theta^{-2}\\
+&= \lambda\theta^{-2}((\lambda+1)-1)\\
+&= \lambda\theta^{-2}(\lambda)\\
+&= \left(\frac{\lambda}{\theta}\right)^{2}\\
+\end{align*}
+
+
+## Problem 4
+
+> Suppose $Y_1, ..., Y_n$ are independent random variables, each with the Pareto distribution:
+>
+> $$
+> f(y_i;\theta) = \frac{\theta}{y_i^{\theta + 1}}, \text{ where } y_i > 1, \theta > 0 \text{ for all } i = 1, ..., n
+> $$
+>
+> and
+>
+> $$
+> E(Y_i) = (\beta_0 + \beta_1x_i)^2
+> $$
+>
+> **Part (a):** Does this distribution have the canonical form?
+
+Let's first examine this PDF using the definition of the exponential family: 
+
+$$
+\begin{align*}
+f(y_i; \theta) &= \frac{\theta}{y_i^{\theta + 1}}\\
+&= \exp\left[\log(\theta) - (\theta + 1)\log(y_i)\right]\\
+&= \exp\left[- \log(y_i)\theta + \log(\theta) - \log(y_i) \right]\\
+&= \exp\left[a(y_i)b(\theta) + c(\theta) + d(y_i)\right],
 \end{align*}
 $$
+
+where 
+
+* $a(y_i) = - \log(y_i)$
+* $b(\theta) = \theta$
+* $c(\theta) = \log(\theta)$
+* $d(y_i) = -\log(y_i)$
+
+Because $a(y_i) \ne y_i$, this distribution does **not** have the canonical form. 
+
+> **Part (b):** Are the distributions of all the $Y_i$’s of the same form?
+
+Because each $Y_i$ follows the same distribution, $b_i(\theta) = b(\theta)$, $c_i(\theta) = c(\theta)$ and $d_i(y) = d(y)$ for all $i = 1,2,...,n$. This being the case, we know that all $Y_i$'s are of the same form. 
+
+
+> **Part (c):** What is the link function? Is it monotone and differentiable?
+
+The link function is a transformation of $E(Y_i)$ such that $g(E(Y_i)) = X_i^T\beta$. Because we know that $E(Y_i) = (X_i^T\beta)^2$, the link function is $\sqrt{E(Y_i)}$, which is both differentiable and monotone. 
+
+> **Part (d):** Given your answers in (a) to (c), is this a generalized linear model? Give reasons for your answer.
+
+While two of the three properties of GLMs are met by the pareto distribution, importantly, it does **not** have the canonical form. This is not a generalized linear model. 
+
+## End of problem set 
+
+[Back](../index.qmd)
