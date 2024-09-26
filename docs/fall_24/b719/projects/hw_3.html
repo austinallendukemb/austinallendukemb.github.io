@@ -211,6 +211,7 @@ f(y_i; \lambda) = \lambda e^{-\lambda y_i}, \quad y_i &gt; 0, \lambda &gt; 0
 \]</span></p>
 <p>with the sum of these 150 observations equal to 30.</p>
 <p><strong>Part (a):</strong> Starting from <span class="math inline">\(\lambda_{\text{start}} = 1\)</span> obtain the next iteration of the Newton-Raphson algorithm. Show details of your work. Do NOT use computer.</p>
+<blockquote class="blockquote">
 <p>Recall that the score function for a set of independent exponential random variables is <span class="math inline">\(U = \frac{d\ell}{d\lambda} = \frac{n}{\lambda} - \sum_{i = 1}^n y_i\)</span>. Thus, <span class="math inline">\(U' = -\frac{n}{\lambda^2}\)</span>. We also know that <span class="math inline">\(\lambda_1 = \lambda_{\text{start}} - \frac{U_{\text{start}}}{U'_{\text{start}}}\)</span>. Plugging and chugging, we can see:</p>
 <p><span class="math display">\[\begin{align*}
 \lambda_1 &amp;= \lambda_{\text{start}} - \frac{U_{\text{start}}}{U'_{\text{start}}}\\
@@ -219,7 +220,9 @@ f(y_i; \lambda) = \lambda e^{-\lambda y_i}, \quad y_i &gt; 0, \lambda &gt; 0
 &amp;= 1.8
 \end{align*}\]</span></p>
 <p>Here we have the after one iteration of the Newton-Raphson algoritm, <span class="math inline">\(\lambda_1 = 1.8\)</span>.</p>
+</blockquote>
 <p><strong>Part (b):</strong> Starting from <span class="math inline">\(\lambda_{\text{start}} = 1\)</span> obtain the next iteration of the Method of Scoring algorithm. Show details of your work. Do NOT use computer.</p>
+<blockquote class="blockquote">
 <p>The formula for the method of score algorithm is this: <span class="math inline">\(\lambda_1 = \lambda_{\text{start}} + \frac{U_{\text{start}}}{I(\lambda)_{\text{start}}}\)</span>. This being the case, we need to find the Fisher’s information for <span class="math inline">\(\lambda\)</span>. I’m going to use the fact that the exponential distribution belongs to the exponential family to help me solve this:</p>
 <p><span class="math display">\[\begin{align*}
 I(\lambda_i) &amp;= \frac{b''(\lambda_i)c'(\lambda_i)}{b'(\lambda_i)} - c''(\lambda_i)\\
@@ -248,13 +251,17 @@ I(\lambda_{\text{start}}) &amp;= \sum_{i = 1}^n I(\lambda_i)\\
 &amp;= 1 + 0.8\\
 &amp;= 1.8
 \end{align*}\]</span></p>
+</blockquote>
 <p><strong>Part (c):</strong> Are your answers in (1) and (2) different? Explain why.</p>
+<blockquote class="blockquote">
 <p>They are the same! This is because the exponential distribution belongs to the exponential family and has the canonical form, so <span class="math inline">\(I(\lambda) = -U'(\lambda)\)</span>. Thus, each will evaluate to the same value.</p>
+</blockquote>
 </section>
 <section id="problem-2" class="level2">
 <h2 class="anchored" data-anchor-id="problem-2">Problem 2</h2>
 <p>Suppose <span class="math inline">\(Y_1, . . . , Y_n\)</span> are independent random variables following the normal distribution <span class="math inline">\(Y_i \sim N(\log(\beta), \sigma^2)\)</span>, where <span class="math inline">\(\sigma^2\)</span> is known. Derive matrix based formula for an iteratively re-weighted least squares (IRWLS) procedure for ML estimation of <span class="math inline">\(\beta\)</span>.</p>
 <p>[Hint: first, present matrices X and W, and vector for the formula <span class="math inline">\(b^{(m)} = \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\)</span>, and then simplify this formula as feasible.]</p>
+<blockquote class="blockquote">
 <p>The first thing that I will note is that <span class="math inline">\(\mu = \log(\beta)\)</span>. This implies two things. First, <span class="math inline">\(\log(\beta) = \log(X^T\beta)\)</span>, which implies that <span class="math inline">\(X_{n\times 1} = \left[\begin{matrix} 1\\1\\...\\1 \end{matrix}\right]\)</span>, and that <span class="math inline">\(\beta_{1\times 1} = \left[\begin{matrix} \beta_0 \end{matrix}\right]\)</span>. The second implication is that because <span class="math inline">\(\mu = \log(\beta)\)</span>, <span class="math inline">\(g(\mu) = \exp(\beta)\)</span>.</p>
 <p>Let’s now calculate <span class="math inline">\(w_i\)</span> for the diagonal matrix <span class="math inline">\(W\)</span>:</p>
 <p><span class="math display">\[\begin{align*}
@@ -285,6 +292,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
 &amp;= \left(\frac{n}{\beta^2\sigma^2}\right)^{-1}\frac{1}{\beta^2\sigma^2}\begin{bmatrix}1 \cdots 1\end{bmatrix} \beta\left(1 + Y - \log(\beta)\right)\\
 &amp;= \frac{1}{n}\begin{bmatrix}\beta\cdots\beta\end{bmatrix}(1 + Y - \log(\beta))
 \end{align*}\]</span></p>
+</blockquote>
 </section>
 <section id="problem-3" class="level2">
 <h2 class="anchored" data-anchor-id="problem-3">Problem 3</h2>
@@ -334,6 +342,9 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
 </div>
 </div>
 <p><strong>Part (a):</strong> Fit the model <span class="math inline">\(\log(E(Y_i)) = \beta_0 + \beta_1x_i\)</span> with the GLM function in R.</p>
+<blockquote class="blockquote">
+<p>Below is the fitted model and the code used to obtain it:</p>
+</blockquote>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">###################################### R ######################################</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the data</span></span>
@@ -353,23 +364,23 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    gt<span class="sc">::</span><span class="fu">tab_header</span>(<span class="at">title =</span> table_title)</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>model_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fexfhmohce" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fexfhmohce table {
+<div id="hpmoshpcoi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hpmoshpcoi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fexfhmohce thead, #fexfhmohce tbody, #fexfhmohce tfoot, #fexfhmohce tr, #fexfhmohce td, #fexfhmohce th {
+#hpmoshpcoi thead, #hpmoshpcoi tbody, #hpmoshpcoi tfoot, #hpmoshpcoi tr, #hpmoshpcoi td, #hpmoshpcoi th {
   border-style: none;
 }
 
-#fexfhmohce p {
+#hpmoshpcoi p {
   margin: 0;
   padding: 0;
 }
 
-#fexfhmohce .gt_table {
+#hpmoshpcoi .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -395,12 +406,12 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-left-color: #D3D3D3;
 }
 
-#fexfhmohce .gt_caption {
+#hpmoshpcoi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fexfhmohce .gt_title {
+#hpmoshpcoi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -412,7 +423,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-width: 0;
 }
 
-#fexfhmohce .gt_subtitle {
+#hpmoshpcoi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -424,7 +435,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-top-width: 0;
 }
 
-#fexfhmohce .gt_heading {
+#hpmoshpcoi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -436,13 +447,13 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#fexfhmohce .gt_bottom_border {
+#hpmoshpcoi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fexfhmohce .gt_col_headings {
+#hpmoshpcoi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -457,7 +468,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#fexfhmohce .gt_col_heading {
+#hpmoshpcoi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -477,7 +488,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   overflow-x: hidden;
 }
 
-#fexfhmohce .gt_column_spanner_outer {
+#hpmoshpcoi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -489,15 +500,15 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 4px;
 }
 
-#fexfhmohce .gt_column_spanner_outer:first-child {
+#hpmoshpcoi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fexfhmohce .gt_column_spanner_outer:last-child {
+#hpmoshpcoi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fexfhmohce .gt_column_spanner {
+#hpmoshpcoi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -509,11 +520,11 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   width: 100%;
 }
 
-#fexfhmohce .gt_spanner_row {
+#hpmoshpcoi .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fexfhmohce .gt_group_heading {
+#hpmoshpcoi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -539,7 +550,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   text-align: left;
 }
 
-#fexfhmohce .gt_empty_group_heading {
+#hpmoshpcoi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -554,15 +565,15 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   vertical-align: middle;
 }
 
-#fexfhmohce .gt_from_md > :first-child {
+#hpmoshpcoi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fexfhmohce .gt_from_md > :last-child {
+#hpmoshpcoi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fexfhmohce .gt_row {
+#hpmoshpcoi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -581,7 +592,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   overflow-x: hidden;
 }
 
-#fexfhmohce .gt_stub {
+#hpmoshpcoi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -594,7 +605,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#fexfhmohce .gt_stub_row_group {
+#hpmoshpcoi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -608,15 +619,15 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   vertical-align: top;
 }
 
-#fexfhmohce .gt_row_group_first td {
+#hpmoshpcoi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fexfhmohce .gt_row_group_first th {
+#hpmoshpcoi .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fexfhmohce .gt_summary_row {
+#hpmoshpcoi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -626,16 +637,16 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#fexfhmohce .gt_first_summary_row {
+#hpmoshpcoi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fexfhmohce .gt_first_summary_row.thick {
+#hpmoshpcoi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fexfhmohce .gt_last_summary_row {
+#hpmoshpcoi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -645,7 +656,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-color: #D3D3D3;
 }
 
-#fexfhmohce .gt_grand_summary_row {
+#hpmoshpcoi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -655,7 +666,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#fexfhmohce .gt_first_grand_summary_row {
+#hpmoshpcoi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -665,7 +676,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-top-color: #D3D3D3;
 }
 
-#fexfhmohce .gt_last_grand_summary_row_top {
+#hpmoshpcoi .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -675,11 +686,11 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-color: #D3D3D3;
 }
 
-#fexfhmohce .gt_striped {
+#hpmoshpcoi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fexfhmohce .gt_table_body {
+#hpmoshpcoi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -688,7 +699,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-color: #D3D3D3;
 }
 
-#fexfhmohce .gt_footnotes {
+#hpmoshpcoi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -702,7 +713,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#fexfhmohce .gt_footnote {
+#hpmoshpcoi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -711,7 +722,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#fexfhmohce .gt_sourcenotes {
+#hpmoshpcoi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -725,7 +736,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#fexfhmohce .gt_sourcenote {
+#hpmoshpcoi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -733,63 +744,63 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#fexfhmohce .gt_left {
+#hpmoshpcoi .gt_left {
   text-align: left;
 }
 
-#fexfhmohce .gt_center {
+#hpmoshpcoi .gt_center {
   text-align: center;
 }
 
-#fexfhmohce .gt_right {
+#hpmoshpcoi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fexfhmohce .gt_font_normal {
+#hpmoshpcoi .gt_font_normal {
   font-weight: normal;
 }
 
-#fexfhmohce .gt_font_bold {
+#hpmoshpcoi .gt_font_bold {
   font-weight: bold;
 }
 
-#fexfhmohce .gt_font_italic {
+#hpmoshpcoi .gt_font_italic {
   font-style: italic;
 }
 
-#fexfhmohce .gt_super {
+#hpmoshpcoi .gt_super {
   font-size: 65%;
 }
 
-#fexfhmohce .gt_footnote_marks {
+#hpmoshpcoi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fexfhmohce .gt_asterisk {
+#hpmoshpcoi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fexfhmohce .gt_indent_1 {
+#hpmoshpcoi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fexfhmohce .gt_indent_2 {
+#hpmoshpcoi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fexfhmohce .gt_indent_3 {
+#hpmoshpcoi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fexfhmohce .gt_indent_4 {
+#hpmoshpcoi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fexfhmohce .gt_indent_5 {
+#hpmoshpcoi .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -826,6 +837,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
 <li>Variance-covariance matrix of the MLE for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span></li>
 </ol>
 <p>Write an iteratively reweighted least squares R function similar to the one covered in class but accounting for the <strong>log link</strong>. In addition, provide all the details of the algebraic derivations.</p>
+<blockquote class="blockquote">
 <p>Let’s first derive the important terms:</p>
 <ul>
 <li><span class="math inline">\(n = 9\)</span></li>
@@ -841,6 +853,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
 <li><span class="math inline">\(X^T Wz = \begin{bmatrix} \sum_{i = 1}^n w_iz_i\\ \sum_{i = 1}^n w_ix_iz_i \end{bmatrix}\)</span></li>
 </ul>
 <p>With this setup, we can implement our algorithm in R. I’m going to use the same initial values of 7 and 5 used in class for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>, respectively.</p>
+</blockquote>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">####################################### R #####################################</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define function to find w_ii </span></span>
@@ -913,23 +926,23 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
 <span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>b_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="krwqpxaonp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#krwqpxaonp table {
+<div id="zrfnntvgll" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zrfnntvgll table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#krwqpxaonp thead, #krwqpxaonp tbody, #krwqpxaonp tfoot, #krwqpxaonp tr, #krwqpxaonp td, #krwqpxaonp th {
+#zrfnntvgll thead, #zrfnntvgll tbody, #zrfnntvgll tfoot, #zrfnntvgll tr, #zrfnntvgll td, #zrfnntvgll th {
   border-style: none;
 }
 
-#krwqpxaonp p {
+#zrfnntvgll p {
   margin: 0;
   padding: 0;
 }
 
-#krwqpxaonp .gt_table {
+#zrfnntvgll .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -955,12 +968,12 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-left-color: #D3D3D3;
 }
 
-#krwqpxaonp .gt_caption {
+#zrfnntvgll .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#krwqpxaonp .gt_title {
+#zrfnntvgll .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -972,7 +985,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-width: 0;
 }
 
-#krwqpxaonp .gt_subtitle {
+#zrfnntvgll .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -984,7 +997,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-top-width: 0;
 }
 
-#krwqpxaonp .gt_heading {
+#zrfnntvgll .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -996,13 +1009,13 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#krwqpxaonp .gt_bottom_border {
+#zrfnntvgll .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#krwqpxaonp .gt_col_headings {
+#zrfnntvgll .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1017,7 +1030,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#krwqpxaonp .gt_col_heading {
+#zrfnntvgll .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1037,7 +1050,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   overflow-x: hidden;
 }
 
-#krwqpxaonp .gt_column_spanner_outer {
+#zrfnntvgll .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1049,15 +1062,15 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 4px;
 }
 
-#krwqpxaonp .gt_column_spanner_outer:first-child {
+#zrfnntvgll .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#krwqpxaonp .gt_column_spanner_outer:last-child {
+#zrfnntvgll .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#krwqpxaonp .gt_column_spanner {
+#zrfnntvgll .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1069,11 +1082,11 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   width: 100%;
 }
 
-#krwqpxaonp .gt_spanner_row {
+#zrfnntvgll .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#krwqpxaonp .gt_group_heading {
+#zrfnntvgll .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1099,7 +1112,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   text-align: left;
 }
 
-#krwqpxaonp .gt_empty_group_heading {
+#zrfnntvgll .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1114,15 +1127,15 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   vertical-align: middle;
 }
 
-#krwqpxaonp .gt_from_md > :first-child {
+#zrfnntvgll .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#krwqpxaonp .gt_from_md > :last-child {
+#zrfnntvgll .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#krwqpxaonp .gt_row {
+#zrfnntvgll .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1141,7 +1154,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   overflow-x: hidden;
 }
 
-#krwqpxaonp .gt_stub {
+#zrfnntvgll .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1154,7 +1167,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#krwqpxaonp .gt_stub_row_group {
+#zrfnntvgll .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1168,15 +1181,15 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   vertical-align: top;
 }
 
-#krwqpxaonp .gt_row_group_first td {
+#zrfnntvgll .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#krwqpxaonp .gt_row_group_first th {
+#zrfnntvgll .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#krwqpxaonp .gt_summary_row {
+#zrfnntvgll .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1186,16 +1199,16 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#krwqpxaonp .gt_first_summary_row {
+#zrfnntvgll .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#krwqpxaonp .gt_first_summary_row.thick {
+#zrfnntvgll .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#krwqpxaonp .gt_last_summary_row {
+#zrfnntvgll .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1205,7 +1218,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-color: #D3D3D3;
 }
 
-#krwqpxaonp .gt_grand_summary_row {
+#zrfnntvgll .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1215,7 +1228,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#krwqpxaonp .gt_first_grand_summary_row {
+#zrfnntvgll .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1225,7 +1238,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-top-color: #D3D3D3;
 }
 
-#krwqpxaonp .gt_last_grand_summary_row_top {
+#zrfnntvgll .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1235,11 +1248,11 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-color: #D3D3D3;
 }
 
-#krwqpxaonp .gt_striped {
+#zrfnntvgll .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#krwqpxaonp .gt_table_body {
+#zrfnntvgll .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1248,7 +1261,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-color: #D3D3D3;
 }
 
-#krwqpxaonp .gt_footnotes {
+#zrfnntvgll .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1262,7 +1275,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#krwqpxaonp .gt_footnote {
+#zrfnntvgll .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1271,7 +1284,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#krwqpxaonp .gt_sourcenotes {
+#zrfnntvgll .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1285,7 +1298,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#krwqpxaonp .gt_sourcenote {
+#zrfnntvgll .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1293,63 +1306,63 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#krwqpxaonp .gt_left {
+#zrfnntvgll .gt_left {
   text-align: left;
 }
 
-#krwqpxaonp .gt_center {
+#zrfnntvgll .gt_center {
   text-align: center;
 }
 
-#krwqpxaonp .gt_right {
+#zrfnntvgll .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#krwqpxaonp .gt_font_normal {
+#zrfnntvgll .gt_font_normal {
   font-weight: normal;
 }
 
-#krwqpxaonp .gt_font_bold {
+#zrfnntvgll .gt_font_bold {
   font-weight: bold;
 }
 
-#krwqpxaonp .gt_font_italic {
+#zrfnntvgll .gt_font_italic {
   font-style: italic;
 }
 
-#krwqpxaonp .gt_super {
+#zrfnntvgll .gt_super {
   font-size: 65%;
 }
 
-#krwqpxaonp .gt_footnote_marks {
+#zrfnntvgll .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#krwqpxaonp .gt_asterisk {
+#zrfnntvgll .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#krwqpxaonp .gt_indent_1 {
+#zrfnntvgll .gt_indent_1 {
   text-indent: 5px;
 }
 
-#krwqpxaonp .gt_indent_2 {
+#zrfnntvgll .gt_indent_2 {
   text-indent: 10px;
 }
 
-#krwqpxaonp .gt_indent_3 {
+#zrfnntvgll .gt_indent_3 {
   text-indent: 15px;
 }
 
-#krwqpxaonp .gt_indent_4 {
+#zrfnntvgll .gt_indent_4 {
   text-indent: 20px;
 }
 
-#krwqpxaonp .gt_indent_5 {
+#zrfnntvgll .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1448,8 +1461,10 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">###############################################################################</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<blockquote class="blockquote">
 <p>It looks like we converge at iteration 13. Not too bad! Our MLE estimates are 1.889 for <span class="math inline">\(\beta_0\)</span> and 0.670 for <span class="math inline">\(\beta_1\)</span>.</p>
 <p>Let’s now get the Information matrix to solve for the variance-covariance matrix.</p>
+</blockquote>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">###################################### R ######################################</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Recall that I = X^T W X </span></span>
@@ -1475,23 +1490,23 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    gt<span class="sc">::</span><span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Variance-Covariance Matrix"</span>)</span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>var_cov_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="xnuvvzxlnq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xnuvvzxlnq table {
+<div id="eiibcccqym" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#eiibcccqym table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xnuvvzxlnq thead, #xnuvvzxlnq tbody, #xnuvvzxlnq tfoot, #xnuvvzxlnq tr, #xnuvvzxlnq td, #xnuvvzxlnq th {
+#eiibcccqym thead, #eiibcccqym tbody, #eiibcccqym tfoot, #eiibcccqym tr, #eiibcccqym td, #eiibcccqym th {
   border-style: none;
 }
 
-#xnuvvzxlnq p {
+#eiibcccqym p {
   margin: 0;
   padding: 0;
 }
 
-#xnuvvzxlnq .gt_table {
+#eiibcccqym .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1517,12 +1532,12 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-left-color: #D3D3D3;
 }
 
-#xnuvvzxlnq .gt_caption {
+#eiibcccqym .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xnuvvzxlnq .gt_title {
+#eiibcccqym .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1534,7 +1549,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-width: 0;
 }
 
-#xnuvvzxlnq .gt_subtitle {
+#eiibcccqym .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1546,7 +1561,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-top-width: 0;
 }
 
-#xnuvvzxlnq .gt_heading {
+#eiibcccqym .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1558,13 +1573,13 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#xnuvvzxlnq .gt_bottom_border {
+#eiibcccqym .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xnuvvzxlnq .gt_col_headings {
+#eiibcccqym .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1579,7 +1594,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#xnuvvzxlnq .gt_col_heading {
+#eiibcccqym .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1599,7 +1614,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   overflow-x: hidden;
 }
 
-#xnuvvzxlnq .gt_column_spanner_outer {
+#eiibcccqym .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1611,15 +1626,15 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 4px;
 }
 
-#xnuvvzxlnq .gt_column_spanner_outer:first-child {
+#eiibcccqym .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xnuvvzxlnq .gt_column_spanner_outer:last-child {
+#eiibcccqym .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xnuvvzxlnq .gt_column_spanner {
+#eiibcccqym .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1631,11 +1646,11 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   width: 100%;
 }
 
-#xnuvvzxlnq .gt_spanner_row {
+#eiibcccqym .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xnuvvzxlnq .gt_group_heading {
+#eiibcccqym .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1661,7 +1676,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   text-align: left;
 }
 
-#xnuvvzxlnq .gt_empty_group_heading {
+#eiibcccqym .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1676,15 +1691,15 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   vertical-align: middle;
 }
 
-#xnuvvzxlnq .gt_from_md > :first-child {
+#eiibcccqym .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xnuvvzxlnq .gt_from_md > :last-child {
+#eiibcccqym .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xnuvvzxlnq .gt_row {
+#eiibcccqym .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1703,7 +1718,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   overflow-x: hidden;
 }
 
-#xnuvvzxlnq .gt_stub {
+#eiibcccqym .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1716,7 +1731,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#xnuvvzxlnq .gt_stub_row_group {
+#eiibcccqym .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1730,15 +1745,15 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   vertical-align: top;
 }
 
-#xnuvvzxlnq .gt_row_group_first td {
+#eiibcccqym .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xnuvvzxlnq .gt_row_group_first th {
+#eiibcccqym .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xnuvvzxlnq .gt_summary_row {
+#eiibcccqym .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1748,16 +1763,16 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#xnuvvzxlnq .gt_first_summary_row {
+#eiibcccqym .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xnuvvzxlnq .gt_first_summary_row.thick {
+#eiibcccqym .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xnuvvzxlnq .gt_last_summary_row {
+#eiibcccqym .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1767,7 +1782,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-color: #D3D3D3;
 }
 
-#xnuvvzxlnq .gt_grand_summary_row {
+#eiibcccqym .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1777,7 +1792,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#xnuvvzxlnq .gt_first_grand_summary_row {
+#eiibcccqym .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1787,7 +1802,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-top-color: #D3D3D3;
 }
 
-#xnuvvzxlnq .gt_last_grand_summary_row_top {
+#eiibcccqym .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1797,11 +1812,11 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-color: #D3D3D3;
 }
 
-#xnuvvzxlnq .gt_striped {
+#eiibcccqym .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xnuvvzxlnq .gt_table_body {
+#eiibcccqym .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1810,7 +1825,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-color: #D3D3D3;
 }
 
-#xnuvvzxlnq .gt_footnotes {
+#eiibcccqym .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1824,7 +1839,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#xnuvvzxlnq .gt_footnote {
+#eiibcccqym .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1833,7 +1848,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#xnuvvzxlnq .gt_sourcenotes {
+#eiibcccqym .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1847,7 +1862,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#xnuvvzxlnq .gt_sourcenote {
+#eiibcccqym .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1855,63 +1870,63 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#xnuvvzxlnq .gt_left {
+#eiibcccqym .gt_left {
   text-align: left;
 }
 
-#xnuvvzxlnq .gt_center {
+#eiibcccqym .gt_center {
   text-align: center;
 }
 
-#xnuvvzxlnq .gt_right {
+#eiibcccqym .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xnuvvzxlnq .gt_font_normal {
+#eiibcccqym .gt_font_normal {
   font-weight: normal;
 }
 
-#xnuvvzxlnq .gt_font_bold {
+#eiibcccqym .gt_font_bold {
   font-weight: bold;
 }
 
-#xnuvvzxlnq .gt_font_italic {
+#eiibcccqym .gt_font_italic {
   font-style: italic;
 }
 
-#xnuvvzxlnq .gt_super {
+#eiibcccqym .gt_super {
   font-size: 65%;
 }
 
-#xnuvvzxlnq .gt_footnote_marks {
+#eiibcccqym .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xnuvvzxlnq .gt_asterisk {
+#eiibcccqym .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xnuvvzxlnq .gt_indent_1 {
+#eiibcccqym .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xnuvvzxlnq .gt_indent_2 {
+#eiibcccqym .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xnuvvzxlnq .gt_indent_3 {
+#eiibcccqym .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xnuvvzxlnq .gt_indent_4 {
+#eiibcccqym .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xnuvvzxlnq .gt_indent_5 {
+#eiibcccqym .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1946,7 +1961,9 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">###############################################################################</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Part (c):</strong> Compare values obtained in (a) and (b).</p>
+<blockquote class="blockquote">
 <p>Let’s print the tables from our model in part a:</p>
+</blockquote>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">###################################### R ######################################</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a table for the var_cov_matrix</span></span>
@@ -1961,23 +1978,23 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print both tables </span></span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>model_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="lbwesfzbfm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lbwesfzbfm table {
+<div id="fdiubaiecg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fdiubaiecg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lbwesfzbfm thead, #lbwesfzbfm tbody, #lbwesfzbfm tfoot, #lbwesfzbfm tr, #lbwesfzbfm td, #lbwesfzbfm th {
+#fdiubaiecg thead, #fdiubaiecg tbody, #fdiubaiecg tfoot, #fdiubaiecg tr, #fdiubaiecg td, #fdiubaiecg th {
   border-style: none;
 }
 
-#lbwesfzbfm p {
+#fdiubaiecg p {
   margin: 0;
   padding: 0;
 }
 
-#lbwesfzbfm .gt_table {
+#fdiubaiecg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2003,12 +2020,12 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-left-color: #D3D3D3;
 }
 
-#lbwesfzbfm .gt_caption {
+#fdiubaiecg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lbwesfzbfm .gt_title {
+#fdiubaiecg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2020,7 +2037,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-width: 0;
 }
 
-#lbwesfzbfm .gt_subtitle {
+#fdiubaiecg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2032,7 +2049,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-top-width: 0;
 }
 
-#lbwesfzbfm .gt_heading {
+#fdiubaiecg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2044,13 +2061,13 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#lbwesfzbfm .gt_bottom_border {
+#fdiubaiecg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lbwesfzbfm .gt_col_headings {
+#fdiubaiecg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2065,7 +2082,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#lbwesfzbfm .gt_col_heading {
+#fdiubaiecg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2085,7 +2102,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   overflow-x: hidden;
 }
 
-#lbwesfzbfm .gt_column_spanner_outer {
+#fdiubaiecg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2097,15 +2114,15 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 4px;
 }
 
-#lbwesfzbfm .gt_column_spanner_outer:first-child {
+#fdiubaiecg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lbwesfzbfm .gt_column_spanner_outer:last-child {
+#fdiubaiecg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lbwesfzbfm .gt_column_spanner {
+#fdiubaiecg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2117,11 +2134,11 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   width: 100%;
 }
 
-#lbwesfzbfm .gt_spanner_row {
+#fdiubaiecg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lbwesfzbfm .gt_group_heading {
+#fdiubaiecg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2147,7 +2164,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   text-align: left;
 }
 
-#lbwesfzbfm .gt_empty_group_heading {
+#fdiubaiecg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2162,15 +2179,15 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   vertical-align: middle;
 }
 
-#lbwesfzbfm .gt_from_md > :first-child {
+#fdiubaiecg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lbwesfzbfm .gt_from_md > :last-child {
+#fdiubaiecg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lbwesfzbfm .gt_row {
+#fdiubaiecg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2189,7 +2206,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   overflow-x: hidden;
 }
 
-#lbwesfzbfm .gt_stub {
+#fdiubaiecg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2202,7 +2219,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#lbwesfzbfm .gt_stub_row_group {
+#fdiubaiecg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2216,15 +2233,15 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   vertical-align: top;
 }
 
-#lbwesfzbfm .gt_row_group_first td {
+#fdiubaiecg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lbwesfzbfm .gt_row_group_first th {
+#fdiubaiecg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lbwesfzbfm .gt_summary_row {
+#fdiubaiecg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2234,16 +2251,16 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#lbwesfzbfm .gt_first_summary_row {
+#fdiubaiecg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lbwesfzbfm .gt_first_summary_row.thick {
+#fdiubaiecg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lbwesfzbfm .gt_last_summary_row {
+#fdiubaiecg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2253,7 +2270,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-color: #D3D3D3;
 }
 
-#lbwesfzbfm .gt_grand_summary_row {
+#fdiubaiecg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2263,7 +2280,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#lbwesfzbfm .gt_first_grand_summary_row {
+#fdiubaiecg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2273,7 +2290,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-top-color: #D3D3D3;
 }
 
-#lbwesfzbfm .gt_last_grand_summary_row_top {
+#fdiubaiecg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2283,11 +2300,11 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-color: #D3D3D3;
 }
 
-#lbwesfzbfm .gt_striped {
+#fdiubaiecg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lbwesfzbfm .gt_table_body {
+#fdiubaiecg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2296,7 +2313,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-color: #D3D3D3;
 }
 
-#lbwesfzbfm .gt_footnotes {
+#fdiubaiecg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2310,7 +2327,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#lbwesfzbfm .gt_footnote {
+#fdiubaiecg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2319,7 +2336,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#lbwesfzbfm .gt_sourcenotes {
+#fdiubaiecg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2333,7 +2350,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#lbwesfzbfm .gt_sourcenote {
+#fdiubaiecg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2341,63 +2358,63 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#lbwesfzbfm .gt_left {
+#fdiubaiecg .gt_left {
   text-align: left;
 }
 
-#lbwesfzbfm .gt_center {
+#fdiubaiecg .gt_center {
   text-align: center;
 }
 
-#lbwesfzbfm .gt_right {
+#fdiubaiecg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lbwesfzbfm .gt_font_normal {
+#fdiubaiecg .gt_font_normal {
   font-weight: normal;
 }
 
-#lbwesfzbfm .gt_font_bold {
+#fdiubaiecg .gt_font_bold {
   font-weight: bold;
 }
 
-#lbwesfzbfm .gt_font_italic {
+#fdiubaiecg .gt_font_italic {
   font-style: italic;
 }
 
-#lbwesfzbfm .gt_super {
+#fdiubaiecg .gt_super {
   font-size: 65%;
 }
 
-#lbwesfzbfm .gt_footnote_marks {
+#fdiubaiecg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lbwesfzbfm .gt_asterisk {
+#fdiubaiecg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lbwesfzbfm .gt_indent_1 {
+#fdiubaiecg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lbwesfzbfm .gt_indent_2 {
+#fdiubaiecg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lbwesfzbfm .gt_indent_3 {
+#fdiubaiecg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lbwesfzbfm .gt_indent_4 {
+#fdiubaiecg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lbwesfzbfm .gt_indent_5 {
+#fdiubaiecg .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2428,23 +2445,23 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model_var_cov_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="pdojywrymn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pdojywrymn table {
+<div id="gyogwbzpuj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gyogwbzpuj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pdojywrymn thead, #pdojywrymn tbody, #pdojywrymn tfoot, #pdojywrymn tr, #pdojywrymn td, #pdojywrymn th {
+#gyogwbzpuj thead, #gyogwbzpuj tbody, #gyogwbzpuj tfoot, #gyogwbzpuj tr, #gyogwbzpuj td, #gyogwbzpuj th {
   border-style: none;
 }
 
-#pdojywrymn p {
+#gyogwbzpuj p {
   margin: 0;
   padding: 0;
 }
 
-#pdojywrymn .gt_table {
+#gyogwbzpuj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2470,12 +2487,12 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-left-color: #D3D3D3;
 }
 
-#pdojywrymn .gt_caption {
+#gyogwbzpuj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pdojywrymn .gt_title {
+#gyogwbzpuj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2487,7 +2504,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-width: 0;
 }
 
-#pdojywrymn .gt_subtitle {
+#gyogwbzpuj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2499,7 +2516,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-top-width: 0;
 }
 
-#pdojywrymn .gt_heading {
+#gyogwbzpuj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2511,13 +2528,13 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#pdojywrymn .gt_bottom_border {
+#gyogwbzpuj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pdojywrymn .gt_col_headings {
+#gyogwbzpuj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2532,7 +2549,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#pdojywrymn .gt_col_heading {
+#gyogwbzpuj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2552,7 +2569,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   overflow-x: hidden;
 }
 
-#pdojywrymn .gt_column_spanner_outer {
+#gyogwbzpuj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2564,15 +2581,15 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 4px;
 }
 
-#pdojywrymn .gt_column_spanner_outer:first-child {
+#gyogwbzpuj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pdojywrymn .gt_column_spanner_outer:last-child {
+#gyogwbzpuj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pdojywrymn .gt_column_spanner {
+#gyogwbzpuj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2584,11 +2601,11 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   width: 100%;
 }
 
-#pdojywrymn .gt_spanner_row {
+#gyogwbzpuj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pdojywrymn .gt_group_heading {
+#gyogwbzpuj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2614,7 +2631,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   text-align: left;
 }
 
-#pdojywrymn .gt_empty_group_heading {
+#gyogwbzpuj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2629,15 +2646,15 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   vertical-align: middle;
 }
 
-#pdojywrymn .gt_from_md > :first-child {
+#gyogwbzpuj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pdojywrymn .gt_from_md > :last-child {
+#gyogwbzpuj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pdojywrymn .gt_row {
+#gyogwbzpuj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2656,7 +2673,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   overflow-x: hidden;
 }
 
-#pdojywrymn .gt_stub {
+#gyogwbzpuj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2669,7 +2686,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#pdojywrymn .gt_stub_row_group {
+#gyogwbzpuj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2683,15 +2700,15 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   vertical-align: top;
 }
 
-#pdojywrymn .gt_row_group_first td {
+#gyogwbzpuj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pdojywrymn .gt_row_group_first th {
+#gyogwbzpuj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pdojywrymn .gt_summary_row {
+#gyogwbzpuj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2701,16 +2718,16 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#pdojywrymn .gt_first_summary_row {
+#gyogwbzpuj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pdojywrymn .gt_first_summary_row.thick {
+#gyogwbzpuj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pdojywrymn .gt_last_summary_row {
+#gyogwbzpuj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2720,7 +2737,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-color: #D3D3D3;
 }
 
-#pdojywrymn .gt_grand_summary_row {
+#gyogwbzpuj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2730,7 +2747,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#pdojywrymn .gt_first_grand_summary_row {
+#gyogwbzpuj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2740,7 +2757,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-top-color: #D3D3D3;
 }
 
-#pdojywrymn .gt_last_grand_summary_row_top {
+#gyogwbzpuj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2750,11 +2767,11 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-color: #D3D3D3;
 }
 
-#pdojywrymn .gt_striped {
+#gyogwbzpuj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pdojywrymn .gt_table_body {
+#gyogwbzpuj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2763,7 +2780,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-bottom-color: #D3D3D3;
 }
 
-#pdojywrymn .gt_footnotes {
+#gyogwbzpuj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2777,7 +2794,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#pdojywrymn .gt_footnote {
+#gyogwbzpuj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2786,7 +2803,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#pdojywrymn .gt_sourcenotes {
+#gyogwbzpuj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2800,7 +2817,7 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   border-right-color: #D3D3D3;
 }
 
-#pdojywrymn .gt_sourcenote {
+#gyogwbzpuj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2808,63 +2825,63 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
   padding-right: 5px;
 }
 
-#pdojywrymn .gt_left {
+#gyogwbzpuj .gt_left {
   text-align: left;
 }
 
-#pdojywrymn .gt_center {
+#gyogwbzpuj .gt_center {
   text-align: center;
 }
 
-#pdojywrymn .gt_right {
+#gyogwbzpuj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pdojywrymn .gt_font_normal {
+#gyogwbzpuj .gt_font_normal {
   font-weight: normal;
 }
 
-#pdojywrymn .gt_font_bold {
+#gyogwbzpuj .gt_font_bold {
   font-weight: bold;
 }
 
-#pdojywrymn .gt_font_italic {
+#gyogwbzpuj .gt_font_italic {
   font-style: italic;
 }
 
-#pdojywrymn .gt_super {
+#gyogwbzpuj .gt_super {
   font-size: 65%;
 }
 
-#pdojywrymn .gt_footnote_marks {
+#gyogwbzpuj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pdojywrymn .gt_asterisk {
+#gyogwbzpuj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pdojywrymn .gt_indent_1 {
+#gyogwbzpuj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pdojywrymn .gt_indent_2 {
+#gyogwbzpuj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pdojywrymn .gt_indent_3 {
+#gyogwbzpuj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pdojywrymn .gt_indent_4 {
+#gyogwbzpuj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pdojywrymn .gt_indent_5 {
+#gyogwbzpuj .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2898,7 +2915,9 @@ b^{(m)} &amp;= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">###############################################################################</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<blockquote class="blockquote">
 <p>We are pretty much spot on! That’s amazing. Both our estimates match (rounded to three decimals), and the same is true of the variance-covariance matrix. All in a day’s work.</p>
+</blockquote>
 
 
 </section>

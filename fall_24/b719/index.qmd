@@ -11,6 +11,7 @@ subtitle: BIOSTAT 719
 
 * [Homework 2](./projects/hw_2.qmd)
 * [Homework 3](./projects/hw_3.qmd)
+* [Homework 4](./projects/hw_4.qmd)
 
 ## October
 
