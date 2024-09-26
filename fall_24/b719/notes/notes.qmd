@@ -9,6 +9,7 @@ title: "Generalized Linear Models: Course Notes"
 # September
 
 * Week of [September 3, 2024 - September 5, 2024](./september/sep_3.qmd)
+* Week of [September 10, 2024 - September 12, 2024](./september/sep_10.qmd)
 
 # October
 

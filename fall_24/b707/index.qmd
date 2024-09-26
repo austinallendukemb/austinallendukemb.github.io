@@ -6,6 +6,7 @@ subtitle: "BIOSTAT 707"
 # September
 
 * [Homework 1](./projects/hw1.qmd)
+* [Homework 2](./projects/hw2.qmd)
 
 # October
 

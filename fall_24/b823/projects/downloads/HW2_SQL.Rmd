@@ -1,0 +1,76 @@
+---
+title: "Biostat 823 - Fall 2024: Homework 2"
+author:
+  - "Chengxin Yang"
+  - "Hilmar Lapp"
+date: "2024-09-17"
+#format: pdf
+format:
+  html:
+    embed-resources: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+_Note: You should submit a reproducible literate programming notebook (Jupyter or Rmarkdown) with SQL statements to generate the answers for these questions (samples of reproducible notebooks for SQL can be found in the [course's GitHub repository](https://github.com/Duke-GCB/biostat-823/). Using [SQLite](https://www.sqlite.org) as the RDBMS is not mandatory but highly recommended._
+
+## Question 1 (38 points)
+
+You will be using the [Chinook database](https://github.com/lerocha/chinook-database) to answer the following questions. This is a sample database available for various RDBMSs, including SQLite. The `.db` file for SQLite provided to you was created by executing the corresponding [SQLite script](https://github.com/lerocha/chinook-database/blob/master/ChinookDatabase/DataSources/Chinook_Sqlite.sql). You can recreate the SQLite database like this:
+```bash
+$ sqlite3 chinook.db < Chinook_Sqlite.sql
+```
+The Chinook data model represents a digital media store, including tables for artists, albums, media tracks, invoices and customers. You can find more information about this database by referring to [its Github Repository](https://github.com/lerocha/chinook-database).
+
+_Note_: The E-R diagram given there (and shown below) does not use crow's foot notation to signify relationship cardinalities; instead, only lines are drawn between entities that have a relationship. You can infer the general cardinality by which entity on one end of the line has a foreign key to the entity on the other end (i.e., has a column that isn't the primary key but is named the same as the primary key of the other table); the side with the foreign key has cardinality _0..n_, whereas the other has cardinality _0..1_ (whether 0 or 1 depends on whether the foreign key is NULLable or not). Notice that some tables have two foreign keys and thus resolve an _n:n_ relationship between the two entities referenced by the foreign keys; some of these have no other attributes and thus are "hash tables", whereas others have other attributes and are thus weak entities as discussed in the lesson on relational modeling.
+
+<a href="https://github.com/lerocha/chinook-database?tab=readme-ov-file#data-model"><img width="680" src="https://github.com/lerocha/chinook-database/assets/135025/cea7a05a-5c36-40cd-84c7-488307a123f4"/></a>
+
+Complete the following tasks. You will need to connect to the `Chinook.db` database. (E.g., using `%sql` magic if you use Jupyter Notebook powered by DCC: use `%load_ext sql` to load the [SQL extension](https://jupysql.ploomber.io/en/latest/quick-start.html), and then use `%sql sqlite:///<YOUR PATH>/Chinook.db` to connect with database `Chinook.db`.)
+
+1. (3 points) Find all tables in the database and display the first 3 rows of tables `Customer`, `Employee`, `Invoice`, and `InvoiceLine` with column headings. We will be primarily working on these four tables.
+
+2. (2 points) Provide a query showing Customers (just full names, customer ID and country) who are not in the US. You only need to display the first 10 rows, and you don't have to concatenate the customers' first and last names.
+
+3. (2 points) Provide a query showing a unique list of billing countries from the Invoice table.
+
+4. (2 points) Provide a query only showing the Customers from Germany.
+
+5. (2 points) Provide a query showing only the Employees who are Sales Agents (i.e., title = 'Sales Support Agent').
+
+6. (3 points) Provide a query showing the invoices of customers who are from Germany. The resultant table should show the customer's full name, Invoice ID, Date of the invoice and billing country.
+
+7. (3 points) Provide a query that shows the invoice Total, invoice date, Customer first and last name, and Country. Order by invoice date.
+
+8. (4 points) Provide a query that shows the invoices associated with each sales agent for customers from Germany. The resultant table should include the Sales Agent's full name.
+
+9. (2 points) How many Invoices were there in 2021 and 2022? (Hint: the clause _between datetime('2021-01-01 00:00:00') and datetime('2022-12-31 00:00:00')_ will help you filter out invoices during this time frame.)
+
+10. (2 points) Looking at the InvoiceLine table, provide a query that counts the number of line items for Invoice ID 37.
+
+11. (3 points) Looking at the InvoiceLine table, provide a query that counts the number of line items for each Invoice.
+
+12. (2 points) Provide a query that shows the number of invoices by (per) country.
+
+13. (2 points) Provide a query that shows total sales made by each sales agent.
+
+14. (3 points) Which sales agent made the most in sales in 2021? (_Hint: count the total sales in 2021 grouped by sales agent._)
+
+15. (3 points) Provide a query that shows the total sales per country. Which country's customers spent the most?
+
+  _Remark_: When specific output requirements aren't stated, you may choose to display all columns in your resulting tables or display only some of them (but you must include the primary key). For example, for question 4 showing customers from Germany, you can display all columns in table `Customer`, or only display selected columns (but you must include primary key `CustomerId`).
+
+
+## Question 2 (12 points)
+
+You will be working with an SQLite3 database `pets.db` with 3 tables `dog`, `treat` and `dog_treat`. The `dog_treat` table is a linker table showing which dog ate which treat.
+
+_Note_: Although it would be best practice to always attach an E-R diagram (and potentially scripts to populate the database from scratch), in real scenarios this is often not the case. Instead, you may need to explore the tables and their columns using the tools afforded by the RDBMS or other exploratory data analysis environments. This problem emulates such a sitation -- all we have at first is a database file. To explore, for example the [`sqlite3` command line tool](https://www.sqlite.org/cli.html) has so-called dot-commands (such as `.tables`), and the Jupyter Lab SQL extension supports [`%sqlcmd` commands for inspecting tables and columns](https://jupysql.ploomber.io/en/latest/user-guide/tables-columns.html), and one for exploring the content of tables (`%sqlcmd explore --table TABLE_NAME`).
+
+Complete the following tasks:
+
+1. (6 points) Show a table of ALL dogs and the treats with calories that they ate with column names `dog`, `treat`, `calorie`. A dog that did not eat any treats should still be present in the table.
+
+2. (6 points) Show a table with two columns `dog` and `total_calories` where only dogs that have eaten more than 500 calories are displayed.

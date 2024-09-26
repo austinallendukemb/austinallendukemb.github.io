@@ -118,6 +118,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#joining-tables" id="toc-joining-tables" class="nav-link" data-scroll-target="#joining-tables">Joining Tables</a></li>
   <li><a href="#three-take-aways" id="toc-three-take-aways" class="nav-link" data-scroll-target="#three-take-aways">Three Take-aways</a></li>
   </ul></li>
+  <li><a href="#september-12-2024" id="toc-september-12-2024" class="nav-link" data-scroll-target="#september-12-2024">September 12, 2024</a>
+  <ul class="collapse">
+  <li><a href="#back" id="toc-back" class="nav-link" data-scroll-target="#back">Back</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -211,7 +215,12 @@ ul.task-list li input[type="checkbox"] {
 <li>Look at this code: <code>SELECT c.Name AS Course, c.Semester, r.Name AS Room FROM Course AS c LEFT OUTER JOIN Room AS r USING (Room_OID)</code>. Assume neither Course nor Room have any null values. What is the name of the column that could have null values in the output table?</li>
 <li>The following code uses existential subquerying, which can be more efficient than a join if your goal is to check that a condition is met: <code>SELECT i.Name AS Instructor, i.Email FROM Instructor AS i WHERE EXISTS ( SELECT 1 FROM Lesson as l INNER JOIN Course c USING (Course_OID) WHERE c.Semester = 'Fall 2023' AND l.Instructor_OID = i.Instructor_OID)</code>. 1. What are the two columns in the output table? 2. Which professors will be displayed in the output table? Only those who had a BLANK during BLANK BLANK</li>
 </ol>
-<p><a href="../../../../fall_24/b823/notes/notes.html">Back</a></p>
+</section>
+</section>
+<section id="september-12-2024" class="level1">
+<h1>September 12, 2024</h1>
+<section id="back" class="level2">
+<h2 class="anchored" data-anchor-id="back"><a href="../../../../fall_24/b823/notes/notes.html">Back</a></h2>
 
 
 </section>
