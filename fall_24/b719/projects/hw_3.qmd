@@ -5,6 +5,7 @@ title: "BIOSTAT 719 - Homework 3"
 ```{r include = FALSE}
 ###################################### R ######################################
 library(tidyverse)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ###############################################################################
 ```
 
@@ -166,7 +167,7 @@ model_table <- gt::gt(
     data.frame(Parameter = c("beta0", "beta1"), Estimate = c(b_0, b_1))
 )  %>% 
     gt::tab_header(title = table_title)
-print(model_table)
+model_table
 ###############################################################################
 ```
 
@@ -189,7 +190,7 @@ Let's first derive the important terms:
 * $\frac{\partial \mu}{\partial\eta} = e^{\eta}$
 * $w_{ii} = \frac{1}{Var(Y_i)}\left(\frac{\partial \mu}{\partial\eta}\right)^2 = \frac{\exp[(2)(\beta_0 + \beta_1x_i)]}{(\beta_0 + \beta_1x_i)}$
 * $z_i = \eta_i + (y_i - e^{\eta_i})e^{-\eta_i} = \beta_0 + \beta_1 x_i + \frac{y_i}{ e^{\beta_0 + \beta_1 x_i}} - 1$
-* $I = X^TWX = \begin{bmatrix} \sum_{i = 1}^n \frac{\exp[(2)(\beta_0 + \beta_1x_i)]}{(\beta_0 + \beta_1x_i)} & \sum_{i = 1}^n \frac{x_i\exp[(2)(\beta_0 + \beta_1x_i)]}{(\beta_0 + \beta_1x_i)} \\\sum_{i = 1}^n \frac{x_i\exp[(2)(\beta_0 + \beta_1x_i)]}{(\beta_0 + \beta_1x_i)} & \sum_{i = 1}^n \frac{x_i^2\exp[(2)(\beta_0 + \beta_1x_i)]}{(\beta_0 + \beta_1x_i)}\end{bmatrix}$
+* $I = X^TWX = \begin{bmatrix} \sum_{i = 1}^n w_{ii} & \sum_{i = 1}^n w_{ii} x_{i} \\\sum_{i = 1}^n w_{ii}x_i & \sum_{i = 1}^n w_{ii}x_i^2\end{bmatrix}$
 * $X^T Wz = \begin{bmatrix} \sum_{i = 1}^n w_iz_i\\ \sum_{i = 1}^n w_ix_iz_i \end{bmatrix}$
 
 With this setup, we can implement our algorithm in R. I'm going to use the same initial values of 7 and 5 used in class for $\beta_0$ and $\beta_1$, respectively.
@@ -265,7 +266,7 @@ b_table <- as.data.frame(b)  %>%
     gt::tab_header(
         title = "Results: Estimates for Beta0 and Beta1 in IRWLS Procedure"
     )
-print(b_table)
+b_table
 ###############################################################################
 ```
 
@@ -296,9 +297,11 @@ var_cov_df <- as.data.frame(var_cov_matrix)  %>%
 var_cov_table <- var_cov_df  %>% 
     gt::gt()  %>% 
     gt::tab_header(title = "Variance-Covariance Matrix")
-print(var_cov_table)
+var_cov_table
 ###############################################################################
 ```
+
+
 
 **Part (c):** Compare values obtained in (a) and (b).
 
@@ -316,8 +319,8 @@ model_var_cov_table <- model_var_cov_df  %>%
     gt::gt()  %>% 
     gt::tab_header(title = "Variance-Covariance Matrix")
 # Print both tables 
-print(model_table)
-print(model_var_cov_table)
+model_table
+model_var_cov_table
 ###############################################################################
 ```
 

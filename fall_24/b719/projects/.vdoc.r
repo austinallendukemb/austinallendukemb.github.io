@@ -5,6 +5,7 @@
 #
 ###################################### R ######################################
 library(tidyverse)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 ###############################################################################
 #
 #
@@ -166,7 +167,7 @@ model_table <- gt::gt(
     data.frame(Parameter = c("beta0", "beta1"), Estimate = c(b_0, b_1))
 )  %>% 
     gt::tab_header(title = table_title)
-print(model_table)
+model_table
 ###############################################################################
 #
 #
@@ -265,7 +266,7 @@ b_table <- as.data.frame(b)  %>%
     gt::tab_header(
         title = "Results: Estimates for Beta0 and Beta1 in IRWLS Procedure"
     )
-print(b_table)
+b_table
 ###############################################################################
 #
 #
@@ -296,8 +297,10 @@ var_cov_df <- as.data.frame(var_cov_matrix)  %>%
 var_cov_table <- var_cov_df  %>% 
     gt::gt()  %>% 
     gt::tab_header(title = "Variance-Covariance Matrix")
-print(var_cov_table)
+var_cov_table
 ###############################################################################
+#
+#
 #
 #
 #
@@ -316,8 +319,8 @@ model_var_cov_table <- model_var_cov_df  %>%
     gt::gt()  %>% 
     gt::tab_header(title = "Variance-Covariance Matrix")
 # Print both tables 
-print(model_table)
-print(model_var_cov_table)
+model_table
+model_var_cov_table
 ###############################################################################
 #
 #
