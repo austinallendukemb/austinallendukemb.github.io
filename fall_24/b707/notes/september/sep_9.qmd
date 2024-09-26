@@ -106,6 +106,116 @@ Here's a cheat-sheet for plotting:
 3. Histograms can be constructed to show either frequency counts or density. Explain what density is (i.e. the actual value on the y-axis). 
 
 
+# September 11, 2024
 
 
-[Back](../notes.qmd)
+## Smoothing 
+
+There are several important smoothing methods we went over in class. After the lecture, I was curious as to why smoothing is important in the context of statistical learning. I asked ChatGPT:
+
+* **Prompt:** I'm in a statistical learning class. We're going to get into machine learning methods later in the course, but for now, we're talking about smoothing. For example, we talked about the difference between running mean, kernel smoothing, local regression (LOWESS), and splining. We spent a lot of the class discussion on creating smoother vs more granular lines with the method, parameters etc. Here's my question. Why is this going to be useful in the context of machine learning? Please write a paragraph explaining how these concepts are applied in machine learning. 
+* **Response:** Smoothing techniques, like running mean, kernel smoothing, local regression (LOWESS), and splining, are foundational for understanding how to balance flexibility and interpretability in models. In machine learning, these methods help illustrate the trade-off between bias and variance, which is crucial when building predictive models. By controlling the smoothness of a function, you can prevent overfitting to noisy data (high variance) or underfitting (high bias) by finding the right complexity for your model. Techniques like splines or kernel smoothing are often used in feature engineering, where creating smoother, more representative features improves the predictive power of machine learning models. Additionally, methods like LOESS can be used for understanding relationships in the data, especially in non-linear regression models.
+
+Interesting. It sounds like the principles are important, but maybe we will also use these methods when constructing models in the future? Hopefully there will be more to report later on in the semester. As a reminder, the four goals of this course are to 1. create reproducible reports, 2. create high-quality graphs, 3. create a predictive model, and 4. explore a new dataset. I think I'm most curious about whether this falls into the category of 2 or 3, but maybe both. 
+
+Regardless, let's look at these smoothing methods:
+
+### Running Mean
+
+* Method
+  * Choose a window (h) 
+  * $\hat{y_j} = \frac{1}{k} \sum_{i = 1}^k y_i$, such that $|x_i - x| \le h$ for all $i = 1, 2, ..., k$
+  * Repeat this for all values of $x_j, \quad j = 1,2,..., n$
+* This is the simplest method. Large values of $h$ will yield smoother lines. Small values of $h$ will yield more sensitive lines
+
+Here's an R function for the running mean:
+
+::: {.panel-tabset}
+
+#### Code 
+
+```{r collapse = TRUE}
+###################################### R ######################################
+# Create function for running mean:
+running_mean <- function(x, y, h) {
+    # Arrange the data from lowest x_i to sample max
+    dat <- dplyr::arrange(data.frame(x = x, y = y), x)
+    x_sorted <- dat$x
+    running_means <- numeric(nrow(dat))
+    # For each x_i, calculate the mean y value within the window (+- h)
+    for (i in 1:nrow(dat)) {
+        running_mean <- mean(dat[abs(dat$x - x_sorted[i]) <= h, "y"])
+        running_means[i] <- running_mean
+    }
+    return(running_means)
+}
+
+# Test the function with dummy data
+set.seed(42)
+n <- 250
+h <- 10
+x <- seq(0, 100, length.out = n)
+y <- 10 + 2.5 * x + rnorm(n, 0, 55) # simulate a regression model
+r_means <- running_mean(x, y, h)
+dat <- data.frame(x = x, y = y, r_means = r_means)
+
+# Build the plot
+r_means_example <- ggplot2::ggplot(dat) +
+    ggplot2::geom_point(ggplot2::aes(x = x, y = y), col = "skyblue", size = 1) +
+    ggplot2::geom_line(
+        ggplot2::aes(x = x, y = r_means),
+        col = "firebrick", lty = 2
+    ) +
+    ggplot2::labs(x = "X", y = "Y", title = "Running Means Example") +
+    ggplot2::theme_bw() +
+    ggplot2::theme(
+        text = ggplot2::element_text(family = "serif"),
+        plot.title = ggplot2::element_text(hjust = .5, face = "bold")
+    )
+###############################################################################
+```
+
+#### Plot 
+
+```{r echo = FALSE}
+###################################### R ######################################
+r_means_example
+###############################################################################
+```
+
+:::
+
+### Kernel Smoothing
+
+* Kernel smoothing craetes a smoother line than running means. Where the running means is "all or nothing" for each $y_i$ used to calculate the window mean, kernel smoothing applies a weight function to the $y_i$'s in the window. For example, a value of $y$ with a corresponding $x$ value close to $x$ (i.e. the center of the window) will have a higher weight than a value of $y$ with its corresponding $x$ value closer to the edge of the window. 
+* Formula:
+  * $\hat{g}(x) = \frac{\sum_{i = 1}^n y_i w(\frac{x_i - x}{h})}{\sum_{i = 1}^n w(\frac{x_i - x}{h})}$
+  * A couple of important things to note about this formula: it's a lot simpler than it looks. The numerator is the weighted average of all $y_i$ values in the window, with the weight being a function of the distance from the center. The denomitor is simple the sum of the weights, which will be 1 in most cases
+* The running average is a special case of the kernel smoother where all weights are uniform across the window of h
+* Edge effects
+  * Think about the literal edge cases (x max and x min). The window will not take in values lower than the min at the min, and it won't take values larger than the max at the max. This creates a bias because the window mean does not have sufficient data at the edges 
+
+
+### Local Regression 
+
+* LOcally WEighted Scatterplot Smoothing (LOWESS) performs a non-parametric regression within a window of the point of interest. This takes away the problem with the edge effects 
+* Like the previous methods, a unique $\hat{y_i}$ is calculated for each $x_i$, and a smooth line is created from these estimates 
+
+### Splines 
+
+* Splines are similar to local regression. However, instead of creating $n$ models, we define $k$ knots (points of interest where we think the model should change) and create (I think) $k + 1$ models 
+
+
+## Three Take-aways 
+
+1. In kernel smoothing, the "edge effect" is when the edges are BLANK because of limited data at the sample BLANK and the sample BLANK
+2. 
+
+
+
+
+
+
+
+
+## [Back](../notes.qmd)

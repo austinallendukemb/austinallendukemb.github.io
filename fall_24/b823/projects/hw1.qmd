@@ -1,0 +1,25 @@
+---
+title: "BIOSTAT 823 - Homework 1"
+---
+
+
+```{mermaid erdiag}
+erDiagram
+    Room       ||--o{ Student : "accommodates"
+    Building   ||--|{ Room    : "consists of"
+    Building {
+      integer building_id PK
+      string  name
+      string  address
+    }
+    Room {
+      integer room_id PK
+      integer number
+      string  building_id FK
+    }
+    Student {
+      integer student_id PK
+      string  name
+      integer room_id FK
+    }
+```

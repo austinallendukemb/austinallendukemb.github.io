@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -67,6 +101,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../../styles.css">
 </head>
@@ -122,6 +185,18 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#mutliple-variables" id="toc-mutliple-variables" class="nav-link" data-scroll-target="#mutliple-variables">Mutliple variables</a></li>
   </ul></li>
   <li><a href="#three-take-aways" id="toc-three-take-aways" class="nav-link" data-scroll-target="#three-take-aways">Three take-aways</a></li>
+  </ul></li>
+  <li><a href="#september-11-2024" id="toc-september-11-2024" class="nav-link" data-scroll-target="#september-11-2024">September 11, 2024</a>
+  <ul class="collapse">
+  <li><a href="#smoothing" id="toc-smoothing" class="nav-link" data-scroll-target="#smoothing">Smoothing</a>
+  <ul class="collapse">
+  <li><a href="#running-mean" id="toc-running-mean" class="nav-link" data-scroll-target="#running-mean">Running Mean</a></li>
+  <li><a href="#kernel-smoothing" id="toc-kernel-smoothing" class="nav-link" data-scroll-target="#kernel-smoothing">Kernel Smoothing</a></li>
+  <li><a href="#local-regression" id="toc-local-regression" class="nav-link" data-scroll-target="#local-regression">Local Regression</a></li>
+  <li><a href="#splines" id="toc-splines" class="nav-link" data-scroll-target="#splines">Splines</a></li>
+  </ul></li>
+  <li><a href="#three-take-aways-1" id="toc-three-take-aways-1" class="nav-link" data-scroll-target="#three-take-aways-1">Three Take-aways</a></li>
+  <li><a href="#back" id="toc-back" class="nav-link" data-scroll-target="#back">Back</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -317,7 +392,129 @@ ul.task-list li input[type="checkbox"] {
 <li>In what type of analyses are forest plots particularly useful?</li>
 <li>Histograms can be constructed to show either frequency counts or density. Explain what density is (i.e.&nbsp;the actual value on the y-axis).</li>
 </ol>
-<p><a href="../../../../fall_24/b707/notes/notes.html">Back</a></p>
+</section>
+</section>
+<section id="september-11-2024" class="level1">
+<h1>September 11, 2024</h1>
+<section id="smoothing" class="level2">
+<h2 class="anchored" data-anchor-id="smoothing">Smoothing</h2>
+<p>There are several important smoothing methods we went over in class. After the lecture, I was curious as to why smoothing is important in the context of statistical learning. I asked ChatGPT:</p>
+<ul>
+<li><strong>Prompt:</strong> I’m in a statistical learning class. We’re going to get into machine learning methods later in the course, but for now, we’re talking about smoothing. For example, we talked about the difference between running mean, kernel smoothing, local regression (LOWESS), and splining. We spent a lot of the class discussion on creating smoother vs more granular lines with the method, parameters etc. Here’s my question. Why is this going to be useful in the context of machine learning? Please write a paragraph explaining how these concepts are applied in machine learning.</li>
+<li><strong>Response:</strong> Smoothing techniques, like running mean, kernel smoothing, local regression (LOWESS), and splining, are foundational for understanding how to balance flexibility and interpretability in models. In machine learning, these methods help illustrate the trade-off between bias and variance, which is crucial when building predictive models. By controlling the smoothness of a function, you can prevent overfitting to noisy data (high variance) or underfitting (high bias) by finding the right complexity for your model. Techniques like splines or kernel smoothing are often used in feature engineering, where creating smoother, more representative features improves the predictive power of machine learning models. Additionally, methods like LOESS can be used for understanding relationships in the data, especially in non-linear regression models.</li>
+</ul>
+<p>Interesting. It sounds like the principles are important, but maybe we will also use these methods when constructing models in the future? Hopefully there will be more to report later on in the semester. As a reminder, the four goals of this course are to 1. create reproducible reports, 2. create high-quality graphs, 3. create a predictive model, and 4. explore a new dataset. I think I’m most curious about whether this falls into the category of 2 or 3, but maybe both.</p>
+<p>Regardless, let’s look at these smoothing methods:</p>
+<section id="running-mean" class="level3">
+<h3 class="anchored" data-anchor-id="running-mean">Running Mean</h3>
+<ul>
+<li>Method
+<ul>
+<li>Choose a window (h)</li>
+<li><span class="math inline">\(\hat{y_j} = \frac{1}{k} \sum_{i = 1}^k y_i\)</span>, such that <span class="math inline">\(|x_i - x| \le h\)</span> for all <span class="math inline">\(i = 1, 2, ..., k\)</span></li>
+<li>Repeat this for all values of <span class="math inline">\(x_j, \quad j = 1,2,..., n\)</span></li>
+</ul></li>
+<li>This is the simplest method. Large values of <span class="math inline">\(h\)</span> will yield smoother lines. Small values of <span class="math inline">\(h\)</span> will yield more sensitive lines</li>
+</ul>
+<p>Here’s an R function for the running mean:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Plot</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">###################################### R ######################################</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create function for running mean:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>running_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, h) {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Arrange the data from lowest x_i to sample max</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    dat <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), x)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    x_sorted <span class="ot">&lt;-</span> dat<span class="sc">$</span>x</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    running_means <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">nrow</span>(dat))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For each x_i, calculate the mean y value within the window (+- h)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dat)) {</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        running_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(dat[<span class="fu">abs</span>(dat<span class="sc">$</span>x <span class="sc">-</span> x_sorted[i]) <span class="sc">&lt;=</span> h, <span class="st">"y"</span>])</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        running_means[i] <span class="ot">&lt;-</span> running_mean</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(running_means)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Test the function with dummy data</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">250</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">length.out =</span> n)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">+</span> <span class="fl">2.5</span> <span class="sc">*</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">55</span>) <span class="co"># simulate a regression model</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>r_means <span class="ot">&lt;-</span> <span class="fu">running_mean</span>(x, y, h)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">r_means =</span> r_means)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the plot</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>r_means_example <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(dat) <span class="sc">+</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_point</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y), <span class="at">col =</span> <span class="st">"skyblue"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">geom_line</span>(</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> r_means),</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"firebrick"</span>, <span class="at">lty =</span> <span class="dv">2</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"X"</span>, <span class="at">y =</span> <span class="st">"Y"</span>, <span class="at">title =</span> <span class="st">"Running Means Example"</span>) <span class="sc">+</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    ggplot2<span class="sc">::</span><span class="fu">theme</span>(</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">text =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"serif"</span>),</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">hjust =</span> .<span class="dv">5</span>, <span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="do">###############################################################################</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="sep_9_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="kernel-smoothing" class="level3">
+<h3 class="anchored" data-anchor-id="kernel-smoothing">Kernel Smoothing</h3>
+<ul>
+<li>Kernel smoothing craetes a smoother line than running means. Where the running means is “all or nothing” for each <span class="math inline">\(y_i\)</span> used to calculate the window mean, kernel smoothing applies a weight function to the <span class="math inline">\(y_i\)</span>’s in the window. For example, a value of <span class="math inline">\(y\)</span> with a corresponding <span class="math inline">\(x\)</span> value close to <span class="math inline">\(x\)</span> (i.e.&nbsp;the center of the window) will have a higher weight than a value of <span class="math inline">\(y\)</span> with its corresponding <span class="math inline">\(x\)</span> value closer to the edge of the window.</li>
+<li>Formula:
+<ul>
+<li><span class="math inline">\(\hat{g}(x) = \frac{\sum_{i = 1}^n y_i w(\frac{x_i - x}{h})}{\sum_{i = 1}^n w(\frac{x_i - x}{h})}\)</span></li>
+<li>A couple of important things to note about this formula: it’s a lot simpler than it looks. The numerator is the weighted average of all <span class="math inline">\(y_i\)</span> values in the window, with the weight being a function of the distance from the center. The denomitor is simple the sum of the weights, which will be 1 in most cases</li>
+</ul></li>
+<li>The running average is a special case of the kernel smoother where all weights are uniform across the window of h</li>
+<li>Edge effects
+<ul>
+<li>Think about the literal edge cases (x max and x min). The window will not take in values lower than the min at the min, and it won’t take values larger than the max at the max. This creates a bias because the window mean does not have sufficient data at the edges</li>
+</ul></li>
+</ul>
+</section>
+<section id="local-regression" class="level3">
+<h3 class="anchored" data-anchor-id="local-regression">Local Regression</h3>
+<ul>
+<li>LOcally WEighted Scatterplot Smoothing (LOWESS) performs a non-parametric regression within a window of the point of interest. This takes away the problem with the edge effects</li>
+<li>Like the previous methods, a unique <span class="math inline">\(\hat{y_i}\)</span> is calculated for each <span class="math inline">\(x_i\)</span>, and a smooth line is created from these estimates</li>
+</ul>
+</section>
+<section id="splines" class="level3">
+<h3 class="anchored" data-anchor-id="splines">Splines</h3>
+<ul>
+<li>Splines are similar to local regression. However, instead of creating <span class="math inline">\(n\)</span> models, we define <span class="math inline">\(k\)</span> knots (points of interest where we think the model should change) and create (I think) <span class="math inline">\(k + 1\)</span> models</li>
+</ul>
+</section>
+</section>
+<section id="three-take-aways-1" class="level2">
+<h2 class="anchored" data-anchor-id="three-take-aways-1">Three Take-aways</h2>
+<ol type="1">
+<li>In kernel smoothing, the “edge effect” is when the edges are BLANK because of limited data at the sample BLANK and the sample BLANK</li>
+<li></li>
+</ol>
+</section>
+<section id="back" class="level2">
+<h2 class="anchored" data-anchor-id="back"><a href="../../../../fall_24/b707/notes/notes.html">Back</a></h2>
 
 
 </section>

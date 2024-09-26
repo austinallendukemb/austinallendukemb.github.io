@@ -51,4 +51,10 @@ title: "September 10, 2024 - September 12, 2024"
 2. Look at this code: `SELECT c.Name AS Course, c.Semester, r.Name AS Room FROM Course AS c LEFT OUTER JOIN Room AS r USING (Room_OID)`. Assume neither Course nor Room have any null values. What is the name of the column that could have null values in the output table? 
 3. The following code uses existential subquerying, which can be more efficient than a join if your goal is to check that a condition is met: `SELECT i.Name AS Instructor, i.Email FROM Instructor AS i WHERE EXISTS ( SELECT 1 FROM Lesson as l INNER JOIN Course c USING (Course_OID) WHERE c.Semester = 'Fall 2023' AND l.Instructor_OID = i.Instructor_OID)`. 1. What are the two columns in the output table? 2. Which professors will be displayed in the output table? Only those who had a BLANK during BLANK BLANK
 
-[Back](../notes.qmd)
+
+# September 12, 2024
+
+
+
+
+## [Back](../notes.qmd)

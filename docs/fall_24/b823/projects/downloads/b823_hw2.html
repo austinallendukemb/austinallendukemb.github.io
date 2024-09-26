@@ -1,0 +1,2377 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.543">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Austin’s MB Projects - Question 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">Austin’s MB Projects</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../about.html"> 
+<span class="menu-text">About Austin’s MB Projects</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1">Question 1</a>
+  <ul class="collapse">
+  <li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
+  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
+  <li><a href="#part-3" id="toc-part-3" class="nav-link" data-scroll-target="#part-3">Part 3</a></li>
+  <li><a href="#part-4" id="toc-part-4" class="nav-link" data-scroll-target="#part-4">Part 4</a></li>
+  <li><a href="#part-5" id="toc-part-5" class="nav-link" data-scroll-target="#part-5">Part 5</a></li>
+  <li><a href="#part-6" id="toc-part-6" class="nav-link" data-scroll-target="#part-6">Part 6</a></li>
+  <li><a href="#part-7" id="toc-part-7" class="nav-link" data-scroll-target="#part-7">Part 7</a></li>
+  <li><a href="#part-8" id="toc-part-8" class="nav-link" data-scroll-target="#part-8">Part 8</a></li>
+  <li><a href="#part-9" id="toc-part-9" class="nav-link" data-scroll-target="#part-9">Part 9</a></li>
+  <li><a href="#part-10" id="toc-part-10" class="nav-link" data-scroll-target="#part-10">Part 10</a></li>
+  <li><a href="#part-11" id="toc-part-11" class="nav-link" data-scroll-target="#part-11">Part 11</a></li>
+  <li><a href="#part-12" id="toc-part-12" class="nav-link" data-scroll-target="#part-12">Part 12</a></li>
+  <li><a href="#part-13" id="toc-part-13" class="nav-link" data-scroll-target="#part-13">Part 13</a></li>
+  <li><a href="#part-14" id="toc-part-14" class="nav-link" data-scroll-target="#part-14">Part 14</a></li>
+  <li><a href="#part-15" id="toc-part-15" class="nav-link" data-scroll-target="#part-15">Part 15</a></li>
+  </ul></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a>
+  <ul class="collapse">
+  <li><a href="#part-1-1" id="toc-part-1-1" class="nav-link" data-scroll-target="#part-1-1">Part 1</a></li>
+  <li><a href="#part-2-1" id="toc-part-2-1" class="nav-link" data-scroll-target="#part-2-1">Part 2</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Question 1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="cell-0" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727177554545,&quot;user_tz&quot;:240,&quot;elapsed&quot;:2712,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="660ff9b8-33f0-4e71-fca1-c3a191d64621" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>drive.mount(<span class="st">'/content/drive'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Set directory, db, and file paths</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>dir_path <span class="op">=</span> <span class="st">"/content/drive/MyDrive/ColabNotebooks/homework_projects"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>db_path <span class="op">=</span> dir_path <span class="op">+</span> <span class="st">"/chinook.db"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sql_file <span class="op">=</span> dir_path <span class="op">+</span> <span class="st">"/Chinook_Sqlite.sql"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Establish a SQLite3 connection</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(db_path)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>cursor <span class="op">=</span> conn.cursor()</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the Chinook_SQLite.sql file</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(sql_file, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  sql_script <span class="op">=</span> <span class="bu">file</span>.read()</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute the SQL script to create the tables and populate them</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>cursor.executescript(sql_script)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Commit the changes and close the connection</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>conn.commit()</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>conn.close()</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount("/content/drive", force_remount=True).</code></pre>
+</div>
+</div>
+<div id="cell-1" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727177701957,&quot;user_tz&quot;:240,&quot;elapsed&quot;:1020,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext sql</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql sqlite:<span class="op">////</span>content<span class="op">/</span>drive<span class="op">/</span>MyDrive<span class="op">/</span>ColabNotebooks<span class="op">/</span>homework_projects<span class="op">/</span>chinook.db</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<p>You will be using the Chinook database to answer the following questions. This is a sample database available for various RDBMSs, including SQLite. The .db file for SQLite provided to you was created by executing the corresponding SQLite script.</p>
+<p>Complete the following tasks. You will need to connect to the Chinook.db database. (E.g., using %sql magic if you use Jupyter Notebook powered by DCC: use %load_ext sql to load the SQL extension, and then use %sql sqlite:///<your path="">/Chinook.db to connect with database Chinook.db.)</your></p>
+<p>Remark: When specific output requirements aren’t stated, you may choose to display all columns in your resulting tables or display only some of them (but you must include the primary key). For example, for question 4 showing customers from Germany, you can display all columns in table Customer, or only display selected columns (but you must include primary key CustomerId).</p>
+<section id="part-1" class="level3">
+<h3 class="anchored" data-anchor-id="part-1">Part 1</h3>
+<p>(3 points) Find all tables in the database and display the first 3 rows of tables Customer, Employee, Invoice, and InvoiceLine with column headings. We will be primarily working on these four tables.</p>
+<blockquote class="blockquote">
+<p>One nice feature of SQLite is that for any SQLite database, there is a table called <code>sqlite_master</code> that contains metadata relating to all other tables. In particular, there is a column called <code>name</code> that stores all table names in the data base.</p>
+<p>Let’s answer this question by first querying the <code>name</code> column of the <code>sqlite_master</code> table:</p>
+</blockquote>
+<div id="cell-3" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727178466556,&quot;user_tz&quot;:240,&quot;elapsed&quot;:207,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="a772aa5f-2086-4f12-844d-c9a7d6dc95db" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>SELECT name FROM sqlite_master<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Album</td>
+</tr>
+<tr class="even">
+<td>Artist</td>
+</tr>
+<tr class="odd">
+<td>Customer</td>
+</tr>
+<tr class="even">
+<td>Employee</td>
+</tr>
+<tr class="odd">
+<td>Genre</td>
+</tr>
+<tr class="even">
+<td>Invoice</td>
+</tr>
+<tr class="odd">
+<td>InvoiceLine</td>
+</tr>
+<tr class="even">
+<td>MediaType</td>
+</tr>
+<tr class="odd">
+<td>Playlist</td>
+</tr>
+<tr class="even">
+<td>PlaylistTrack</td>
+</tr>
+<tr class="odd">
+<td>sqlite_autoindex_PlaylistTrack_1</td>
+</tr>
+<tr class="even">
+<td>Track</td>
+</tr>
+<tr class="odd">
+<td>IFK_AlbumArtistId</td>
+</tr>
+<tr class="even">
+<td>IFK_CustomerSupportRepId</td>
+</tr>
+<tr class="odd">
+<td>IFK_EmployeeReportsTo</td>
+</tr>
+<tr class="even">
+<td>IFK_InvoiceCustomerId</td>
+</tr>
+<tr class="odd">
+<td>IFK_InvoiceLineInvoiceId</td>
+</tr>
+<tr class="even">
+<td>IFK_InvoiceLineTrackId</td>
+</tr>
+<tr class="odd">
+<td>IFK_PlaylistTrackPlaylistId</td>
+</tr>
+<tr class="even">
+<td>IFK_PlaylistTrackTrackId</td>
+</tr>
+<tr class="odd">
+<td>IFK_TrackAlbumId</td>
+</tr>
+<tr class="even">
+<td>IFK_TrackGenreId</td>
+</tr>
+<tr class="odd">
+<td>IFK_TrackMediaTypeId</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>The problem states that we’re interested in the tables <code>Customer</code>, <code>Employee</code>, <code>Invoice</code>, and <code>InvoiceLine</code>. Let’s see if we can display the first three rows of each of these:</p>
+</blockquote>
+<div id="cell-5" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727178623179,&quot;user_tz&quot;:240,&quot;elapsed&quot;:209,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="35c8fdca-b030-4e97-fc1d-b2894ce2b3f8" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Display the first three rows of the four tables of interest</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>SELECT <span class="op">*</span> FROM Customer LIMIT <span class="dv">3</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.
+Done.
+Done.
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">InvoiceLineId</th>
+<th data-quarto-table-cell-role="th">InvoiceId</th>
+<th data-quarto-table-cell-role="th">TrackId</th>
+<th data-quarto-table-cell-role="th">UnitPrice</th>
+<th data-quarto-table-cell-role="th">Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>0.99</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>1</td>
+<td>4</td>
+<td>0.99</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>2</td>
+<td>6</td>
+<td>0.99</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="cell-6" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727178712025,&quot;user_tz&quot;:240,&quot;elapsed&quot;:231,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="23d0f568-6c69-45f7-cbf0-65e29963fc4c" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql SELECT <span class="op">*</span> FROM Employee LIMIT <span class="dv">3</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">EmployeeId</th>
+<th data-quarto-table-cell-role="th">LastName</th>
+<th data-quarto-table-cell-role="th">FirstName</th>
+<th data-quarto-table-cell-role="th">Title</th>
+<th data-quarto-table-cell-role="th">ReportsTo</th>
+<th data-quarto-table-cell-role="th">BirthDate</th>
+<th data-quarto-table-cell-role="th">HireDate</th>
+<th data-quarto-table-cell-role="th">Address</th>
+<th data-quarto-table-cell-role="th">City</th>
+<th data-quarto-table-cell-role="th">State</th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">PostalCode</th>
+<th data-quarto-table-cell-role="th">Phone</th>
+<th data-quarto-table-cell-role="th">Fax</th>
+<th data-quarto-table-cell-role="th">Email</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Adams</td>
+<td>Andrew</td>
+<td>General Manager</td>
+<td>None</td>
+<td>1962-02-18 00:00:00</td>
+<td>2002-08-14 00:00:00</td>
+<td>11120 Jasper Ave NW</td>
+<td>Edmonton</td>
+<td>AB</td>
+<td>Canada</td>
+<td>T5K 2N1</td>
+<td>+1 (780) 428-9482</td>
+<td>+1 (780) 428-3457</td>
+<td>andrew@chinookcorp.com</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Edwards</td>
+<td>Nancy</td>
+<td>Sales Manager</td>
+<td>1</td>
+<td>1958-12-08 00:00:00</td>
+<td>2002-05-01 00:00:00</td>
+<td>825 8 Ave SW</td>
+<td>Calgary</td>
+<td>AB</td>
+<td>Canada</td>
+<td>T2P 2T3</td>
+<td>+1 (403) 262-3443</td>
+<td>+1 (403) 262-3322</td>
+<td>nancy@chinookcorp.com</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Peacock</td>
+<td>Jane</td>
+<td>Sales Support Agent</td>
+<td>2</td>
+<td>1973-08-29 00:00:00</td>
+<td>2002-04-01 00:00:00</td>
+<td>1111 6 Ave SW</td>
+<td>Calgary</td>
+<td>AB</td>
+<td>Canada</td>
+<td>T2P 5M5</td>
+<td>+1 (403) 262-3443</td>
+<td>+1 (403) 262-6712</td>
+<td>jane@chinookcorp.com</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="cell-7" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727178719630,&quot;user_tz&quot;:240,&quot;elapsed&quot;:231,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="4741cbd4-b4be-4d6a-c691-e1b8103b8d10" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql SELECT <span class="op">*</span> FROM Invoice LIMIT <span class="dv">3</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">InvoiceId</th>
+<th data-quarto-table-cell-role="th">CustomerId</th>
+<th data-quarto-table-cell-role="th">InvoiceDate</th>
+<th data-quarto-table-cell-role="th">BillingAddress</th>
+<th data-quarto-table-cell-role="th">BillingCity</th>
+<th data-quarto-table-cell-role="th">BillingState</th>
+<th data-quarto-table-cell-role="th">BillingCountry</th>
+<th data-quarto-table-cell-role="th">BillingPostalCode</th>
+<th data-quarto-table-cell-role="th">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2</td>
+<td>2021-01-01 00:00:00</td>
+<td>Theodor-Heuss-Straße 34</td>
+<td>Stuttgart</td>
+<td>None</td>
+<td>Germany</td>
+<td>70174</td>
+<td>1.98</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>4</td>
+<td>2021-01-02 00:00:00</td>
+<td>Ullevålsveien 14</td>
+<td>Oslo</td>
+<td>None</td>
+<td>Norway</td>
+<td>0171</td>
+<td>3.96</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>8</td>
+<td>2021-01-03 00:00:00</td>
+<td>Grétrystraat 63</td>
+<td>Brussels</td>
+<td>None</td>
+<td>Belgium</td>
+<td>1000</td>
+<td>5.94</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="cell-8" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727178730648,&quot;user_tz&quot;:240,&quot;elapsed&quot;:287,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="0b2f168e-ffe4-4376-ed5f-28ffed5538f7" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql SELECT <span class="op">*</span> FROM InvoiceLine LIMIT <span class="dv">3</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">InvoiceLineId</th>
+<th data-quarto-table-cell-role="th">InvoiceId</th>
+<th data-quarto-table-cell-role="th">TrackId</th>
+<th data-quarto-table-cell-role="th">UnitPrice</th>
+<th data-quarto-table-cell-role="th">Quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>0.99</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>1</td>
+<td>4</td>
+<td>0.99</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>2</td>
+<td>6</td>
+<td>0.99</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-2" class="level3">
+<h3 class="anchored" data-anchor-id="part-2">Part 2</h3>
+<p>(2 points) Provide a query showing Customers (just full names, customer ID and country) who are not in the US. You only need to display the first 10 rows, and you don’t have to concatenate the customers’ first and last names.</p>
+<div id="cell-10" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727179289127,&quot;user_tz&quot;:240,&quot;elapsed&quot;:243,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="7468869c-0bf1-4e0b-8570-74dff442b50e" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Display the first <span class="dv">10</span> rows of Customers outside of the USA</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>SELECT CustomerID, FirstName, LastName, Country</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>FROM Customer WHERE Country <span class="op">!=</span> <span class="st">'USA'</span> LIMIT <span class="dv">10</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">CustomerId</th>
+<th data-quarto-table-cell-role="th">FirstName</th>
+<th data-quarto-table-cell-role="th">LastName</th>
+<th data-quarto-table-cell-role="th">Country</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Luís</td>
+<td>Gonçalves</td>
+<td>Brazil</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Leonie</td>
+<td>Köhler</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>François</td>
+<td>Tremblay</td>
+<td>Canada</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Bjørn</td>
+<td>Hansen</td>
+<td>Norway</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>František</td>
+<td>Wichterlová</td>
+<td>Czech Republic</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Helena</td>
+<td>Holý</td>
+<td>Czech Republic</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Astrid</td>
+<td>Gruber</td>
+<td>Austria</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Daan</td>
+<td>Peeters</td>
+<td>Belgium</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Kara</td>
+<td>Nielsen</td>
+<td>Denmark</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Eduardo</td>
+<td>Martins</td>
+<td>Brazil</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-3" class="level3">
+<h3 class="anchored" data-anchor-id="part-3">Part 3</h3>
+<p>(2 points) Provide a query showing a unique list of billing countries from the Invoice table.</p>
+<div id="cell-12" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727179440352,&quot;user_tz&quot;:240,&quot;elapsed&quot;:214,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="8508e389-af21-4b4f-a894-e6caa6b222b8" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Display unique billing countries <span class="im">from</span> the invoice table</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>SELECT DISTINCT BillingCountry FROM Invoice<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">COUNT(DISTINCT BillingCountry)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>24</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-4" class="level3">
+<h3 class="anchored" data-anchor-id="part-4">Part 4</h3>
+<p>(2 points) Provide a query only showing the Customers from Germany.</p>
+<div id="cell-14" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727179512087,&quot;user_tz&quot;:240,&quot;elapsed&quot;:204,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="11367583-c447-488a-bebe-fd4ad4aeec34" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Display customers <span class="im">from</span> Germany</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>SELECT <span class="op">*</span> FROM Customer WHERE Country <span class="op">=</span> <span class="st">'Germany'</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">CustomerId</th>
+<th data-quarto-table-cell-role="th">FirstName</th>
+<th data-quarto-table-cell-role="th">LastName</th>
+<th data-quarto-table-cell-role="th">Company</th>
+<th data-quarto-table-cell-role="th">Address</th>
+<th data-quarto-table-cell-role="th">City</th>
+<th data-quarto-table-cell-role="th">State</th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">PostalCode</th>
+<th data-quarto-table-cell-role="th">Phone</th>
+<th data-quarto-table-cell-role="th">Fax</th>
+<th data-quarto-table-cell-role="th">Email</th>
+<th data-quarto-table-cell-role="th">SupportRepId</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td>Leonie</td>
+<td>Köhler</td>
+<td>None</td>
+<td>Theodor-Heuss-Straße 34</td>
+<td>Stuttgart</td>
+<td>None</td>
+<td>Germany</td>
+<td>70174</td>
+<td>+49 0711 2842222</td>
+<td>None</td>
+<td>leonekohler@surfeu.de</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>36</td>
+<td>Hannah</td>
+<td>Schneider</td>
+<td>None</td>
+<td>Tauentzienstraße 8</td>
+<td>Berlin</td>
+<td>None</td>
+<td>Germany</td>
+<td>10789</td>
+<td>+49 030 26550280</td>
+<td>None</td>
+<td>hannah.schneider@yahoo.de</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>37</td>
+<td>Fynn</td>
+<td>Zimmermann</td>
+<td>None</td>
+<td>Berger Straße 10</td>
+<td>Frankfurt</td>
+<td>None</td>
+<td>Germany</td>
+<td>60316</td>
+<td>+49 069 40598889</td>
+<td>None</td>
+<td>fzimmermann@yahoo.de</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>38</td>
+<td>Niklas</td>
+<td>Schröder</td>
+<td>None</td>
+<td>Barbarossastraße 19</td>
+<td>Berlin</td>
+<td>None</td>
+<td>Germany</td>
+<td>10779</td>
+<td>+49 030 2141444</td>
+<td>None</td>
+<td>nschroder@surfeu.de</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-5" class="level3">
+<h3 class="anchored" data-anchor-id="part-5">Part 5</h3>
+<p>(2 points) Provide a query showing only the Employees who are Sales Agents (i.e., title = ‘Sales Support Agent’).</p>
+<div id="cell-16" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727179611837,&quot;user_tz&quot;:240,&quot;elapsed&quot;:206,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="14ac7457-b560-4dae-d212-b5d94e1d72fb" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Display employees <span class="cf">with</span> the title, <span class="st">'Sales Support Agent'</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>SELECT <span class="op">*</span> FROM Employee WHERE Title <span class="op">=</span> <span class="st">'Sales Support Agent'</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">EmployeeId</th>
+<th data-quarto-table-cell-role="th">LastName</th>
+<th data-quarto-table-cell-role="th">FirstName</th>
+<th data-quarto-table-cell-role="th">Title</th>
+<th data-quarto-table-cell-role="th">ReportsTo</th>
+<th data-quarto-table-cell-role="th">BirthDate</th>
+<th data-quarto-table-cell-role="th">HireDate</th>
+<th data-quarto-table-cell-role="th">Address</th>
+<th data-quarto-table-cell-role="th">City</th>
+<th data-quarto-table-cell-role="th">State</th>
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">PostalCode</th>
+<th data-quarto-table-cell-role="th">Phone</th>
+<th data-quarto-table-cell-role="th">Fax</th>
+<th data-quarto-table-cell-role="th">Email</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3</td>
+<td>Peacock</td>
+<td>Jane</td>
+<td>Sales Support Agent</td>
+<td>2</td>
+<td>1973-08-29 00:00:00</td>
+<td>2002-04-01 00:00:00</td>
+<td>1111 6 Ave SW</td>
+<td>Calgary</td>
+<td>AB</td>
+<td>Canada</td>
+<td>T2P 5M5</td>
+<td>+1 (403) 262-3443</td>
+<td>+1 (403) 262-6712</td>
+<td>jane@chinookcorp.com</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Park</td>
+<td>Margaret</td>
+<td>Sales Support Agent</td>
+<td>2</td>
+<td>1947-09-19 00:00:00</td>
+<td>2003-05-03 00:00:00</td>
+<td>683 10 Street SW</td>
+<td>Calgary</td>
+<td>AB</td>
+<td>Canada</td>
+<td>T2P 5G3</td>
+<td>+1 (403) 263-4423</td>
+<td>+1 (403) 263-4289</td>
+<td>margaret@chinookcorp.com</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Johnson</td>
+<td>Steve</td>
+<td>Sales Support Agent</td>
+<td>2</td>
+<td>1965-03-03 00:00:00</td>
+<td>2003-10-17 00:00:00</td>
+<td>7727B 41 Ave</td>
+<td>Calgary</td>
+<td>AB</td>
+<td>Canada</td>
+<td>T3B 1Y7</td>
+<td>1 (780) 836-9987</td>
+<td>1 (780) 836-9543</td>
+<td>steve@chinookcorp.com</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-6" class="level3">
+<h3 class="anchored" data-anchor-id="part-6">Part 6</h3>
+<p>(3 points) Provide a query showing the invoices of customers who are from Germany. The resultant table should show the customer’s full name, Invoice ID, Date of the invoice and billing country.</p>
+<div id="cell-18" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727180438320,&quot;user_tz&quot;:240,&quot;elapsed&quot;:253,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="438a032f-5bbb-4edd-a6dd-ceb8cbc5ac16" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Show the customer name, invoice <span class="bu">id</span>, invoice date <span class="kw">and</span> billing country <span class="cf">for</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> customers <span class="im">from</span> Germany</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>SELECT c.FirstName, c.LastName, i.InvoiceID, i.InvoiceDate, i.BillingCountry</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>FROM Customer AS c</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>INNER JOIN Invoice AS i using(CustomerID)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>WHERE c.Country <span class="op">=</span> <span class="st">'Germany'</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">FirstName</th>
+<th data-quarto-table-cell-role="th">LastName</th>
+<th data-quarto-table-cell-role="th">InvoiceId</th>
+<th data-quarto-table-cell-role="th">InvoiceDate</th>
+<th data-quarto-table-cell-role="th">BillingCountry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Leonie</td>
+<td>Köhler</td>
+<td>1</td>
+<td>2021-01-01 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Leonie</td>
+<td>Köhler</td>
+<td>12</td>
+<td>2021-02-11 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Leonie</td>
+<td>Köhler</td>
+<td>67</td>
+<td>2021-10-12 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Leonie</td>
+<td>Köhler</td>
+<td>196</td>
+<td>2023-05-19 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Leonie</td>
+<td>Köhler</td>
+<td>219</td>
+<td>2023-08-21 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Leonie</td>
+<td>Köhler</td>
+<td>241</td>
+<td>2023-11-23 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Leonie</td>
+<td>Köhler</td>
+<td>293</td>
+<td>2024-07-13 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Hannah</td>
+<td>Schneider</td>
+<td>29</td>
+<td>2021-05-05 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Hannah</td>
+<td>Schneider</td>
+<td>40</td>
+<td>2021-06-15 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Hannah</td>
+<td>Schneider</td>
+<td>95</td>
+<td>2022-02-13 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Hannah</td>
+<td>Schneider</td>
+<td>224</td>
+<td>2023-09-20 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Hannah</td>
+<td>Schneider</td>
+<td>247</td>
+<td>2023-12-23 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Hannah</td>
+<td>Schneider</td>
+<td>269</td>
+<td>2024-03-26 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Hannah</td>
+<td>Schneider</td>
+<td>321</td>
+<td>2024-11-14 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Fynn</td>
+<td>Zimmermann</td>
+<td>6</td>
+<td>2021-01-19 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Fynn</td>
+<td>Zimmermann</td>
+<td>127</td>
+<td>2022-07-13 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Fynn</td>
+<td>Zimmermann</td>
+<td>138</td>
+<td>2022-08-23 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Fynn</td>
+<td>Zimmermann</td>
+<td>193</td>
+<td>2023-04-23 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Fynn</td>
+<td>Zimmermann</td>
+<td>322</td>
+<td>2024-11-27 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Fynn</td>
+<td>Zimmermann</td>
+<td>345</td>
+<td>2025-03-01 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Fynn</td>
+<td>Zimmermann</td>
+<td>367</td>
+<td>2025-06-03 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Niklas</td>
+<td>Schröder</td>
+<td>7</td>
+<td>2021-02-01 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Niklas</td>
+<td>Schröder</td>
+<td>30</td>
+<td>2021-05-06 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Niklas</td>
+<td>Schröder</td>
+<td>52</td>
+<td>2021-08-08 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Niklas</td>
+<td>Schröder</td>
+<td>104</td>
+<td>2022-03-29 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Niklas</td>
+<td>Schröder</td>
+<td>225</td>
+<td>2023-09-20 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Niklas</td>
+<td>Schröder</td>
+<td>236</td>
+<td>2023-10-31 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Niklas</td>
+<td>Schröder</td>
+<td>291</td>
+<td>2024-06-30 00:00:00</td>
+<td>Germany</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-7" class="level3">
+<h3 class="anchored" data-anchor-id="part-7">Part 7</h3>
+<p>(3 points) Provide a query that shows the invoice Total, invoice date, Customer first and last name, and Country. Order by invoice date.</p>
+<blockquote class="blockquote">
+<p>The resulting table is quite long, so I’m going to display the first 10 rows only.</p>
+</blockquote>
+<div id="cell-20" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727180961693,&quot;user_tz&quot;:240,&quot;elapsed&quot;:203,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="f5fc8bcf-9e1d-4c25-9eb2-45ae595954e4" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Show i.Total, i.BillingDate, c.FirstName, c.LastName, c.Country<span class="op">;</span> order by</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> i.BillingDate</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>SELECT c.FirstName, c.LastName, i.Total, i.InvoiceDate, i.BillingCountry</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>FROM Customer AS c</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>INNER JOIN Invoice AS i using(CustomerId)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>ORDER BY i.InvoiceDate LIMIT <span class="dv">10</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="51">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">FirstName</th>
+<th data-quarto-table-cell-role="th">LastName</th>
+<th data-quarto-table-cell-role="th">Total</th>
+<th data-quarto-table-cell-role="th">InvoiceDate</th>
+<th data-quarto-table-cell-role="th">BillingCountry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Leonie</td>
+<td>Köhler</td>
+<td>1.98</td>
+<td>2021-01-01 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Bjørn</td>
+<td>Hansen</td>
+<td>3.96</td>
+<td>2021-01-02 00:00:00</td>
+<td>Norway</td>
+</tr>
+<tr class="odd">
+<td>Daan</td>
+<td>Peeters</td>
+<td>5.94</td>
+<td>2021-01-03 00:00:00</td>
+<td>Belgium</td>
+</tr>
+<tr class="even">
+<td>Mark</td>
+<td>Philips</td>
+<td>8.91</td>
+<td>2021-01-06 00:00:00</td>
+<td>Canada</td>
+</tr>
+<tr class="odd">
+<td>John</td>
+<td>Gordon</td>
+<td>13.86</td>
+<td>2021-01-11 00:00:00</td>
+<td>USA</td>
+</tr>
+<tr class="even">
+<td>Fynn</td>
+<td>Zimmermann</td>
+<td>0.99</td>
+<td>2021-01-19 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Niklas</td>
+<td>Schröder</td>
+<td>1.98</td>
+<td>2021-02-01 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Dominique</td>
+<td>Lefebvre</td>
+<td>1.98</td>
+<td>2021-02-01 00:00:00</td>
+<td>France</td>
+</tr>
+<tr class="odd">
+<td>Wyatt</td>
+<td>Girard</td>
+<td>3.96</td>
+<td>2021-02-02 00:00:00</td>
+<td>France</td>
+</tr>
+<tr class="even">
+<td>Hugh</td>
+<td>O'Reilly</td>
+<td>5.94</td>
+<td>2021-02-03 00:00:00</td>
+<td>Ireland</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-8" class="level3">
+<h3 class="anchored" data-anchor-id="part-8">Part 8</h3>
+<p>(4 points) Provide a query that shows the invoices associated with each sales agent for customers from Germany. The resultant table should include the Sales Agent’s full name.</p>
+<blockquote class="blockquote">
+<p>I’m choosing to display the invoice ID, date, total, and country.</p>
+</blockquote>
+<div id="cell-22" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727181831870,&quot;user_tz&quot;:240,&quot;elapsed&quot;:256,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="5fcac915-6def-4da8-a24e-010bb4f0d4e4" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Show invoices associated <span class="cf">with</span> sales agent <span class="cf">for</span> customers <span class="im">from</span> Germany</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>SELECT e.FirstName, e.LastName, i.InvoiceId, i.Total, i.InvoiceDate,  c.Country</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>FROM Employee AS e</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>INNER JOIN Customer AS c ON e.EmployeeId <span class="op">=</span> c.SupportRepId</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>INNER JOIN Invoice AS i using(CustomerId)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>WHERE c.Country <span class="op">=</span> <span class="st">'Germany'</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="59">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">FirstName</th>
+<th data-quarto-table-cell-role="th">LastName</th>
+<th data-quarto-table-cell-role="th">InvoiceId</th>
+<th data-quarto-table-cell-role="th">Total</th>
+<th data-quarto-table-cell-role="th">InvoiceDate</th>
+<th data-quarto-table-cell-role="th">Country</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Steve</td>
+<td>Johnson</td>
+<td>1</td>
+<td>1.98</td>
+<td>2021-01-01 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Steve</td>
+<td>Johnson</td>
+<td>12</td>
+<td>13.86</td>
+<td>2021-02-11 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Steve</td>
+<td>Johnson</td>
+<td>67</td>
+<td>8.91</td>
+<td>2021-10-12 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Steve</td>
+<td>Johnson</td>
+<td>196</td>
+<td>1.98</td>
+<td>2023-05-19 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Steve</td>
+<td>Johnson</td>
+<td>219</td>
+<td>3.96</td>
+<td>2023-08-21 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Steve</td>
+<td>Johnson</td>
+<td>241</td>
+<td>5.94</td>
+<td>2023-11-23 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Steve</td>
+<td>Johnson</td>
+<td>293</td>
+<td>0.99</td>
+<td>2024-07-13 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Steve</td>
+<td>Johnson</td>
+<td>29</td>
+<td>1.98</td>
+<td>2021-05-05 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Steve</td>
+<td>Johnson</td>
+<td>40</td>
+<td>13.86</td>
+<td>2021-06-15 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Steve</td>
+<td>Johnson</td>
+<td>95</td>
+<td>8.91</td>
+<td>2022-02-13 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Steve</td>
+<td>Johnson</td>
+<td>224</td>
+<td>1.98</td>
+<td>2023-09-20 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Steve</td>
+<td>Johnson</td>
+<td>247</td>
+<td>3.96</td>
+<td>2023-12-23 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Steve</td>
+<td>Johnson</td>
+<td>269</td>
+<td>5.94</td>
+<td>2024-03-26 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Steve</td>
+<td>Johnson</td>
+<td>321</td>
+<td>0.99</td>
+<td>2024-11-14 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Jane</td>
+<td>Peacock</td>
+<td>6</td>
+<td>0.99</td>
+<td>2021-01-19 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Jane</td>
+<td>Peacock</td>
+<td>127</td>
+<td>1.98</td>
+<td>2022-07-13 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Jane</td>
+<td>Peacock</td>
+<td>138</td>
+<td>13.86</td>
+<td>2022-08-23 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Jane</td>
+<td>Peacock</td>
+<td>193</td>
+<td>14.91</td>
+<td>2023-04-23 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Jane</td>
+<td>Peacock</td>
+<td>322</td>
+<td>1.98</td>
+<td>2024-11-27 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Jane</td>
+<td>Peacock</td>
+<td>345</td>
+<td>3.96</td>
+<td>2025-03-01 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Jane</td>
+<td>Peacock</td>
+<td>367</td>
+<td>5.94</td>
+<td>2025-06-03 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Jane</td>
+<td>Peacock</td>
+<td>7</td>
+<td>1.98</td>
+<td>2021-02-01 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Jane</td>
+<td>Peacock</td>
+<td>30</td>
+<td>3.96</td>
+<td>2021-05-06 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Jane</td>
+<td>Peacock</td>
+<td>52</td>
+<td>5.94</td>
+<td>2021-08-08 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Jane</td>
+<td>Peacock</td>
+<td>104</td>
+<td>0.99</td>
+<td>2022-03-29 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Jane</td>
+<td>Peacock</td>
+<td>225</td>
+<td>1.98</td>
+<td>2023-09-20 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="odd">
+<td>Jane</td>
+<td>Peacock</td>
+<td>236</td>
+<td>13.86</td>
+<td>2023-10-31 00:00:00</td>
+<td>Germany</td>
+</tr>
+<tr class="even">
+<td>Jane</td>
+<td>Peacock</td>
+<td>291</td>
+<td>8.91</td>
+<td>2024-06-30 00:00:00</td>
+<td>Germany</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-9" class="level3">
+<h3 class="anchored" data-anchor-id="part-9">Part 9</h3>
+<p>(2 points) How many Invoices were there in 2021 and 2022? (Hint: the clause between datetime(‘2021-01-01 00:00:00’) and datetime(‘2022-12-31 00:00:00’) will help you filter out invoices during this time frame.)</p>
+<div id="cell-24" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727182112557,&quot;user_tz&quot;:240,&quot;elapsed&quot;:200,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="09551f8f-ea5c-40a2-e2b2-3c534fe32599" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Find the total number of invoices between <span class="dv">2021</span> <span class="kw">and</span> <span class="dv">2022</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>SELECT COUNT(<span class="op">*</span>) AS <span class="st">'Count of Invoices in 2021 and 2022'</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>FROM Invoice WHERE InvoiceDate BETWEEN datetime(<span class="st">'2021-01-01 00:00:00'</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>AND datetime(<span class="st">'2022-12-31 00:00:00'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="61">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Count of Invoices in 2021 and 2022</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>166</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-10" class="level3">
+<h3 class="anchored" data-anchor-id="part-10">Part 10</h3>
+<p>(2 points) Looking at the InvoiceLine table, provide a query that counts the number of line items for Invoice ID 37.</p>
+<div id="cell-26" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727182223495,&quot;user_tz&quot;:240,&quot;elapsed&quot;:211,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="08892569-7555-4688-e4ae-8dbdff66bd9d" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Count the number of line items <span class="cf">for</span> Invoice ID <span class="dv">37</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>SELECT COUNT(<span class="op">*</span>) AS <span class="st">'Number of Line Items for Invoice ID 37'</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>FROM InvoiceLine WHERE InvoiceId <span class="op">=</span> <span class="dv">37</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="63">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Number of Line Items for Invoice ID 37</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-11" class="level3">
+<h3 class="anchored" data-anchor-id="part-11">Part 11</h3>
+<p>(3 points) Looking at the InvoiceLine table, provide a query that counts the number of line items for each Invoice.</p>
+<blockquote class="blockquote">
+<p>Once again, this is a long table. I’m going to limit the result to 10 rows.</p>
+</blockquote>
+<div id="cell-28" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727182542290,&quot;user_tz&quot;:240,&quot;elapsed&quot;:207,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="9e2436d5-2a49-4620-9955-25ff7c23ac27" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Count the number of line items <span class="cf">for</span> each invoice</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>SELECT InvoiceId, COUNT(<span class="op">*</span>) As <span class="st">'Number of Line Items'</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>FROM InvoiceLine GROUP BY InvoiceId LIMIT <span class="dv">10</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="67">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">InvoiceId</th>
+<th data-quarto-table-cell-role="th">Number of Line Items</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>14</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-12" class="level3">
+<h3 class="anchored" data-anchor-id="part-12">Part 12</h3>
+<p>(2 points) Provide a query that shows the number of invoices by (per) country.</p>
+<div id="cell-30" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727182727660,&quot;user_tz&quot;:240,&quot;elapsed&quot;:245,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="ce65e43d-3ca0-4bd5-eda3-b8b0df764b1f" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Count the number of invoices per country</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>SELECT BillingCountry, COUNT(<span class="op">*</span>) AS <span class="st">'Number of Invoices'</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>FROM Invoice GROUP BY BillingCountry<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="68">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">BillingCountry</th>
+<th data-quarto-table-cell-role="th">Number of Invoices</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Argentina</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>Australia</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>Austria</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>Belgium</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>Brazil</td>
+<td>35</td>
+</tr>
+<tr class="even">
+<td>Canada</td>
+<td>56</td>
+</tr>
+<tr class="odd">
+<td>Chile</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>Czech Republic</td>
+<td>14</td>
+</tr>
+<tr class="odd">
+<td>Denmark</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>Finland</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>France</td>
+<td>35</td>
+</tr>
+<tr class="even">
+<td>Germany</td>
+<td>28</td>
+</tr>
+<tr class="odd">
+<td>Hungary</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>India</td>
+<td>13</td>
+</tr>
+<tr class="odd">
+<td>Ireland</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>Italy</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>Netherlands</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>Norway</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>Poland</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>Portugal</td>
+<td>14</td>
+</tr>
+<tr class="odd">
+<td>Spain</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>Sweden</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>USA</td>
+<td>91</td>
+</tr>
+<tr class="even">
+<td>United Kingdom</td>
+<td>21</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-13" class="level3">
+<h3 class="anchored" data-anchor-id="part-13">Part 13</h3>
+<p>(2 points) Provide a query that shows total sales made by each sales agent.</p>
+<div id="cell-32" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727185162724,&quot;user_tz&quot;:240,&quot;elapsed&quot;:231,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="2025363e-e4d9-4249-c157-456b047db407" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Show the sales made by each agent</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>SELECT e.EmployeeId, e.FirstName, e.LastName, ROUND(COALESCE(SUM(i.Total), <span class="dv">0</span>))</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>AS TotalSales</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>FROM Employee AS e</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>LEFT OUTER JOIN Customer AS c ON e.EmployeeId <span class="op">=</span> c.SupportRepId</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>LEFT OUTER JOIN Invoice AS i USING(CustomerID)</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>GROUP BY e.EmployeeId</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>ORDER BY TotalSales DESC<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="104">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">EmployeeId</th>
+<th data-quarto-table-cell-role="th">FirstName</th>
+<th data-quarto-table-cell-role="th">LastName</th>
+<th data-quarto-table-cell-role="th">TotalSales</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3</td>
+<td>Jane</td>
+<td>Peacock</td>
+<td>833.0</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Margaret</td>
+<td>Park</td>
+<td>775.0</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Steve</td>
+<td>Johnson</td>
+<td>720.0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Andrew</td>
+<td>Adams</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Nancy</td>
+<td>Edwards</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Michael</td>
+<td>Mitchell</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Robert</td>
+<td>King</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Laura</td>
+<td>Callahan</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-14" class="level3">
+<h3 class="anchored" data-anchor-id="part-14">Part 14</h3>
+<p>(3 points) Which sales agent made the most in sales in 2021? (Hint: count the total sales in 2021 grouped by sales agent.)</p>
+<div id="cell-34" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727185227646,&quot;user_tz&quot;:240,&quot;elapsed&quot;:202,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="1cf82f6e-f801-4928-a6ab-4a267eb93f8e" data-execution_count="107">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Determine which sales agent made the most sales <span class="kw">in</span> <span class="dv">2021</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>SELECT ID, Firstname, LastName, TotalSales FROM (</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  SELECT e.EmployeeId AS ID, e.FirstName, e.LastName,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  ROUND(COALESCE(SUM(i.Total), <span class="dv">0</span>)) AS TotalSales</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  FROM Employee AS e</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  LEFT OUTER JOIN Customer AS c ON e.EmployeeId <span class="op">=</span> c.SupportRepId</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  LEFT OUTER JOIN Invoice AS i USING(CustomerId)</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  WHERE i.InvoiceDate BETWEEN datetime(<span class="st">'2021-01-01 00:00:00'</span>)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  AND datetime(<span class="st">'2021-12-31 00:00:00'</span>)</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  GROUP BY e.EmployeeId</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>) ORDER BY TotalSales DESC LIMIT <span class="dv">1</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="107">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">FirstName</th>
+<th data-quarto-table-cell-role="th">LastName</th>
+<th data-quarto-table-cell-role="th">TotalSales</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5</td>
+<td>Steve</td>
+<td>Johnson</td>
+<td>164.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-15" class="level3">
+<h3 class="anchored" data-anchor-id="part-15">Part 15</h3>
+<p>(3 points) Provide a query that shows the total sales per country. Which country’s customers spent the most?</p>
+<div id="cell-36" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727184856427,&quot;user_tz&quot;:240,&quot;elapsed&quot;:230,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="deac6c80-904a-4067-eb7e-95da7aa7e5c2" data-execution_count="103">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Determine which country<span class="st">'s customers spent the most</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="er">SELECT BillingCountry, ROUND</span>(COALESCE(SUM(Total), <span class="dv">0</span>)) AS TotalSales</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>FROM Invoice GROUP BY BillingCountry ORDER BY TotalSales DESC LIMIT <span class="dv">1</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="103">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">BillingCountry</th>
+<th data-quarto-table-cell-role="th">TotalSales</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>USA</td>
+<td>523.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<p>You will be working with an SQLite3 database pets.db with 3 tables dog, treat and dog_treat. The dog_treat table is a linker table showing which dog ate which treat.</p>
+<p>Note: Although it would be best practice to always attach an E-R diagram (and potentially scripts to populate the database from scratch), in real scenarios this is often not the case. Instead, you may need to explore the tables and their columns using the tools afforded by the RDBMS or other exploratory data analysis environments. This problem emulates such a sitation – all we have at first is a database file. To explore, for example the sqlite3 command line tool has so-called dot-commands (such as .tables), and the Jupyter Lab SQL extension supports %sqlcmd commands for inspecting tables and columns, and one for exploring the content of tables (%sqlcmd explore –table TABLE_NAME).</p>
+<p>Complete the following tasks:</p>
+<section id="part-1-1" class="level3">
+<h3 class="anchored" data-anchor-id="part-1-1">Part 1</h3>
+<p>(6 points) Show a table of ALL dogs and the treats with calories that they ate with column names dog, treat, calorie. A dog that did not eat any treats should still be present in the table.</p>
+<div id="cell-38" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727185438639,&quot;user_tz&quot;:240,&quot;elapsed&quot;:601,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-execution_count="108">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>sql sqlite:<span class="op">////</span>content<span class="op">/</span>drive<span class="op">/</span>MyDrive<span class="op">/</span>ColabNotebooks<span class="op">/</span>homework_projects<span class="op">/</span>pets.db</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-39" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727186845689,&quot;user_tz&quot;:240,&quot;elapsed&quot;:223,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="4eabc122-ffee-4adc-b611-7b299a767288" data-execution_count="124">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="op">--</span> Find out the treats <span class="kw">and</span> calories each dog has consumed</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>SELECT d.name AS dog, t.name AS treat, COALESCE(t.calories, <span class="dv">0</span>) AS calories</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>FROM dog AS d</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>LEFT OUTER JOIN dog_treat USING(dog_id)</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>LEFT OUTER JOIN treat AS t USING(treat_id)</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>ORDER BY dog, calories DESC<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+ * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/pets.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="124">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">dog</th>
+<th data-quarto-table-cell-role="th">treat</th>
+<th data-quarto-table-cell-role="th">calories</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Fido</td>
+<td>Bones</td>
+<td>500</td>
+</tr>
+<tr class="even">
+<td>Fido</td>
+<td>Chewies</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>Lassie</td>
+<td>None</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Roger</td>
+<td>Bones</td>
+<td>500</td>
+</tr>
+<tr class="odd">
+<td>Woof</td>
+<td>Bones</td>
+<td>500</td>
+</tr>
+<tr class="even">
+<td>Woof</td>
+<td>Raw Meat</td>
+<td>450</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="part-2-1" class="level3">
+<h3 class="anchored" data-anchor-id="part-2-1">Part 2</h3>
+<p>(6 points) Show a table with two columns dog and total_calories where only dogs that have eaten more than 500 calories are displayed.</p>
+<div id="cell-41" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727186789069,&quot;user_tz&quot;:240,&quot;elapsed&quot;:199,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="36b51f29-3994-436b-e57e-330d0eaa6f6a" data-execution_count="122">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>sql</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>SELECT d.name AS dog, SUM(t.calories) AS total_calories</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>FROM dog AS d</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>LEFT OUTER JOIN dog_treat USING(dog_id)</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>LEFT OUTER JOIN treat AS t USING(treat_id)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>GROUP BY d.dog_id HAVING total_calories <span class="op">&gt;</span> <span class="dv">500</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>ORDER BY total_calories DESC<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/chinook.db
+ * sqlite:////content/drive/MyDrive/ColabNotebooks/homework_projects/pets.db
+Done.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="122">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">dog</th>
+<th data-quarto-table-cell-role="th">total_calories</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Woof</td>
+<td>950</td>
+</tr>
+<tr class="even">
+<td>Fido</td>
+<td>600</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="cell-42" class="cell" data-executioninfo="{&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1727187157666,&quot;user_tz&quot;:240,&quot;elapsed&quot;:2528,&quot;user&quot;:{&quot;displayName&quot;:&quot;Austin Allen&quot;,&quot;userId&quot;:&quot;10188468043268672144&quot;}}" data-outputid="2697c2c2-1864-4957-86ae-3371fd79cbbe" data-execution_count="128">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rendering the file to .html</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>jupyter nbconvert <span class="op">/</span>content<span class="op">/</span>drive<span class="op">/</span>MyDrive<span class="op">/</span>ColabNotebooks<span class="op">/</span>homework_projects<span class="op">/</span>b823_hw2.ipynb <span class="op">--</span>to html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[NbConvertApp] Converting notebook /content/drive/MyDrive/ColabNotebooks/homework_projects/b823_hw2.ipynb to html
+[NbConvertApp] Writing 684154 bytes to /content/drive/MyDrive/ColabNotebooks/homework_projects/b823_hw2.html</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

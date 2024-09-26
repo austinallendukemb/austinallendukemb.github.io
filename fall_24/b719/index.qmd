@@ -3,15 +3,18 @@ title: "Generalized Linear Models: Class Projects"
 subtitle: BIOSTAT 719
 ---
 
-# August
+## August
 
 * [Homework 1](./projects/hw_1.qmd)
 
-# September
+## September
 
-# October
+* [Homework 2](./projects/hw_2.qmd)
+* [Homework 3](./projects/hw_3.qmd)
 
-# November
+## October
+
+## November
 
 
 
