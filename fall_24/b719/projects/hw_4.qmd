@@ -1,0 +1,162 @@
+---
+title: "BIOSTAT 719 - Homework 3"
+---
+
+```{r include = FALSE}
+###################################### R ######################################
+library(tidyverse)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+###############################################################################
+```
+
+
+## Problem 1
+
+(10 points) Consider a 2 × 2 contingency table from a prospective study in which people who were or were not exposed to some pollutant (X) are followed up and, after several years, categorized according to the presence or absence of a disease (D). The following table shows counts for each cell.
+
+| |Diseased (D = 1) | Not Diseased (D = 0)|
+|----------------|----------|----------|
+|Exposed (X = 1) | a | b |
+|Not Exposed (X = 0)|c | d|
+
+Consider a logistic regression model, $\text{logit}(\pi) = \beta_0 + \beta_1X$, where π = P rob(D = 1). Utilizing the $X^TW X$ expression for the information matrix (with appropriate matrix W), show that variance of MLE of $\beta_1$ (i.e. logarithm of OR) can be expressed as $\frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d}$. 
+
+
+----------------------------------------------------------------------------------------------------------------
+
+How on earth are we going to tackle this one, you ask? I have no idea. But I **do** know that the variance of the MLE of $\beta_1$ is the $(2,2)$'th element of the variance-covariance matrix, which is the inverse of the Information matrix. I **also** know that $I = X^TWX$, which means we're going to have to define $X$ and $W$ in terms of a, b, d, and d if we're going to solve this problem. 
+
+I'm going to start by thinking about the design matrix, $X$. We have a single predictor, $X = \begin{cases} 1, \quad \text{Exposed}\\0, \quad \text{Not exposed}\end{cases}$. This means that the design matrix will be a $n\times 2$ matrix that can be organized in the following way: 
+
+$$
+X = \begin{bmatrix} 1 & X_1 = 1\\ \vdots &\vdots\\1 &X_{a + b} = 1\\1 &X_{a + b + 1} = 0\\\vdots &\vdots\\1 &X_{a + b + c + d} = 0 \end{bmatrix}
+$$
+
+
+We also know that the the matrix $W$ is a diagonal matrix where $w_{ii} = \frac{1}{Var(Y_i)}\left(\frac{\partial\pi}{\partial\eta}\right)^2$. Because we're dealing with logistic regression, we know that the link function is $g(\pi_i) = \text{logit}(\pi_i) = \log\left(\frac{\pi_i}{1 - \pi_i}\right)$, which means $\pi_i = \frac{1}{1 + e^{-\eta_i}} \implies \frac{\partial\pi}{\partial\eta} = \frac{e^{-\eta_i}}{(1 + e^{-\eta_i})^2}$. 
+
+We also know that each $Y_i \sim Bern(\pi) \implies Var(Y_i) = \pi(1 - \pi) = \frac{1}{1 + e^{-\eta}} - \frac{1}{(1 + e^{-\eta})^2} \implies \frac{1}{Var(Y_i)} = \frac{e^{-\eta_i}}{(1 + e^{-\eta_i})^2}$. Because $\frac{1}{X}\left(X\right)^2 = X$, $w_{ii} = \frac{1}{Var(Y_i)}\left(\frac{\partial\pi}{\partial\eta}\right)^2 = \frac{1}{Var(Y_i)}\left(Var(Y_i)\right)^2 = Var(Y_i) = \pi_i(1 - \pi_i)$. Super cool. 
+
+
+Let's now see if we can derive a formula for the information matrix, $I$. 
+
+
+\begin{align*}
+I &= X^T W X\\
+&= \begin{bmatrix} 
+1 & \cdots  & 1 \\ 
+X_1 = 1 & \cdots & X_{a + b + c + d} = 0 
+\end{bmatrix}
+\begin{bmatrix}
+w_{11} & 0 & \cdots & 0\\
+0 & w_{22} & \cdots & 0\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & 0 &\cdots & w_{nn}
+\end{bmatrix}
+\begin{bmatrix} 1 & X_1 = 1\\ 
+\vdots &\vdots\\
+1 &X_{a + b + c + d} = 0 
+\end{bmatrix} \quad (\text{Note: } a + b + c + d = n)\\
+&= \begin{bmatrix} 
+w_{11} & \cdots  &  w_{(a + b, a + b)} & w_{(a + b + 1, a + b + 1)} & \cdots &w_{nn}\\ 
+w_{11}  & \cdots & w_{(a + b, a + b)} & 0 & \cdots& 0 
+\end{bmatrix}
+\begin{bmatrix} 1 & X_1 = 1\\ \vdots &\vdots\\1 &X_{a + b} = 1\\1 &X_{a + b + 1} = 0\\\vdots &\vdots\\1 &X_{a + b + c + d} = 0 \end{bmatrix}\\
+&= \begin{bmatrix}
+\sum_{i = 1}^n w_{ii} &
+\sum_{i = 1}^{a + b} w_{ii}\\
+\sum_{i = 1}^{a + b} w_{ii} &
+\sum_{i = 1}^{a + b} w_{ii}
+\end{bmatrix}\\
+&= \begin{bmatrix}
+\sum_{i = 1}^n \pi_i(1 - \pi_i) &
+\sum_{i = 1}^{a + b} \pi_i(1 - \pi_i)\\
+\sum_{i = 1}^{a + b} \pi_i(1 - \pi_i) &
+\sum_{i = 1}^{a + b} \pi_i(1 - \pi_i)
+\end{bmatrix}
+\end{align*}
+
+
+We can further simplify this when we refer back to the contingency table. Because we are interested in the probability $P(D = 1)$, and because there are only two possible values for $X \in \{0, 1\}$, we only have two possible values for $\pi_i$. Let us define $\pi_0 = P(D = 1| X = 0)$, and $\pi_1 = P(D = 1 | X = 1)$. Thus, for $Y_{i \in [a, b]}$, $\pi_i = \pi_1$, and for $Y_{i \in [a + b + 1, a + b + c + d]}$, $\pi_i = \pi_0$. Thus, the information matrix can be expressed as follows: 
+
+$$
+I = \begin{bmatrix}(a + b)\pi_1 + (c + d)\pi_0 & (a + b)\pi_1\\(a + b)\pi_1 &(a + b)\pi_1\end{bmatrix}
+$$
+
+
+To find the inverse of this matrix, let's first calculate the determinant: 
+
+
+\begin{align*}
+det(I) &= \frac{1}{cell_{1,1}cell_{2,2} - cell_{1,2}cell_{2,1}}\\
+&= \frac{1}{\pi_1\pi_0(a + b)(c  + d)}\\
+\end{align*}
+
+
+Now we're ready to calculate the inverse of this matrix, which will yield the variance-covariance matrix for $\beta_0$ and $\beta_1$ (note that $\pi_1 = a/(a + b)$ and $\pi_0 = c/(c + d)$): 
+
+
+\begin{align*}
+I^{-1} &= \det(I)
+\begin{bmatrix}
+\text{cell}_{2,2} & -\text{cell}_{1,2} \\
+-\text{cell}_{2,1} & \text{cell}_{1,1}
+\end{bmatrix}\\
+&= \frac{1}{(a + b)(c + d)\pi_1 \pi_0}
+\begin{bmatrix}
+(a + b)\pi_1  & -(a + b)\pi_1 \\
+-(a + b)\pi_1 & (a + b)\pi_1+ (c + d)\pi_0
+\end{bmatrix}\\
+&= \frac{1}{(a + b)(c + d)\pi_1 \pi_0}
+\begin{bmatrix}
+(a + b)\frac{a}{a + b}  & -(a + b)\frac{a}{a + b} \\
+-(a + b)\frac{a}{a + b} & (a + b)\frac{a}{a + b}+ (c + d)\frac{c}{c + d}
+\end{bmatrix}\\
+&= \frac{1}{(a + b)(c + d)\pi_1 \pi_0}
+\begin{bmatrix}
+a  & -a \\
+-a & a + c
+\end{bmatrix}\\
+&= 
+\begin{bmatrix}
+\frac{1}{c}  & -\frac{1}{c}  \\
+-\frac{1}{c}  & \frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d}
+\end{bmatrix}
+\end{align*}
+
+
+The variance of $\beta_1$ is found in the bottom-right cell. Thus, $Var(\beta_1) = \frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d}$.
+
+
+
+## Problem 2
+
+
+(5 points) Consider data with 100 subjects evenly split between men and women. Probability of disease (π) is less than 1/2 for men and less than 1/2 for women. The following logistic
+regression model was considered:
+
+$$
+\text{logit} (\pi) = \beta_0 + \beta_1 \cdot \text{sex}, 
+$$
+
+with sex coded 1 for female and 0 for male. The information matrix evaluated at the maximum likelihood estimates has the first column equal to $[18.5, 8.0]^T$
+
+Compute number of diseased men and number of diseased women.
+
+[Hint: Use the derived information matrix in Question 1]
+
+I contingency tables helpful. Let's construct one for this problem: 
+
+|                |Diseased (D = 1) | Not Diseasee (D = 0)|
+|----------------|----------|----------|
+|Female |            a |                      b |
+|Male|               c |                       d|
+
+
+Recall that the information matrix is $I = \begin{bmatrix}(a + b)\pi_1 + (c + d)\pi_0 & (a + b)\pi_1\\(a + b)\pi_1 &(a + b)\pi_1 \end{bmatrix} = \begin{bmatrix}a + c & a\\a &a \end{bmatrix}$. Thus, $a = 8$ and $a + c = 18.5$, which means that $c = 10.5$. However, interpreting this is obviously proposterous. There very well may have been 8 diseased women, but it doesn't make sense to have 10.5 diseased men. This means there is an error somewhere, but I haven't been able to find it. 
+
+
+
+
+
+

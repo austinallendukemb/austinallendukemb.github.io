@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Austin’s MB Projects - Generalized Linear Models: Class Projects</title>
+<title>Austin’s MB Projects - BIOSTAT 719 - Homework 3</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +67,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../../styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -78,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Austin’s MB Projects</span>
     </a>
   </div>
@@ -89,11 +118,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About Austin’s MB Projects</span></a>
   </li>  
 </ul>
@@ -112,10 +141,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#august" id="toc-august" class="nav-link active" data-scroll-target="#august">August</a></li>
-  <li><a href="#september" id="toc-september" class="nav-link" data-scroll-target="#september">September</a></li>
-  <li><a href="#october" id="toc-october" class="nav-link" data-scroll-target="#october">October</a></li>
-  <li><a href="#november" id="toc-november" class="nav-link" data-scroll-target="#november">November</a></li>
+  <li><a href="#problem-1" id="toc-problem-1" class="nav-link active" data-scroll-target="#problem-1">Problem 1</a></li>
+  <li><a href="#problem-2" id="toc-problem-2" class="nav-link" data-scroll-target="#problem-2">Problem 2</a></li>
   </ul>
 </nav>
     </div>
@@ -124,8 +151,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Generalized Linear Models: Class Projects</h1>
-<p class="subtitle lead">BIOSTAT 719</p>
+<h1 class="title">BIOSTAT 719 - Homework 3</h1>
 </div>
 
 
@@ -142,27 +168,145 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="august" class="level2">
-<h2 class="anchored" data-anchor-id="august">August</h2>
-<ul>
-<li><a href="../../fall_24/b719/projects/hw_1.html">Homework 1</a></li>
-</ul>
+<section id="problem-1" class="level2">
+<h2 class="anchored" data-anchor-id="problem-1">Problem 1</h2>
+<p>(10 points) Consider a 2 × 2 contingency table from a prospective study in which people who were or were not exposed to some pollutant (X) are followed up and, after several years, categorized according to the presence or absence of a disease (D). The following table shows counts for each cell.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Diseased (D = 1)</th>
+<th>Not Diseased (D = 0)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exposed (X = 1)</td>
+<td>a</td>
+<td>b</td>
+</tr>
+<tr class="even">
+<td>Not Exposed (X = 0)</td>
+<td>c</td>
+<td>d</td>
+</tr>
+</tbody>
+</table>
+<p>Consider a logistic regression model, <span class="math inline">\(\text{logit}(\pi) = \beta_0 + \beta_1X\)</span>, where π = P rob(D = 1). Utilizing the <span class="math inline">\(X^TW X\)</span> expression for the information matrix (with appropriate matrix W), show that variance of MLE of <span class="math inline">\(\beta_1\)</span> (i.e.&nbsp;logarithm of OR) can be expressed as <span class="math inline">\(\frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d}\)</span>.</p>
+<hr>
+<p>How on earth are we going to tackle this one, you ask? I have no idea. But I <strong>do</strong> know that the variance of the MLE of <span class="math inline">\(\beta_1\)</span> is the <span class="math inline">\((2,2)\)</span>’th element of the variance-covariance matrix, which is the inverse of the Information matrix. I <strong>also</strong> know that <span class="math inline">\(I = X^TWX\)</span>, which means we’re going to have to define <span class="math inline">\(X\)</span> and <span class="math inline">\(W\)</span> in terms of a, b, d, and d if we’re going to solve this problem.</p>
+<p>I’m going to start by thinking about the design matrix, <span class="math inline">\(X\)</span>. We have a single predictor, <span class="math inline">\(X = \begin{cases} 1, \quad \text{Exposed}\\0, \quad \text{Not exposed}\end{cases}\)</span>. This means that the design matrix will be a <span class="math inline">\(n\times 2\)</span> matrix that can be organized in the following way:</p>
+<p><span class="math display">\[
+X = \begin{bmatrix} 1 &amp; X_1 = 1\\ \vdots &amp;\vdots\\1 &amp;X_{a + b} = 1\\1 &amp;X_{a + b + 1} = 0\\\vdots &amp;\vdots\\1 &amp;X_{a + b + c + d} = 0 \end{bmatrix}
+\]</span></p>
+<p>We also know that the the matrix <span class="math inline">\(W\)</span> is a diagonal matrix where <span class="math inline">\(w_{ii} = \frac{1}{Var(Y_i)}\left(\frac{\partial\pi}{\partial\eta}\right)^2\)</span>. Because we’re dealing with logistic regression, we know that the link function is <span class="math inline">\(g(\pi_i) = \text{logit}(\pi_i) = \log\left(\frac{\pi_i}{1 - \pi_i}\right)\)</span>, which means <span class="math inline">\(\pi_i = \frac{1}{1 + e^{-\eta_i}} \implies \frac{\partial\pi}{\partial\eta} = \frac{e^{-\eta_i}}{(1 + e^{-\eta_i})^2}\)</span>.</p>
+<p>We also know that each <span class="math inline">\(Y_i \sim Bern(\pi) \implies Var(Y_i) = \pi(1 - \pi) = \frac{1}{1 + e^{-\eta}} - \frac{1}{(1 + e^{-\eta})^2} \implies \frac{1}{Var(Y_i)} = \frac{e^{-\eta_i}}{(1 + e^{-\eta_i})^2}\)</span>. Because <span class="math inline">\(\frac{1}{X}\left(X\right)^2 = X\)</span>, <span class="math inline">\(w_{ii} = \frac{1}{Var(Y_i)}\left(\frac{\partial\pi}{\partial\eta}\right)^2 = \frac{1}{Var(Y_i)}\left(Var(Y_i)\right)^2 = Var(Y_i) = \pi_i(1 - \pi_i)\)</span>. Super cool.</p>
+<p>Let’s now see if we can derive a formula for the information matrix, <span class="math inline">\(I\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+I &amp;= X^T W X\\
+&amp;= \begin{bmatrix}
+1 &amp; \cdots  &amp; 1 \\
+X_1 = 1 &amp; \cdots &amp; X_{a + b + c + d} = 0
+\end{bmatrix}
+\begin{bmatrix}
+w_{11} &amp; 0 &amp; \cdots &amp; 0\\
+0 &amp; w_{22} &amp; \cdots &amp; 0\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+0 &amp; 0 &amp;\cdots &amp; w_{nn}
+\end{bmatrix}
+\begin{bmatrix} 1 &amp; X_1 = 1\\
+\vdots &amp;\vdots\\
+1 &amp;X_{a + b + c + d} = 0
+\end{bmatrix} \quad (\text{Note: } a + b + c + d = n)\\
+&amp;= \begin{bmatrix}
+w_{11} &amp; \cdots  &amp;  w_{(a + b, a + b)} &amp; w_{(a + b + 1, a + b + 1)} &amp; \cdots &amp;w_{nn}\\
+w_{11}  &amp; \cdots &amp; w_{(a + b, a + b)} &amp; 0 &amp; \cdots&amp; 0
+\end{bmatrix}
+\begin{bmatrix} 1 &amp; X_1 = 1\\ \vdots &amp;\vdots\\1 &amp;X_{a + b} = 1\\1 &amp;X_{a + b + 1} = 0\\\vdots &amp;\vdots\\1 &amp;X_{a + b + c + d} = 0 \end{bmatrix}\\
+&amp;= \begin{bmatrix}
+\sum_{i = 1}^n w_{ii} &amp;
+\sum_{i = 1}^{a + b} w_{ii}\\
+\sum_{i = 1}^{a + b} w_{ii} &amp;
+\sum_{i = 1}^{a + b} w_{ii}
+\end{bmatrix}\\
+&amp;= \begin{bmatrix}
+\sum_{i = 1}^n \pi_i(1 - \pi_i) &amp;
+\sum_{i = 1}^{a + b} \pi_i(1 - \pi_i)\\
+\sum_{i = 1}^{a + b} \pi_i(1 - \pi_i) &amp;
+\sum_{i = 1}^{a + b} \pi_i(1 - \pi_i)
+\end{bmatrix}
+\end{align*}\]</span></p>
+<p>We can further simplify this when we refer back to the contingency table. Because we are interested in the probability <span class="math inline">\(P(D = 1)\)</span>, and because there are only two possible values for <span class="math inline">\(X \in \{0, 1\}\)</span>, we only have two possible values for <span class="math inline">\(\pi_i\)</span>. Let us define <span class="math inline">\(\pi_0 = P(D = 1| X = 0)\)</span>, and <span class="math inline">\(\pi_1 = P(D = 1 | X = 1)\)</span>. Thus, for <span class="math inline">\(Y_{i \in [a, b]}\)</span>, <span class="math inline">\(\pi_i = \pi_1\)</span>, and for <span class="math inline">\(Y_{i \in [a + b + 1, a + b + c + d]}\)</span>, <span class="math inline">\(\pi_i = \pi_0\)</span>. Thus, the information matrix can be expressed as follows:</p>
+<p><span class="math display">\[
+I = \begin{bmatrix}(a + b)\pi_1 + (c + d)\pi_0 &amp; (a + b)\pi_1\\(a + b)\pi_1 &amp;(a + b)\pi_1\end{bmatrix}
+\]</span></p>
+<p>To find the inverse of this matrix, let’s first calculate the determinant:</p>
+<p><span class="math display">\[\begin{align*}
+det(I) &amp;= \frac{1}{cell_{1,1}cell_{2,2} - cell_{1,2}cell_{2,1}}\\
+&amp;= \frac{1}{\pi_1\pi_0(a + b)(c  + d)}\\
+\end{align*}\]</span></p>
+<p>Now we’re ready to calculate the inverse of this matrix, which will yield the variance-covariance matrix for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> (note that <span class="math inline">\(\pi_1 = a/(a + b)\)</span> and <span class="math inline">\(\pi_0 = c/(c + d)\)</span>):</p>
+<p><span class="math display">\[\begin{align*}
+I^{-1} &amp;= \det(I)
+\begin{bmatrix}
+\text{cell}_{2,2} &amp; -\text{cell}_{1,2} \\
+-\text{cell}_{2,1} &amp; \text{cell}_{1,1}
+\end{bmatrix}\\
+&amp;= \frac{1}{(a + b)(c + d)\pi_1 \pi_0}
+\begin{bmatrix}
+(a + b)\pi_1  &amp; -(a + b)\pi_1 \\
+-(a + b)\pi_1 &amp; (a + b)\pi_1+ (c + d)\pi_0
+\end{bmatrix}\\
+&amp;= \frac{1}{(a + b)(c + d)\pi_1 \pi_0}
+\begin{bmatrix}
+(a + b)\frac{a}{a + b}  &amp; -(a + b)\frac{a}{a + b} \\
+-(a + b)\frac{a}{a + b} &amp; (a + b)\frac{a}{a + b}+ (c + d)\frac{c}{c + d}
+\end{bmatrix}\\
+&amp;= \frac{1}{(a + b)(c + d)\pi_1 \pi_0}
+\begin{bmatrix}
+a  &amp; -a \\
+-a &amp; a + c
+\end{bmatrix}\\
+&amp;=
+\begin{bmatrix}
+\frac{1}{c}  &amp; -\frac{1}{c}  \\
+-\frac{1}{c}  &amp; \frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d}
+\end{bmatrix}
+\end{align*}\]</span></p>
+<p>The variance of <span class="math inline">\(\beta_1\)</span> is found in the bottom-right cell. Thus, <span class="math inline">\(Var(\beta_1) = \frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d}\)</span>.</p>
 </section>
-<section id="september" class="level2">
-<h2 class="anchored" data-anchor-id="september">September</h2>
-<ul>
-<li><a href="../../fall_24/b719/projects/hw_2.html">Homework 2</a></li>
-<li><a href="../../fall_24/b719/projects/hw_3.html">Homework 3</a></li>
-<li><a href="../../fall_24/b719/projects/hw_4.html">Homework 4</a></li>
-</ul>
-</section>
-<section id="october" class="level2">
-<h2 class="anchored" data-anchor-id="october">October</h2>
-</section>
-<section id="november" class="level2">
-<h2 class="anchored" data-anchor-id="november">November</h2>
-<p>To review notes taken during class, follow <a href="../../fall_24/b719/notes/notes.html">this link</a>.</p>
-<p><a href="../../index.html">Back</a></p>
+<section id="problem-2" class="level2">
+<h2 class="anchored" data-anchor-id="problem-2">Problem 2</h2>
+<p>(5 points) Consider data with 100 subjects evenly split between men and women. Probability of disease (π) is less than 1/2 for men and less than 1/2 for women. The following logistic regression model was considered:</p>
+<p><span class="math display">\[
+\text{logit} (\pi) = \beta_0 + \beta_1 \cdot \text{sex},
+\]</span></p>
+<p>with sex coded 1 for female and 0 for male. The information matrix evaluated at the maximum likelihood estimates has the first column equal to <span class="math inline">\([18.5, 8.0]^T\)</span></p>
+<p>Compute number of diseased men and number of diseased women.</p>
+<p>[Hint: Use the derived information matrix in Question 1]</p>
+<p>I contingency tables helpful. Let’s construct one for this problem:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Diseased (D = 1)</th>
+<th>Not Diseasee (D = 0)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Female</td>
+<td>a</td>
+<td>b</td>
+</tr>
+<tr class="even">
+<td>Male</td>
+<td>c</td>
+<td>d</td>
+</tr>
+</tbody>
+</table>
+<p>Recall that the information matrix is <span class="math inline">\(I = \begin{bmatrix}(a + b)\pi_1 + (c + d)\pi_0 &amp; (a + b)\pi_1\\(a + b)\pi_1 &amp;(a + b)\pi_1 \end{bmatrix} = \begin{bmatrix}a + c &amp; a\\a &amp;a \end{bmatrix}\)</span>. Thus, <span class="math inline">\(a = 8\)</span> and <span class="math inline">\(a + c = 18.5\)</span>, which means that <span class="math inline">\(c = 10.5\)</span>. However, interpreting this is obviously proposterous. There very well may have been 8 diseased women, but it doesn’t make sense to have 10.5 diseased men. This means there is an error somewhere, but I haven’t been able to find it.</p>
 
 
 </section>

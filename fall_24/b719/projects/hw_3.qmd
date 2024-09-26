@@ -22,66 +22,66 @@ with the sum of these 150 observations equal to 30.
 
 **Part (a):** Starting from $\lambda_{\text{start}} = 1$ obtain the next iteration of the Newton-Raphson algorithm. Show details of your work. Do NOT use computer.
 
-Recall that the score function for a set of independent exponential random variables is $U = \frac{d\ell}{d\lambda} = \frac{n}{\lambda} - \sum_{i = 1}^n y_i$. Thus, $U' = -\frac{n}{\lambda^2}$. We also know that $\lambda_1 = \lambda_{\text{start}} - \frac{U_{\text{start}}}{U'_{\text{start}}}$. Plugging and chugging, we can see: 
-
-
-\begin{align*}
-\lambda_1 &= \lambda_{\text{start}} - \frac{U_{\text{start}}}{U'_{\text{start}}}\\
-&= 1 - \frac{\frac{n}{1} - \sum y_i}{-\frac{n}{1^2}}\\
-&= 1 - \frac{150 - 30}{-150}\\
-&= 1.8
-\end{align*}
-
-Here we have the after one iteration of the Newton-Raphson algoritm, $\lambda_1 = 1.8$. 
+> Recall that the score function for a set of independent exponential random variables is $U = \frac{d\ell}{d\lambda} = \frac{n}{\lambda} - \sum_{i = 1}^n y_i$. Thus, $U' = -\frac{n}{\lambda^2}$. We also know that $\lambda_1 = \lambda_{\text{start}} - \frac{U_{\text{start}}}{U'_{\text{start}}}$. Plugging and chugging, we can see: 
+> 
+> 
+> \begin{align*}
+> \lambda_1 &= \lambda_{\text{start}} - \frac{U_{\text{start}}}{U'_{\text{start}}}\\
+> &= 1 - \frac{\frac{n}{1} - \sum y_i}{-\frac{n}{1^2}}\\
+> &= 1 - \frac{150 - 30}{-150}\\
+> &= 1.8
+> \end{align*}
+> 
+> Here we have the after one iteration of the Newton-Raphson algoritm, $\lambda_1 = 1.8$. 
 
 
 
 **Part (b):** Starting from $\lambda_{\text{start}} = 1$ obtain the next iteration of the Method of Scoring algorithm. Show details of your work. Do NOT use computer.
 
-The formula for the method of score algorithm is this: $\lambda_1 = \lambda_{\text{start}} + \frac{U_{\text{start}}}{I(\lambda)_{\text{start}}}$. This being the case, we need to find the Fisher's information for $\lambda$. I'm going to use the fact that the exponential distribution belongs to the exponential family to help me solve this: 
-
-
-\begin{align*}
-I(\lambda_i) &= \frac{b''(\lambda_i)c'(\lambda_i)}{b'(\lambda_i)} - c''(\lambda_i)\\
-b(\lambda_i) &= -\lambda_i\\
-b'(\lambda_i) &= -1\\
-b''(\lambda_i) &= 0\\
-c(\lambda_i) &= log(\lambda_i)\\
-c'(\lambda_i) &= \frac{1}{\lambda_i}\\
-c''(\lambda_i) &= -\frac{1}{\lambda_i^2}\\
-I(\lambda_i) &= \frac{b''(\lambda_i)c'(\lambda_i)}{b'(\lambda_i)} - c''(\lambda_i)\\
-&= \frac{(0)(1/\lambda_i)}{-1} - \left(-\frac{1}{\lambda_i^2}\right)\\
-&= \frac{1}{\lambda_i^2}\\
-\end{align*}
-
-Because each $y_i$ is i.i.d., $\lambda_i$ is equivalent and we can add the information for each $\lambda_i$ quite easily: 
-
-
-\begin{align*}
-I(\lambda_{\text{start}}) &= \sum_{i = 1}^n I(\lambda_i)\\
-&= \sum_{i = 1}^n \frac{1}{\lambda^2}\\
-&= \sum_{i = 1}^n \frac{1}{1^2}\\
-&= n
-\end{align*}
-
-
-
-We know from the previous example that $U = \frac{n}{\lambda} - \sum_{i = 1}^n y_i$. Thus,
-
-
-\begin{align*}
-\lambda_1 &= \lambda_{start} + \frac{U}{I(\lambda_{\text{start}})}\\
-&= \lambda_{start} + \frac{\frac{n}{\lambda} - \sum_{i = 1}^n y_i}{n}\\
-&= 1 + \frac{\frac{150}{1} - 30}{150}\\
-&= 1 + 0.8\\
-&= 1.8
-\end{align*}
-
+> The formula for the method of score algorithm is this: $\lambda_1 = \lambda_{\text{start}} + \frac{U_{\text{start}}}{I(\lambda)_{\text{start}}}$. This being the case, we need to find the Fisher's information for $\lambda$. I'm going to use the fact that the exponential distribution belongs to the exponential family to help me solve this: 
+> 
+> 
+> \begin{align*}
+> I(\lambda_i) &= \frac{b''(\lambda_i)c'(\lambda_i)}{b'(\lambda_i)} - c''(\lambda_i)\\
+> b(\lambda_i) &= -\lambda_i\\
+> b'(\lambda_i) &= -1\\
+> b''(\lambda_i) &= 0\\
+> c(\lambda_i) &= log(\lambda_i)\\
+> c'(\lambda_i) &= \frac{1}{\lambda_i}\\
+> c''(\lambda_i) &= -\frac{1}{\lambda_i^2}\\
+> I(\lambda_i) &= \frac{b''(\lambda_i)c'(\lambda_i)}{b'(\lambda_i)} - c''(\lambda_i)\\
+> &= \frac{(0)(1/\lambda_i)}{-1} - \left(-\frac{1}{\lambda_i^2}\right)\\
+> &= \frac{1}{\lambda_i^2}\\
+> \end{align*}
+> 
+> Because each $y_i$ is i.i.d., $\lambda_i$ is equivalent and we can add the information for each $\lambda_i$ quite easily: 
+> 
+> 
+> \begin{align*}
+> I(\lambda_{\text{start}}) &= \sum_{i = 1}^n I(\lambda_i)\\
+> &= \sum_{i = 1}^n \frac{1}{\lambda^2}\\
+> &= \sum_{i = 1}^n \frac{1}{1^2}\\
+> &= n
+> \end{align*}
+> 
+> 
+> 
+> We know from the previous example that $U = \frac{n}{\lambda} - \sum_{i = 1}^n y_i$. Thus,
+> 
+> 
+> \begin{align*}
+> \lambda_1 &= \lambda_{start} + \frac{U}{I(\lambda_{\text{start}})}\\
+> &= \lambda_{start} + \frac{\frac{n}{\lambda} - \sum_{i = 1}^n y_i}{n}\\
+> &= 1 + \frac{\frac{150}{1} - 30}{150}\\
+> &= 1 + 0.8\\
+> &= 1.8
+> \end{align*}
+> 
 
 **Part (c):** Are your answers in (1) and (2) different? Explain why.
 
 
-They are the same! This is because the exponential distribution belongs to the exponential family and has the canonical form, so $I(\lambda) = -U'(\lambda)$. Thus, each will evaluate to the same value. 
+> They are the same! This is because the exponential distribution belongs to the exponential family and has the canonical form, so $I(\lambda) = -U'(\lambda)$. Thus, each will evaluate to the same value. 
 
 
 ## Problem 2
@@ -92,47 +92,47 @@ Suppose $Y_1, . . . , Y_n$ are independent random variables following the normal
 
 
 
-The first thing that I will note is that $\mu = \log(\beta)$. This implies two things. First, $\log(\beta) = \log(X^T\beta)$, which implies that $X_{n\times 1} = \left[\begin{matrix} 1\\1\\...\\1 \end{matrix}\right]$, and that $\beta_{1\times 1} = \left[\begin{matrix} \beta_0 \end{matrix}\right]$. The second implication is that because $\mu = \log(\beta)$, $g(\mu) = \exp(\beta)$. 
-
-
-Let's now calculate $w_i$ for the diagonal matrix $W$: 
-
-
-\begin{align*}
-w_i &= \frac{1}{Var(Y_i)}\left(\frac{\partial \mu_i}{\partial \eta_i}\right)^2\\
-&= \frac{1}{\sigma^2} \left(\frac{1}{\beta} \right)^2\\
-\begin{bmatrix} 
-\frac{1}{\sigma^2\beta^2} & 0 & \cdots & 0\\ 
-0 & \frac{1}{\sigma^2\beta^2} & \cdots & 0 \\
-\vdots & \vdots & \ddots & \vdots \\
-0 & 0 & \cdots & \frac{1}{\sigma^2\beta^2} 
-\end{bmatrix}
-\end{align*}
-
-The next thing to calculate is the $z$ vector. Recall that $z_i = \sum_{k = 1}^p x_{ik}b_i^{(m -1)} + (y_i - \mu_i)\left(\frac{\partial  \eta_i}{\partial \mu_i} \right)$. Note that because we only have a single parameter, and because the $X$ matrix is a $n\times 1$ matrix of $1$'s, $\sum_{k = 1}^p x_{ik}b_i^{(m -1)}$ simplifies to $b^{(m - 1)}$ (denoted below as $\beta$). 
-
-
-\begin{align*}
-z_i &= \beta + (y_i - \mu_i) \frac{\partial\eta_i}{\partial \mu_i}\\
-&= \beta + [y_i - \log(\beta)]\beta\\
-\implies z &= \beta + Y\beta - \log(\beta)\beta\\
-&= \beta\left(1 + Y - \log(\beta)\right)
-\end{align*}
-
-This gives rise to the following matrix based formula for an teratively re-weighted procedure for ML estimation of $\beta$:
-
-
-\begin{align*}
-b^{(m)} &= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
-&= \left(
-    \begin{bmatrix}1 \cdots 1\end{bmatrix}\frac{1}{\beta^2\sigma^2}I 
-    \begin{bmatrix}1\\ \vdots \\1\end{bmatrix}
-    \right)^{-1}
-    \begin{bmatrix}1 \cdots 1\end{bmatrix} \frac{1}{\beta^2\sigma^2}I \beta\left(1 + Y - \log(\beta)\right)\\
-&= \left(\frac{n}{\beta^2\sigma^2}\right)^{-1}\frac{1}{\beta^2\sigma^2}\begin{bmatrix}1 \cdots 1\end{bmatrix} \beta\left(1 + Y - \log(\beta)\right)\\
-&= \frac{1}{n}\begin{bmatrix}\beta\cdots\beta\end{bmatrix}(1 + Y - \log(\beta))
-\end{align*}
-
+> The first thing that I will note is that $\mu = \log(\beta)$. This implies two things. First, $\log(\beta) = \log(X^T\beta)$, which implies that $X_{n\times 1} = \left[\begin{matrix} 1\\1\\...\\1 \end{matrix}\right]$, and that $\beta_{1\times 1} = \left[\begin{matrix} \beta_0 \end{matrix}\right]$. The second implication is that because $\mu = \log(\beta)$, $g(\mu) = \exp(\beta)$. 
+> 
+> 
+> Let's now calculate $w_i$ for the diagonal matrix $W$: 
+> 
+> 
+> \begin{align*}
+> w_i &= \frac{1}{Var(Y_i)}\left(\frac{\partial \mu_i}{\partial \eta_i}\right)^2\\
+> &= \frac{1}{\sigma^2} \left(\frac{1}{\beta} \right)^2\\
+> \begin{bmatrix} 
+> \frac{1}{\sigma^2\beta^2} & 0 & \cdots & 0\\ 
+> 0 & \frac{1}{\sigma^2\beta^2} & \cdots & 0 \\
+> \vdots & \vdots & \ddots & \vdots \\
+> 0 & 0 & \cdots & \frac{1}{\sigma^2\beta^2} 
+> \end{bmatrix}
+> \end{align*}
+> 
+> The next thing to calculate is the $z$ vector. Recall that $z_i = \sum_{k = 1}^p x_{ik}b_i^{(m -1)} + (y_i - \mu_i)\left(\frac{\partial  \eta_i}{\partial \mu_i} \right)$. Note that because we only have a single parameter, and because the $X$ matrix is a $n\times 1$ matrix of $1$'s, $\sum_{k = 1}^p x_{ik}b_i^{(m -1)}$ simplifies to $b^{(m - 1)}$ (denoted below as $\beta$). 
+> 
+> 
+> \begin{align*}
+> z_i &= \beta + (y_i - \mu_i) \frac{\partial\eta_i}{\partial \mu_i}\\
+> &= \beta + [y_i - \log(\beta)]\beta\\
+> \implies z &= \beta + Y\beta - \log(\beta)\beta\\
+> &= \beta\left(1 + Y - \log(\beta)\right)
+> \end{align*}
+> 
+> This gives rise to the following matrix based formula for an teratively re-weighted procedure for ML estimation of $\beta$:
+> 
+> 
+> \begin{align*}
+> b^{(m)} &= \left( X^TW^{(m - 1)}X \right)^{-1}X^TW^{(m - 1)}z^{(m-1)}\\
+> &= \left(
+>     \begin{bmatrix}1 \cdots 1\end{bmatrix}\frac{1}{\beta^2\sigma^2}I 
+>     \begin{bmatrix}1\\ \vdots \\1\end{bmatrix}
+>     \right)^{-1}
+>     \begin{bmatrix}1 \cdots 1\end{bmatrix} \frac{1}{\beta^2\sigma^2}I \beta\left(1 + Y - \log(\beta)\right)\\
+> &= \left(\frac{n}{\beta^2\sigma^2}\right)^{-1}\frac{1}{\beta^2\sigma^2}\begin{bmatrix}1 \cdots 1\end{bmatrix} \beta\left(1 + Y - \log(\beta)\right)\\
+> &= \frac{1}{n}\begin{bmatrix}\beta\cdots\beta\end{bmatrix}(1 + Y - \log(\beta))
+> \end{align*}
+> 
 
 
 
@@ -149,6 +149,8 @@ pander::pander(t(data.frame(yi = yi, xi = xi)))
 ```
 
 **Part (a):** Fit the model $\log(E(Y_i)) = \beta_0 + \beta_1x_i$ with the GLM function in R.
+
+> Below is the fitted model and the code used to obtain it:
 
 ```{r}
 ###################################### R ######################################
@@ -179,22 +181,22 @@ model_table
 
 Write an iteratively reweighted least squares R function similar to the one covered in class but accounting for the **log link**. In addition, provide all the details of the algebraic derivations.
 
-Let's first derive the important terms: 
-
-* $n = 9$
-* $p = 2$
-* $\beta = \begin{bmatrix} \beta_0\\ \beta_1\end{bmatrix}$
-* $X^T = \begin{bmatrix} 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\-1 & -1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 \end{bmatrix}$
-* $\log(\mu) = \eta \implies \mu = e^{\eta}$
-* $\frac{\partial \eta}{\partial\mu} = \frac{1}{e^{\eta}}$
-* $\frac{\partial \mu}{\partial\eta} = e^{\eta}$
-* $w_{ii} = \frac{1}{Var(Y_i)}\left(\frac{\partial \mu}{\partial\eta}\right)^2 = \frac{\exp[(2)(\beta_0 + \beta_1x_i)]}{(\beta_0 + \beta_1x_i)}$
-* $z_i = \eta_i + (y_i - e^{\eta_i})e^{-\eta_i} = \beta_0 + \beta_1 x_i + \frac{y_i}{ e^{\beta_0 + \beta_1 x_i}} - 1$
-* $I = X^TWX = \begin{bmatrix} \sum_{i = 1}^n w_{ii} & \sum_{i = 1}^n w_{ii} x_{i} \\\sum_{i = 1}^n w_{ii}x_i & \sum_{i = 1}^n w_{ii}x_i^2\end{bmatrix}$
-* $X^T Wz = \begin{bmatrix} \sum_{i = 1}^n w_iz_i\\ \sum_{i = 1}^n w_ix_iz_i \end{bmatrix}$
-
-With this setup, we can implement our algorithm in R. I'm going to use the same initial values of 7 and 5 used in class for $\beta_0$ and $\beta_1$, respectively.
-
+> Let's first derive the important terms: 
+> 
+> * $n = 9$
+> * $p = 2$
+> * $\beta = \begin{bmatrix} \beta_0\\ \beta_1\end{bmatrix}$
+> * $X^T = \begin{bmatrix} 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\-1 & -1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 \end{bmatrix}$
+> * $\log(\mu) = \eta \implies \mu = e^{\eta}$
+> * $\frac{\partial \eta}{\partial\mu} = \frac{1}{e^{\eta}}$
+> * $\frac{\partial \mu}{\partial\eta} = e^{\eta}$
+> * $w_{ii} = \frac{1}{Var(Y_i)}\left(\frac{\partial \mu}{\partial\eta}\right)^2 = \frac{\exp[(2)(\beta_0 + \beta_1x_i)]}{(\beta_0 + \beta_1x_i)}$
+> * $z_i = \eta_i + (y_i - e^{\eta_i})e^{-\eta_i} = \beta_0 + \beta_1 x_i + \frac{y_i}{ e^{\beta_0 + \beta_1 x_i}} - 1$
+> * $I = X^TWX = \begin{bmatrix} \sum_{i = 1}^n w_{ii} & \sum_{i = 1}^n w_{ii} x_{i} \\\sum_{i = 1}^n w_{ii}x_i & \sum_{i = 1}^n w_{ii}x_i^2\end{bmatrix}$
+> * $X^T Wz = \begin{bmatrix} \sum_{i = 1}^n w_iz_i\\ \sum_{i = 1}^n w_ix_iz_i \end{bmatrix}$
+> 
+> With this setup, we can implement our algorithm in R. I'm going to use the same initial values of 7 and 5 used in class for $\beta_0$ and $\beta_1$, respectively.
+> 
 
 ```{r echo  = TRUE}
 ####################################### R #####################################
@@ -270,9 +272,9 @@ b_table
 ###############################################################################
 ```
 
-It looks like we converge at iteration 13. Not too bad! Our MLE estimates are 1.889 for $\beta_0$ and 0.670 for $\beta_1$. 
-
-Let's now get the Information matrix to solve for the variance-covariance matrix. 
+> It looks like we converge at iteration 13. Not too bad! Our MLE estimates are 1.889 for $\beta_0$ and 0.670 for $\beta_1$. 
+> 
+> Let's now get the Information matrix to solve for the variance-covariance matrix. 
 
 ```{r}
 ###################################### R ######################################
@@ -305,7 +307,7 @@ var_cov_table
 
 **Part (c):** Compare values obtained in (a) and (b).
 
-Let's print the tables from our model in part a: 
+> Let's print the tables from our model in part a: 
 
 ```{r}
 ###################################### R ######################################
@@ -324,4 +326,4 @@ model_var_cov_table
 ###############################################################################
 ```
 
-We are pretty much spot on! That's amazing. Both our estimates match (rounded to three decimals), and the same is true of the variance-covariance matrix. All in a day's work. 
+> We are pretty much spot on! That's amazing. Both our estimates match (rounded to three decimals), and the same is true of the variance-covariance matrix. All in a day's work. 
