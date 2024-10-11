@@ -1,0 +1,567 @@
+---
+title: "BIOSTAT 719 - Homework 6"
+---
+
+## Problem 1
+
+The following table shows an illustrative dataset with variables defined as below.
+
+* y: number of hospitalization
+* n: total number of patients
+* Treatment: 0 = Drug A, 1 = Drug B 
+* Disease severity: 0 = mild, 1 = Modeate, 2 = Severe
+
+
+```{r echo=FALSE}
+###################################### R ######################################
+treatment <- c(0, 0, 0, 1, 1, 1)
+disease_severity <- c(0, 1, 2, 0, 1, 2)
+y <- c(51, 67, 42, 143, 97, 40)
+n <- c(200, 158, 89, 315, 263, 75)
+df <- data.frame(Y = y, N = n, Treatment = treatment, DiseaseSeverity = disease_severity)
+
+# Print the df
+pander::pander(df)
+###############################################################################
+```
+
+
+We want to answer the following three scientific questions:
+
+• Question 1: Which treatment is better to prevent (or lower) hospitalization?
+
+• Question 2: Is the disease severity associated with hospitalization?
+
+• Question 3: Does the treatment effect differ by disease severity? (i.e., Is the disease severity an effect moderator?)
+
+We consider three logistic models with different sets of explanatory variables. We consider “treatment” as a categorical variable and “disease severity” as a continuous variable.
+
+• Model 1 includes treatment only.
+
+• Model 2 includes disease severity only.
+
+• Model 3 includes treatment, disease severity, and treatment-by-disease severity interaction.
+
+
+(a) How many parameters does the saturated logistic regression model have? Explain fully.
+
+> The saturated model contains 6 parameters. This is because the length of $Y$ is 6, and the saturated model has one parameter for each observation of $Y$. 
+
+(b) Write down the three logistic regression models.
+
+> Model 1: $\log\left(\frac{\pi}{1 - \pi}\right) = \beta_0 + \beta_1 \text{Treatment}$
+> Model 2: $\log\left(\frac{\pi}{1 - \pi}\right) = \beta_0 + \beta_1 \text{DiseaseSeverity}$
+> Model 3: $\log\left(\frac{\pi}{1 - \pi}\right) = \beta_0 + \beta_1 \text{Treatment} + \beta_2\text{DiseaseSeverity} + \beta_3\text{Treatment}\cdot\text{DiseaseSeverity}$
+
+(c) Which model is suitable to answer each of the three scientific questions? E.g., Model X is suitable to answer Question X.
+
+> * Model 1 (treatment only) is suitable to answer question 1 (is treatment associated with y?).
+> * Model 2 (disease severity only) is suitable to answer question 2 (is disease severity associated with y?).
+> * Model 3 (including interaction) is suitable to answer question 3 (does treatment differ across varying values of disease severity?).
+> * It appears that model # and question # are highly correlated!
+
+(d) Fit the three logistic models using R or SAS. Provide your code and output.
+
+> I'm going to do this in three stages, so the output isn't so jumbled. Let's start with model 1. 
+>
+
+---
+
+#### Model 1: cbind(Y, N - Y) ~ Treatment 
+
+```{r}
+###################################### R ######################################
+# Specify data
+treatment <- c(0, 0, 0, 1, 1, 1)
+disease_severity <- c(0, 1, 2, 0, 1, 2)
+y <- c(51, 67, 42, 143, 97, 40)
+n <- c(200, 158, 89, 315, 263, 75)
+# Combine into a dataframe
+hospitalizations <- data.frame(
+    Y = y, N = n, Treatment = treatment, DiseaseSeverity = disease_severity
+)
+
+# Fit the model
+model_1_fit <- glm(
+    cbind(Y, N - Y) ~ Treatment,
+    family = binomial(link = "logit"),
+    data = hospitalizations
+)
+###############################################################################
+```
+
+> Now that we've fit the model, let's look at the model using R's `summary` function: 
+
+```{r echo=FALSE}
+###################################### R ######################################
+summary(model_1_fit)
+###############################################################################
+```
+
+
+> I know this section isn't for interpretation, but heck, I'm going to interpret the results. It does look like there is a significant increase in the odds of hospitalization in treatment group B (treatment = 1) compared to treatment group A (treatment = 0). The 95% confidence interval for the OR is [1.05, 1.72], with a point estimate of 1.34. Thus, the odds of hospitalization are 34% higher in group B compared to group A, indicating that drug A is more effective (i.e. lower odds of hospitalization). 
+
+
+---
+
+#### Model 2: cbind(Y, N - Y) ~ DiseaseSeverity 
+
+```{r}
+###################################### R ######################################
+# Fit the model
+model_2_fit <- glm(
+    cbind(Y, N - Y) ~ DiseaseSeverity,
+    family = binomial(link = "logit"),
+    data = hospitalizations
+)
+###############################################################################
+```
+
+> Again, let's look at the second model using R's `summary` function:
+
+```{r echo=FALSE}
+###################################### R ######################################
+summary(model_2_fit)
+###############################################################################
+```
+
+> I also want to interpret these results. There is a significant association between disease severity and hospitalization (p < 0.05). The estimated OR is 1.23, and the 95% confidence interval is [1.04, 1.45]. Thus, for every unit increase in disease severity (continuous scale), the odds of hospitalization increase by 23%. 
+
+---
+
+#### Model 3: cbind(Y, N - Y) ~ Treatment * DiseaseSeverity
+
+
+We fit the final model below. 
+
+```{r}
+###################################### R ######################################
+# Fit the model
+model_3_fit <- glm(
+    cbind(Y, N - Y) ~ Treatment * DiseaseSeverity,
+    family = binomial(link = "logit"),
+    data = hospitalizations
+)
+###############################################################################
+```
+
+> Once again, let's summarize this model and interpret the result. 
+
+```{r echo=FALSE}
+###################################### R ######################################
+summary(model_3_fit)
+###############################################################################
+```
+
+> The interaction term is significant! The effect of treatment does vary across different values of disease severity. 
+
+
+
+---
+
+
+(e) What are the degrees of freedom (DF) of deviance under different models? DF of the null deviance:
+
+DF of the residual deviance for Model 1:
+
+> $DF = n - p = 6 - 2 = 4$
+
+DF of the residual deviance for Model 2:
+
+> $DF = n - p = 6 - 2 = 4$
+
+DF of the residual deviance for Model 3:
+
+> $DF = n - p = 6 - 4 = 2$
+
+
+(f) In Model 1, interpret all coefficients. Show how to conduct inference about the association between the treatment and hospitalization. This will answer the scientific question that was paired with Model 1 in (c). Explain fully.
+
+> **Interpreting Treatment**: Again, the treatment coefficient was signicant (p < 0.05) and the 95% confidence interval for the OR was above 1. The estimated OR is 1.34, indicating that the odds of hospitalization are 34% higher for individuals taking drug B compared to those taking drug B. This indicates that drug A is more favorable. 
+>
+> **Interpreting the Intercept**: The intercept is interesting. This coefficient is the log odds of hospitalization when all coefficients are set to zero. For this model, that means that the odds of hospitalization for those taking drug A (i.e. treatment = 0) is 0.557. This indicates that the probability of hospitalization is lower than the probability of not being hospitalized for those taking drug A. 
+
+
+(g) Answer Question 2. Which model will you use? Interpret the associated model parameters and draw inferences. Explain fully.
+
+> Here's question 2 again:  Is the disease severity associated with hospitalization? 
+>
+> Recall that model 2 contains only disease severity as a predictor. Thus, I will use this model to answer the question. 
+>
+> **Interpreting Disease Severity**: The 95% confidence for disease severity is [1.04, 1.45], with (p < 0.05). So yes, disease severity is associated with hospitalization. The point estimate for the OR is 1.23, indicating that for every unit increase of disease severity, the odds of hospitalization increase by 23%. 
+> 
+> **Interpreting the Intercept**: Once again, the intercept coefficient is the log odds of hospitalization given a disease severity value of 0. With a coefficient of -0.549, the estimated odds of hospitalization for individuals with DS = 0 is 0.57. 
+
+(h) In Model 3, what is the odds ratio between two groups: patients having treatment=0 and disease severity=1 vs. patients having treatment=1 and disease severity=2. Calculate the associated 95% confidence interval of the odds ratio.
+
+> **Pattern 1**: Treatment = 0, Disease Severity = 1.
+> 
+> **Pattern 2**: Treatment = 1, Disease Severity = 2. 
+>
+> $OR = \exp\left[ (-1)\beta_1 + (-1)\beta_2 + (-2) \beta_3 \right] \implies L^T = [0,-1,-1,-2]$
+
+
+> Let's now calculate our point estimate for the odds ratio:
+
+\begin{align*}
+OR &= \exp\left[ (-1)\beta_1 + (-1)\beta_2 + (-2) \beta_3 \right]\\
+&= \exp\left[ (-1)(0.70)+ (-1)(0.51) + (-2) (-0.51) \right]\\
+&= 0.828
+\end{align*}
+
+> We can use R to calculate the standard error for $\hat{\beta}$, which will be necessary to calculate a 95% confidence interval: 
+>
+
+```{r}
+###################################### R ######################################
+# Extract variance-covariance matrix
+var_cov <- summary(model_3_fit)$cov.unscaled
+
+# Specify L
+l <- t(c(0, -1, -1, -2))
+
+# Estimate variance and standard error
+or_var <- l %*% var_cov %*% t(l)
+or_stderr <- sqrt(or_var)
+
+# Print standard error
+print(
+    paste0("Standard Error = ", round(or_stderr, 3))
+)
+###############################################################################
+```
+
+
+
+> The 95% confidence interval is given below: 
+
+
+\begin{align*}
+95\% \text{ Confidence Interval} &= \hat{OR} \pm Z_{1 - \alpha/2}SE\left( \hat{OR}\right)\\
+&= 0.828 \pm 1.96 \cdot 0.205\\
+&= [0.425, 1.230]
+\end{align*}
+
+
+
+
+(i) Can you answer Question 3 using Model 3? What is your conclusion about Question 3?
+Explain fully.
+
+> Yes, we can!
+>
+> Recall question 3: Does the treatment effect differ by disease severity? (i.e., Is the disease severity an effect moderator?) This can be answered by looking at the **interaction** between treatment and disease severity. Because this interaction term is significant, we can say that the treatment effect does differ by disease severity. 
+
+(j) We want to compare models using the likelihood ratio test (LRT). Which pairs can be
+compared using LRT?
+
+> Recall that for LRT, we must be comparing **nested** models. Thus, only comparisons of full v nested are eligible:
+
+Model 1 vs. Model 2 YES NO
+
+> No. Model 1 and Model 2 have different covariates. The predictors of neither is a subset of the predictors of the other. 
+
+Model 1 vs. Model 3 YES NO
+
+> Yes! Model 1 is a special case of model 3 (i.e. all covariates beside Treatment are 0). 
+
+Model 2 vs. Model 3 YES NO
+
+> Yes! Model 2 is a special case of model 3. 
+
+
+
+
+
+
+
+## Problem 2
+
+We want to fit a logistic regression model using the Embryogenic Anther data (see lecture note 4). We consider the following two models:
+
+• Model 1: $logit(P) = β_0 + β_1\text{newstor}$
+
+• Model 2: $logit(P) = β_0 + β_1\text{newstor} + β_2\text{force} + β_3\text{newstor} · \text{force}$
+
+
+```{r echo=FALSE}
+###################################### R ######################################
+treatment <- c(
+    "Control", "Control", "Control", "Treatment", "Treatment", "Treatment"
+)
+force <- c(40, 150, 350, 40, 150, 350)
+y <- c(55, 52, 57, 55, 50, 50)
+n <- c(102, 99, 108, 76, 81, 90)
+df <- data.frame(Y = y, N = n, NewStorage = treatment, Force = force)
+pander::pander(df)
+###############################################################################
+```
+
+
+(a) Fit the two models in R or SAS using “grouped” data. Provide your code and output.
+
+> Let's approach this the same way we did in the first problem. 
+>
+
+---
+
+#### Model 1: $logit(P) = β_0 + β_1newstor$
+
+```{r}
+###################################### R ######################################
+# Specify data
+treatment <- c(
+    0, 0, 0, 1, 1, 1
+)
+force <- c(40, 150, 350, 40, 150, 350)
+y <- c(55, 52, 57, 55, 50, 50)
+n <- c(102, 99, 108, 76, 81, 90)
+embryogenic <- data.frame(y = y, n = n, newstor = treatment, force = force)
+
+# Fit model
+model_1_fit <- glm(
+    cbind(y, n - y) ~ newstor,
+    family = binomial(link = "logit"),
+    data = embryogenic
+)
+###############################################################################
+```
+
+> Let's now look at the summary: 
+
+```{r echo=FALSE}
+###################################### R ######################################
+summary(model_1_fit)
+###############################################################################
+```
+
+---
+
+
+#### Model 2: $logit(P) = β_0 + β_1\text{newstor} + β_2\text{force} + β_3\text{newstor} · \text{force}$
+
+```{r}
+###################################### R ######################################
+# Fit model
+model_2_fit <- glm(
+    cbind(y, n - y) ~ newstor * force,
+    family = binomial(link = "logit"),
+    data = embryogenic
+)
+###############################################################################
+```
+
+
+```{r echo=FALSE}
+###################################### R ######################################
+summary(model_2_fit)
+###############################################################################
+```
+
+---
+
+
+
+(b) Fit the two models in R or SAS after converting the “grouped” data into “ungrouped” data. Provide your code and output. Compare the results in (a) and (b).
+
+---
+
+#### Model 1: $logit(P) = β_0 + β_1newstor$
+
+```{r}
+###################################### R ######################################
+# Ungroup the data
+newstor_2 <- c(
+    rep(0, sum(n[1:3])),
+    rep(1, sum(n[4:6]))
+)
+force_2 <- c(
+    rep(40, n[1]),
+    rep(150, n[2]),
+    rep(350, n[3]),
+    rep(40, n[4]),
+    rep(150, n[5]),
+    rep(350, n[6])
+)
+y_2 <- c(
+    rep(1, y[1]),
+    rep(0, n[1] - y[1]),
+    rep(1, y[2]),
+    rep(0, n[2] - y[2]),
+    rep(1, y[3]),
+    rep(0, n[3] - y[3]),
+    rep(1, y[4]),
+    rep(0, n[4] - y[4]),
+    rep(1, y[5]),
+    rep(0, n[5] - y[5]),
+    rep(1, y[6]),
+    rep(0, n[6] - y[6])
+)
+embryogenic_ungrouped <- data.frame(
+    y = y_2, newstor = newstor_2, force = force_2
+)
+
+
+# Fit model
+model_1_fit <- glm(
+    y ~ newstor,
+    family = binomial(link = "logit"),
+    data = embryogenic_ungrouped
+)
+###############################################################################
+```
+
+
+```{r echo=FALSE}
+###################################### R ######################################
+summary(model_1_fit)
+###############################################################################
+```
+
+---
+
+
+#### Model 2: $logit(P) = β_0 + β_1\text{newstor} + β_2\text{force} + β_3\text{newstor} · \text{force}$
+
+```{r}
+###################################### R ######################################
+# Fit model
+model_2_fit <- glm(
+    y ~ newstor * force,
+    family = binomial(link = "logit"),
+    data = embryogenic_ungrouped
+)
+###############################################################################
+```
+
+
+```{r echo=FALSE}
+###################################### R ######################################
+summary(model_2_fit)
+###############################################################################
+```
+
+---
+
+#### Observations 
+
+> You'll notice that for both model 1 and model 2, the coefficients and p-values are equivalent using ungrouped vs grouped data. So, what's the difference? Well, a lot, actually. The AIC is **vastly** different (757 vs 38 for model 1). 
+>
+>The deviance and degrees of freedom are also different. In fact, the deviance for both the ungrouped data models are less useful than those of the grouped data because 
+
+
+(c) Conduct a likelihood ratio test comparing the two models using both grouped and ungrouped data. Do they give the same conclusion?
+
+---
+
+#### Liklihood Ratio Test: Grouped Data 
+
+> Note that an important assumption about the LRT is that the models are heirarchical or nested in nature. This is true for both the ungrouped and grouped data analyses. 
+>
+> The other major consideration is how well these data are suited to LR modeling. We can use the Hosmer-Lemeshow test to show this:
+>
+
+```{r}
+###################################### R ######################################
+# Fit models to make sure we're doing the correct test
+model_1_fit <- glm(
+    cbind(y, n - y) ~ newstor,
+    family = binomial(link = "logit"),
+    data = embryogenic
+)
+model_2_fit <- glm(
+    cbind(y, n - y) ~ newstor * force,
+    family = binomial(link = "logit"),
+    data = embryogenic
+)
+
+# Calculate the p-value for the Hosmer-Lemeshow test
+t1 <- ResourceSelection::hoslem.test(
+    model_1_fit$y, model_1_fit$fitted.values,
+    g = 3
+)
+t2 <- ResourceSelection::hoslem.test(
+    model_2_fit$y, model_2_fit$fitted.values,
+    g = 3
+)
+###############################################################################
+```
+
+> The p-value for model 1 is `r round(t1$p.value, 3)`, and the p-value for model 2 is `r round(t1$p.value, 3)`. Because we **want** to fail to reject the null hypothesis, we can say that we **don't** have the evidence to suggest that these models do **not** fit the data well. Double negatives are hard, so we're just saying we can run the test. 
+
+
+
+```{r}
+###################################### R ######################################
+# Run LRT test
+deviance_1 <- model_1_fit$deviance
+deviance_2 <- model_2_fit$deviance
+delta <- deviance_1 - deviance_2
+q <- 2
+p <- 4
+pval <- 1 - pchisq(delta, p - q)
+###############################################################################
+```
+
+> The p-value from this test is `r round(pval, 3)`. Thus, we fail to reject the null hypothesis (but we'll get to that later).
+
+---
+
+#### Liklihood Ratio Test: Ungrouped Data 
+
+> Like the previous part, these models are nested. So let's look at the Hosmer-Lemeshow test to make sure we're okay to move forward. 
+
+
+```{r}
+###################################### R ######################################
+# Fit models to make sure we're doing the correct test
+model_1_fit <- glm(
+    y ~ newstor,
+    family = binomial(link = "logit"),
+    data = embryogenic_ungrouped
+)
+model_2_fit <- glm(
+    y ~ newstor * force,
+    family = binomial(link = "logit"),
+    data = embryogenic_ungrouped
+)
+
+# Calculate the p-value for the Hosmer-Lemeshow test
+t1 <- ResourceSelection::hoslem.test(
+    model_1_fit$y, model_1_fit$fitted.values,
+    g = 3
+)
+t2 <- ResourceSelection::hoslem.test(
+    model_2_fit$y, model_2_fit$fitted.values,
+    g = 3
+)
+###############################################################################
+```
+
+> The p-value for model 1 is `r round(t1$p.value, 3)`, and the p-value for model 2 is `r round(t1$p.value, 3)`. Once again, we fail to reject the null hypothesis, which means we can proceed. 
+
+
+
+```{r}
+###################################### R ######################################
+# Run LRT test
+deviance_1 <- model_1_fit$deviance
+deviance_2 <- model_2_fit$deviance
+delta <- deviance_1 - deviance_2
+q <- 2
+p <- 4
+pval <- 1 - pchisq(delta, p - q)
+###############################################################################
+```
+
+> The p-value from this test is `r round(pval, 3)`. This is exactly the same as the previous p-value!
+
+---
+
+
+
+
+
+(d) Write a paragraph for a manuscript to describe your likelihood ratio test results (pick one from grouped and ungrouped data). It should include hypotheses, results, and interpretation.
+
+> We conducted a likelihood ratio test (LRT) to compare two logistic regression models fitted to the embryogenic anther dataset. The null hypothesis is that Model 1 (which includes only the treatment effect) provides an adequate fit for the data, while the alternative hypothesis is that Model 2 (which includes treatment, force, and their interaction) provides a significantly better fit. Both models were nested, allowing for a valid LRT. For the grouped data, the deviance for Model 1 was 5.17, and for Model 2, it was 0.60. The difference in deviance between the two models was 4.57, with two degrees of freedom. The resulting p-value was 0.1018, indicating that we fail to reject the null hypothesis (p > 0.05). This suggests that the inclusion of the interaction term and the force variable in Model 2 does not significantly improve the model fit compared to Model 1. Therefore, Model 1 may be sufficient to describe the relationship between the treatment and response variables for this dataset.
